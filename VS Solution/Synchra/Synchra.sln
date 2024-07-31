@@ -22,4 +22,10 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A179A059-25C3-4C1B-B150-E17196DCB865}
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		outputpath = ../../../../Synchra Builds
+	EndGlobalSection
 EndGlobal
