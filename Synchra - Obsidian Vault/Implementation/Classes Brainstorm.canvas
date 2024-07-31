@@ -1,0 +1,21 @@
+{
+	"nodes":[
+		{"id":"8b5f789074d2e57b","type":"group","x":160,"y":-100,"width":684,"height":240,"label":"Logging"},
+		{"id":"c14c8dced01e6d6c","type":"group","x":-547,"y":-80,"width":400,"height":400,"color":"#61519a","label":"Synchronization"},
+		{"id":"1be8d0df35f6fb96","x":-570,"y":-720,"width":690,"height":140,"type":"group","label":"CLAs"},
+		{"id":"4c9cac18f7cf1a1a","type":"text","text":"Logger","x":204,"y":1,"width":250,"height":60,"color":"2"},
+		{"id":"e59d9d31e16eff8a","type":"text","text":"FileLogger","x":584,"y":-59,"width":250,"height":60},
+		{"id":"9e27755d833c004f","type":"text","text":"Console Logger","x":584,"y":41,"width":250,"height":60},
+		{"id":"8636efdba144a8ce","type":"text","text":"Sync Check","x":-500,"y":-29,"width":250,"height":60},
+		{"id":"347c5f0eebcdfcb6","type":"text","text":"Sync Execution","x":-500,"y":80,"width":250,"height":60},
+		{"id":"13cf764e54b9a06b","type":"text","text":"Main","x":-200,"y":-360,"width":250,"height":60,"color":"4"},
+		{"id":"a32ec443a085bfd0","type":"text","text":"CLA Helper","x":-500,"y":-680,"width":250,"height":60,"color":"3"},
+		{"id":"ce7f21d8b206e2ed","type":"text","text":"CLA Validator","x":-200,"y":-680,"width":250,"height":60,"color":"3"}
+	],
+	"edges":[
+		{"id":"0a09d3ba1765b19d","fromNode":"9e27755d833c004f","fromSide":"left","toNode":"4c9cac18f7cf1a1a","toSide":"right"},
+		{"id":"8ccd6ee89cb69347","fromNode":"e59d9d31e16eff8a","fromSide":"left","toNode":"4c9cac18f7cf1a1a","toSide":"right"},
+		{"id":"b68cf70e91c2d4e6","fromNode":"13cf764e54b9a06b","fromSide":"bottom","toNode":"c14c8dced01e6d6c","toSide":"top"},
+		{"id":"04488333d06d09e5","fromNode":"13cf764e54b9a06b","fromSide":"top","toNode":"a32ec443a085bfd0","toSide":"bottom"}
+	]
+}
