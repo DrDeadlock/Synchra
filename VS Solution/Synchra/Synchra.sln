@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.20
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synchra", "Synchra\Synchra.csproj", "{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}.Debug|anycpu.Build.0 = Debug|anycpu
+		{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}.Release|anycpu.ActiveCfg = Release|anycpu
+		{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A179A059-25C3-4C1B-B150-E17196DCB865}
+	EndGlobalSection
+EndGlobal
