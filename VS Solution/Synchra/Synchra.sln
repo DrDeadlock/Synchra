@@ -1,31 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.810.20
+VisualStudioVersion = 16.0.810.25
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synchra", "Synchra\Synchra.csproj", "{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Synchra", "Synchra\Synchra.csproj", "{29BD25F1-2369-49F2-B5D9-16A2C9844251}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|anycpu = Debug|anycpu
-		Release|anycpu = Release|anycpu
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}.Debug|anycpu.ActiveCfg = Debug|anycpu
-		{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}.Debug|anycpu.Build.0 = Debug|anycpu
-		{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}.Release|anycpu.ActiveCfg = Release|anycpu
-		{C60D6EDC-238D-45C5-B0B8-EBB1DF173541}.Release|anycpu.Build.0 = Release|anycpu
+		{29BD25F1-2369-49F2-B5D9-16A2C9844251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29BD25F1-2369-49F2-B5D9-16A2C9844251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29BD25F1-2369-49F2-B5D9-16A2C9844251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29BD25F1-2369-49F2-B5D9-16A2C9844251}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A179A059-25C3-4C1B-B150-E17196DCB865}
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		Policies = $0
-		$0.DotNetNamingPolicy = $1
-		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
-		outputpath = ../../../../Synchra Builds
+		SolutionGuid = {D0D98617-1CCF-45C1-8A43-0A3187A2F819}
 	EndGlobalSection
 EndGlobal
