@@ -54,7 +54,7 @@ We don't know, what the customer might wish in the future as a log output (might
 # External Soft Tasks
 - [x] Create Obsidian Vault
 - [ ] Create C# Solution
-- [ ] Create Git Structure 
-	- [ ] Include Obsidian Vault
+- [x] Create Git Structure 
+	- [x] Include Obsidian Vault
 	- [ ] Include C# Solution
 - [ ] Mark Git Structure as public
