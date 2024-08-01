@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Tasks/Log Tasks.md",
+                "file": "Resources/Tasks/Prevent File break tasks.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Tasks/Log Tasks.md",
+                "file": "Resources/Tasks/Prevent File break tasks.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Resources/Tasks/Log Tasks.md",
+                "file": "Resources/Tasks/Prevent File break tasks.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Resources/Tasks/Log Tasks.md"
+                "file": "Resources/Tasks/Prevent File break tasks.md"
               }
             }
           }
@@ -161,6 +161,9 @@
   },
   "active": "174ee81c8638a5da",
   "lastOpenFiles": [
+    "Resources/Tasks/Sync Tasks.md",
+    "Resources/Tasks/Testing Tasks.md",
+    "Resources/Tasks/Log Tasks.md",
     "Resources/Knowledge base/Logging.md",
     "Implementation/Classes Brainstorm.canvas",
     "Implementation/Program Execution Plan.md",
@@ -171,13 +174,10 @@
     "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Project/Customers Tasks/Customers Task Definition.md",
     "Resources/Tasks/CLA Tasks.md",
-    "Resources/Tasks/Log Tasks.md",
     "Project/Customer Emails/Untitled",
     "Project/Customer Emails",
-    "Resources/Tasks/Sync Tasks.md",
     "Resources/Tasks/Prevent File break tasks.md",
     "Resources/Tasks/Knowledge Gaining Tasks.md",
-    "Resources/Tasks/Testing Tasks.md",
     "Resources/Knowledge base/Task Scheduling.md",
     "Resources/Knowledge base/Application Exit.md",
     "Resources/Knowledge base/Diff without Iterating through each file.md",

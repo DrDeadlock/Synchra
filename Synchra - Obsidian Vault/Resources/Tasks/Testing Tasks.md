@@ -1,4 +1,5 @@
 - [ ] Define a test strategy
-- [ ] Create a unit test solution
-- [ ] Setup Unit Test Solution to make Synchra testible
-- [ ] 
+- [x] Create a unit test project
+- [x] Setup Unit Test project to make Synchra testible
+	- [x] Add NUnit3 Test Adapter to the test project
+	- [x] Run the sample test
