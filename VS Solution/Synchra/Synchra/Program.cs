@@ -1,6 +1,5 @@
-﻿using System;
-using Synchra.Logging.Wrappers;
-using log4net.Config;
+﻿using Synchra.Logging.Wrappers;
+using Synchra.Logging;
 
 namespace Synchra
 {
@@ -10,11 +9,12 @@ namespace Synchra
 
         static void Main(string[] args)
         {
-            BasicConfigurator.Configure();
+            LogConfigurator.Configure();
 
-            Console.WriteLine("Hello World!");
             communicator = new ConsoleCommunicator();
             communicator.GreetUser();
+
+            System.Console.WriteLine("Exiting Application...");
         }
     }
 }

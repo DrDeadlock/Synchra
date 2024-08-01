@@ -7,7 +7,6 @@ namespace Synchra.Logging.Wrappers
         private ILog logger; 
         public ConsoleCommunicator()
         {
-            System.Console.WriteLine("Console Communicator Ctor");
             logger =
                 new ConsoleResponseLoggerFactory
                     (typeof(ConsoleCommunicator))
