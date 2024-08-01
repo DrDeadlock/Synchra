@@ -17,7 +17,10 @@ namespace Synchra
             if (args.Length == 0)
                 communicator.InformAboutCLAProblem();
 
-
+            foreach (var arg in args)
+            {
+                communicator.Write(arg);
+            }
             communicator.Farewell();
         }
     }

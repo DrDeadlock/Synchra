@@ -13,6 +13,11 @@ namespace Synchra.Logging.Wrappers
                 .GetLogger();
         }
 
+        public void Write(string message)
+        {
+            logger.Info(message);
+        }
+
         public void Greet()
         {            
             logger.Info("Welcome to Synchra, a Veeam Solution to synchronize you local folders!");            
