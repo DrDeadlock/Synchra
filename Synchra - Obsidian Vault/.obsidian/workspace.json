@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Tasks/Prevent File break tasks.md",
+                "file": "Resources/Tasks/Log Tasks.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Tasks/Prevent File break tasks.md",
+                "file": "Resources/Tasks/Log Tasks.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Resources/Tasks/Prevent File break tasks.md",
+                "file": "Resources/Tasks/Log Tasks.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Resources/Tasks/Prevent File break tasks.md"
+                "file": "Resources/Tasks/Log Tasks.md"
               }
             }
           }
@@ -161,6 +161,7 @@
   },
   "active": "174ee81c8638a5da",
   "lastOpenFiles": [
+    "Resources/Tasks/Prevent File break tasks.md",
     "Resources/Tasks/Sync Tasks.md",
     "Resources/Tasks/Testing Tasks.md",
     "Resources/Tasks/Log Tasks.md",
@@ -176,7 +177,6 @@
     "Resources/Tasks/CLA Tasks.md",
     "Project/Customer Emails/Untitled",
     "Project/Customer Emails",
-    "Resources/Tasks/Prevent File break tasks.md",
     "Resources/Tasks/Knowledge Gaining Tasks.md",
     "Resources/Knowledge base/Task Scheduling.md",
     "Resources/Knowledge base/Application Exit.md",
