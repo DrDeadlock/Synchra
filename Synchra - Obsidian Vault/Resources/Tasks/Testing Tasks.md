@@ -1,0 +1,4 @@
+- [ ] Define a test strategy
+- [ ] Create a unit test solution
+- [ ] Setup Unit Test Solution to make Synchra testible
+- [ ] 
