@@ -1,21 +1,29 @@
 {
 	"nodes":[
-		{"id":"8b5f789074d2e57b","type":"group","x":160,"y":-100,"width":684,"height":240,"label":"Logging"},
-		{"id":"c14c8dced01e6d6c","type":"group","x":-547,"y":-80,"width":400,"height":400,"color":"#61519a","label":"Synchronization"},
-		{"id":"1be8d0df35f6fb96","x":-570,"y":-720,"width":690,"height":140,"type":"group","label":"CLAs"},
-		{"id":"4c9cac18f7cf1a1a","type":"text","text":"Logger","x":204,"y":1,"width":250,"height":60,"color":"2"},
-		{"id":"e59d9d31e16eff8a","type":"text","text":"FileLogger","x":584,"y":-59,"width":250,"height":60},
-		{"id":"9e27755d833c004f","type":"text","text":"Console Logger","x":584,"y":41,"width":250,"height":60},
-		{"id":"8636efdba144a8ce","type":"text","text":"Sync Check","x":-500,"y":-29,"width":250,"height":60},
-		{"id":"347c5f0eebcdfcb6","type":"text","text":"Sync Execution","x":-500,"y":80,"width":250,"height":60},
-		{"id":"13cf764e54b9a06b","type":"text","text":"Main","x":-200,"y":-360,"width":250,"height":60,"color":"4"},
-		{"id":"a32ec443a085bfd0","type":"text","text":"CLA Helper","x":-500,"y":-680,"width":250,"height":60,"color":"3"},
-		{"id":"ce7f21d8b206e2ed","type":"text","text":"CLA Validator","x":-200,"y":-680,"width":250,"height":60,"color":"3"}
+		{"id":"c14c8dced01e6d6c","type":"group","x":720,"y":-1020,"width":760,"height":500,"color":"#61519a","label":"Synchronization"},
+		{"id":"8b5f789074d2e57b","type":"group","x":-500,"y":-180,"width":684,"height":240,"label":"Logging"},
+		{"id":"1be8d0df35f6fb96","type":"group","x":-845,"y":-820,"width":690,"height":160,"label":"CLAs"},
+		{"id":"2341528ed2b79c7e","type":"text","text":"Synchra Configuratiion","x":-750,"y":-390,"width":250,"height":60},
+		{"id":"13cf764e54b9a06b","type":"text","text":"Main","x":-325,"y":-980,"width":250,"height":60,"color":"4"},
+		{"id":"6f210e197e3f07bf","type":"text","text":"Sync Dispatcher","x":347,"y":-860,"width":250,"height":60},
+		{"id":"a32ec443a085bfd0","type":"text","text":"CLA Helper","x":-775,"y":-760,"width":250,"height":60,"color":"3"},
+		{"id":"ce7f21d8b206e2ed","type":"text","text":"CLA Validator","x":-475,"y":-760,"width":250,"height":60,"color":"3"},
+		{"id":"8636efdba144a8ce","type":"text","text":"Sync Check","x":767,"y":-969,"width":250,"height":60},
+		{"id":"347c5f0eebcdfcb6","type":"text","text":"Sync Execution","x":767,"y":-860,"width":250,"height":60},
+		{"id":"4c9cac18f7cf1a1a","type":"text","text":"Logger","x":-456,"y":-79,"width":250,"height":60,"color":"2"},
+		{"id":"e59d9d31e16eff8a","type":"text","text":"FileLogger","x":-76,"y":-139,"width":250,"height":60},
+		{"id":"9e27755d833c004f","type":"text","text":"Console Logger","x":-76,"y":-39,"width":250,"height":60},
+		{"id":"983f2a205a2fd050","x":1060,"y":-969,"width":400,"height":400,"type":"file","file":"Resources/Knowledge base/Get Checksum.md"}
 	],
 	"edges":[
 		{"id":"0a09d3ba1765b19d","fromNode":"9e27755d833c004f","fromSide":"left","toNode":"4c9cac18f7cf1a1a","toSide":"right"},
 		{"id":"8ccd6ee89cb69347","fromNode":"e59d9d31e16eff8a","fromSide":"left","toNode":"4c9cac18f7cf1a1a","toSide":"right"},
-		{"id":"b68cf70e91c2d4e6","fromNode":"13cf764e54b9a06b","fromSide":"bottom","toNode":"c14c8dced01e6d6c","toSide":"top"},
-		{"id":"04488333d06d09e5","fromNode":"13cf764e54b9a06b","fromSide":"top","toNode":"a32ec443a085bfd0","toSide":"bottom"}
+		{"id":"04488333d06d09e5","fromNode":"13cf764e54b9a06b","fromSide":"bottom","toNode":"1be8d0df35f6fb96","toSide":"top"},
+		{"id":"2c7d89f7ee83c7d1","fromNode":"1be8d0df35f6fb96","fromSide":"bottom","toNode":"2341528ed2b79c7e","toSide":"top"},
+		{"id":"f078151723771af9","fromNode":"2341528ed2b79c7e","fromSide":"right","toNode":"8b5f789074d2e57b","toSide":"top"},
+		{"id":"8e5b8b86dd03612f","fromNode":"2341528ed2b79c7e","fromSide":"right","toNode":"6f210e197e3f07bf","toSide":"left"},
+		{"id":"4ad29274bcafd1d3","fromNode":"13cf764e54b9a06b","fromSide":"right","toNode":"6f210e197e3f07bf","toSide":"top"},
+		{"id":"3539158a44451ffb","fromNode":"6f210e197e3f07bf","fromSide":"right","toNode":"c14c8dced01e6d6c","toSide":"left"},
+		{"id":"7226cf75167f8970","fromNode":"c14c8dced01e6d6c","fromSide":"bottom","toNode":"8b5f789074d2e57b","toSide":"right"}
 	]
 }

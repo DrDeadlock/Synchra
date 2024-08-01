@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Project/Task Refinement.md",
+                "file": "Project/Customers Tasks/Checklist - Customer Requirements.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Project/Task Refinement.md",
+                "file": "Project/Customers Tasks/Checklist - Customer Requirements.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Project/Task Refinement.md",
+                "file": "Project/Customers Tasks/Checklist - Customer Requirements.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Project/Task Refinement.md"
+                "file": "Project/Customers Tasks/Checklist - Customer Requirements.md"
               }
             }
           }
@@ -148,15 +148,40 @@
   },
   "active": "27aaaa6aabfa6290",
   "lastOpenFiles": [
+    "Project/Customer Emails/Init Questions regarding Synchra.md",
+    "Resources/Tasks/Log Tasks.md",
+    "Project/Customer Emails/Untitled",
+    "Project/Customer Emails",
+    "Resources/Tasks/Sync Tasks.md",
+    "Resources/Tasks/Prevent File break tasks.md",
+    "Resources/Tasks/Knowledge Gaining Tasks.md",
+    "Resources/Tasks/CLA Tasks.md",
+    "Resources/Tasks/Testing Tasks.md",
+    "Resources/Knowledge base/Task Scheduling.md",
+    "Project/Checklist - Work Progress.md",
+    "Resources/Knowledge base/Application Exit.md",
+    "Resources/Knowledge base/Diff without Iterating through each file.md",
+    "Resources/Error Handling/Error Handling - Brainstorm.md",
+    "Project/Customers Tasks/Customers Task Definition.md",
+    "Project/Customers Tasks/Checklist - Customer Requirements.md",
+    "Resources/Knowledge base/File System Specifics.md",
+    "Resources/Knowledge base/Get Checksum.md",
     "Implementation/Classes Brainstorm.canvas",
-    "Project/Questions.md",
-    "Project/Task Refinement.md",
-    "Project/Customers Task Definition.md",
+    "Files/Bildschirmfoto 2024-08-01 um 09.55.00.png",
+    "Link.md",
+    "Files/Findout Checksum of Directory.png",
+    "Files/Findout Checksum.png",
+    "Resources/Tasks/General Task Refinement.md",
+    "Resources/Knowledge base",
+    "Resources/Error Handling",
+    "Project/Customers Tasks",
+    "Resources/Tasks/CLA Behaviour.md",
+    "Resources/Tasks",
+    "Resources",
     "Implementation/Untitled.md",
     "Implementation",
     "Files",
     "Files/Veeam_tesk_task_С_.pdf",
-    "Project",
     "Welcome.md"
   ]
 }
