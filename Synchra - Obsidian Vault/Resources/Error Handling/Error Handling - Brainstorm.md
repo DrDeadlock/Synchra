@@ -27,4 +27,5 @@ The user inputs
 - a negative number
 - a floating point number
 - not even a number 
+- a very small number
 
