@@ -12,9 +12,13 @@ namespace Synchra
             LogConfigurator.Configure();
 
             communicator = new ConsoleCommunicator();
-            communicator.GreetUser();
+            communicator.Greet();
 
-            System.Console.WriteLine("Exiting Application...");
+            if (args.Length == 0)
+                communicator.InformAboutCLAProblem();
+
+
+            communicator.Farewell();
         }
     }
 }
