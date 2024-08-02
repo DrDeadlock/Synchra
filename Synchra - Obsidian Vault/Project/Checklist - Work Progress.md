@@ -19,4 +19,4 @@
 	- [ ] [[Application Exit]] Handling
 	- [ ] [[File System Specifics]] checking 
 	- [ ] Task Scheduling
-- [ ] Email the Customer -- [[Mail - Init Questions regarding Synchra]]
+- [x] Email the Customer -- [[Mail - Init Questions regarding Synchra]]

@@ -25,9 +25,29 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Tasks/Log Tasks.md",
+                "file": "Implementation/Program Execution Plan.md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "2e2192ed3d294a0e",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Files/PAPs/Main PAP.drawio.svg"
+              }
+            }
+          },
+          {
+            "id": "9ef55c7aaf9214cb",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Files/PAPs/Main PAP.drawio.svg"
               }
             }
           }
@@ -98,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Tasks/Log Tasks.md",
+                "file": "Implementation/Program Execution Plan.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +135,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Resources/Tasks/Log Tasks.md",
+                "file": "Implementation/Program Execution Plan.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +158,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Resources/Tasks/Log Tasks.md"
+                "file": "Implementation/Program Execution Plan.md"
               }
             }
           }
@@ -159,19 +179,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "174ee81c8638a5da",
+  "active": "6439d195e66170c7",
   "lastOpenFiles": [
+    "Files/PAPs/Main PAP.drawio",
+    "Files/PAPs/Main PAP(2).drawio",
+    "Files/PAPs/Main PAP.drawio.svg",
+    "Implementation/Program Execution Plan.md",
+    "Files/PAPs/Main PAP.drawio(2).png",
+    "Files/PAPs/Main PAP.drawio.pdf",
+    "Files/PAPs/Main PAP.drawio(1).png",
+    "Files/PAPs/Main PAP.drawio(5).png",
+    "Files/PAPs/Main PAP.drawio(4).png",
+    "Files/PAPs/Main PAP.drawio(3).png",
+    "Files/PAPs/Main PAP.drawio.png",
+    "Files/PAPs/Main PAP 1.drawio",
+    "Files/PAPs",
+    "Project/Checklist - Work Progress.md",
+    "Resources/Tasks/Log Tasks.md",
     "Resources/Tasks/Prevent File break tasks.md",
     "Resources/Tasks/Sync Tasks.md",
     "Resources/Tasks/Testing Tasks.md",
-    "Resources/Tasks/Log Tasks.md",
     "Resources/Knowledge base/Logging.md",
     "Implementation/Classes Brainstorm.canvas",
-    "Implementation/Program Execution Plan.md",
     "Implementation/PAP.canvas",
     "Implementation/PAP.md",
     "Project/Customer Emails/Mail - Init Questions regarding Synchra.md",
-    "Project/Checklist - Work Progress.md",
     "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Project/Customers Tasks/Customers Task Definition.md",
     "Resources/Tasks/CLA Tasks.md",
@@ -187,17 +219,12 @@
     "Files/Bildschirmfoto 2024-08-01 um 09.55.00.png",
     "Link.md",
     "Files/Findout Checksum of Directory.png",
-    "Files/Findout Checksum.png",
     "Resources/Tasks/General Task Refinement.md",
     "Resources/Knowledge base",
     "Resources/Error Handling",
     "Project/Customers Tasks",
     "Resources/Tasks/CLA Behaviour.md",
     "Resources/Tasks",
-    "Resources",
-    "Implementation",
-    "Files",
-    "Files/Veeam_tesk_task_С_.pdf",
     "Welcome.md"
   ]
 }

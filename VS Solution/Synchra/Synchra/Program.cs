@@ -6,6 +6,7 @@ namespace Synchra
     class Program
     {
         private static ConsoleCommunicator communicator;
+        private static SynchronizationCommunicator syncComm;
 
         static void Main(string[] args)
         {
@@ -21,6 +22,10 @@ namespace Synchra
             {
                 communicator.Write(arg);
             }
+
+            syncComm = new SynchronizationCommunicator();
+            syncComm.LogFileCreate("Great File.txt");
+
             communicator.Farewell();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using log4net;
+using Synchra.Logging.Factory;
 
 namespace Synchra.Logging.Wrappers
 {
@@ -9,13 +10,13 @@ namespace Synchra.Logging.Wrappers
         public SynchronizationCommunicator()
         {
             _logger =
-                new ConsoleResponseLoggerFactory()                    
+                new SynchronizationLoggerFactory()                    
                 .GetLogger();
         }
 
         public void LogFileCreate(string filename)
         {
-
+            _logger.Info("The file: " + filename + " has been created.");
         }
     }
 }
