@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Project/Checklist - Work Progress.md",
+                "file": "Resources/Knowledge base/_Core Knowledge Base.md",
                 "mode": "source",
                 "source": false
               }
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Project/Checklist - Work Progress.md",
+                "file": "Resources/Knowledge base/_Core Knowledge Base.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Project/Checklist - Work Progress.md",
+                "file": "Resources/Knowledge base/_Core Knowledge Base.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Project/Checklist - Work Progress.md"
+                "file": "Resources/Knowledge base/_Core Knowledge Base.md"
               }
             }
           }
@@ -168,22 +168,26 @@
   },
   "active": "27aaaa6aabfa6290",
   "lastOpenFiles": [
+    "Implementation/Program Execution Plans.md",
+    "Resources/Files/PEPs/Sync Process.drawio.svg",
+    "Resources/Tasks/Sync Tasks.md",
+    "Resources/Files/PEPs/Sync Process.drawio",
+    "Resources/Knowledge base/Sync Related/Get Checksum.md",
+    "Resources/Knowledge base/_Core Knowledge Base.md",
+    "Implementation/Classes Brainstorm.canvas",
+    "Project/Checklist - Work Progress.md",
+    "Resources/Tasks/Tasks TBD",
     "Resources/Tasks/Log Tasks.md",
     "Resources/Tasks/_Core Task Overview.md",
     "Resources/Error Handling/Error Handling - Brainstorm.md",
     "Project/Overview.md",
-    "Project/Checklist - Work Progress.md",
-    "Resources/Knowledge base/_Core Knowledge Base.md",
     "Project/Customer Emails/Mail - Init Questions regarding Synchra.md",
     "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Project/Customers Tasks/Customers Task Definition.md",
     "Resources/Files/Veeam_tesk_task_С_.pdf",
     "Resources/Files/Bildschirmfoto 2024-08-01 um 09.55.00.png",
     "Resources/Files/Findout Checksum.png",
-    "Implementation/Program Execution Plan.md",
-    "Implementation/Classes Brainstorm.canvas",
     "Resources/Tasks/Application Handling Tasks.md",
-    "Resources/Tasks/Sync Tasks.md",
     "Resources/Tasks/Testing Tasks.md",
     "Resources/Knowledge base/Sync Related",
     "Resources/Knowledge base/Application Handling",
@@ -192,7 +196,6 @@
     "Resources/Knowledge base/Logging",
     "Resources/Tasks/CLA Tasks.md",
     "Resources/Knowledge base/Application Handling/Task Scheduling.md",
-    "Resources/Knowledge base/Sync Related/Get Checksum.md",
     "Resources/Knowledge base/Application Handling/Application Exit.md",
     "Resources/Knowledge base/Sync Related/File System Specifics.md",
     "Resources/Files/PEPs/Main PAP.drawio",
@@ -206,14 +209,11 @@
     "Files/PAPs/Main PAP.drawio(3).png",
     "Files/PAPs/Main PAP.drawio.png",
     "Files/PAPs/Main PAP 1.drawio",
-    "Resources/Files/PEPs",
     "Implementation/PAP.canvas",
     "Implementation/PAP.md",
-    "Project/Customer Emails/Untitled",
     "Resources/Tasks/Knowledge Gaining Tasks.md",
     "Resources/Knowledge base/Diff without Iterating through each file.md",
     "Link.md",
-    "Resources/Files/Findout Checksum of Directory.png",
     "Resources/Tasks/General Task Refinement.md"
   ]
 }

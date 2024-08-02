@@ -2,15 +2,16 @@
 
 namespace TestSynchra
 {
-    public class Tests
+    public class TestNameConvention
     {
         [SetUp]
         public void Setup()
         {
         }
 
+        //Test Name Convention
         [Test]
-        public void Test1()
+        public void Condition_ExpectedResult()
         {
             Assert.Pass();
         }
