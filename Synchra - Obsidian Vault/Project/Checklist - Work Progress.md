@@ -13,10 +13,12 @@
 	- [x] OS Environment
 - [x] Mark Git Structure as public
 
+- [ ] Incorporate Error Handling ideas into the respective test tasks
 # Setup Architecture
 - [ ] Create Modules / Classes in [[Classes Brainstorm.canvas|Classes Brainstorm]] to incorporate
 	- [ ] [[Get Checksum]] Handling
 	- [ ] [[Application Exit]] Handling
 	- [ ] [[File System Specifics]] checking 
 	- [ ] Task Scheduling
-- [ ] Email the Customer -- [[Mail - Init Questions regarding Synchra]]
+- [ ] Create Program Execution Plans (PEPs)
+- [x] Email the Customer -- [[Mail - Init Questions regarding Synchra]]

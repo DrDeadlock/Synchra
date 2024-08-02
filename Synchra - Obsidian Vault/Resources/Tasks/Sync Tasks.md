@@ -12,6 +12,13 @@
 - [ ] Synchra is able to Copy Update Files which are as well in Src and Dest but differ regarding their content (Compare by Updated TimeStamp)
 - [ ] Synchra is able to Delete Files which are in Dest and are not in Src
 
+# Test Cases
+- [ ] Checksums of src and dest are equal
+- [ ] Checksums of src and dest are different
+- [ ] Manipulation of dest is blocked by OS
+- [ ] After synch src and dest checksums are equal
+- [ ] ???After synch src and dest are equal (test by iterative file check)
+
 # To be agreed with Customer
 
 - [ ] Changings in the destination folder made by the user are thrown away during a sync process if not the user made the exact same changes also to the source folder.

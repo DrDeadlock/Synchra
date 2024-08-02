@@ -1,26 +1,23 @@
 ﻿using System;
 using log4net;
-using log4net.Config;
+using Synchra.Logging.Wrappers;
 
 namespace Synchra.Logging
 {
     public class ConsoleResponseLoggerFactory : AbstractLoggerFactory
     {
         private string _loggerName;
-        public ConsoleResponseLoggerFactory(string pLoggerName)
-        {
-            _loggerName = pLoggerName;
-        }
 
-        public ConsoleResponseLoggerFactory(Type pType)
+        public ConsoleResponseLoggerFactory()
         {
-            _loggerName = pType.ToString();
+            //TODO: Obsidian - Resources/Tasks/LogTasks
+            //#H1 if there is enough time left
+            _loggerName = (typeof(ConsoleCommunicator).ToString());
         }
 
         public override ILog GetLogger()
         {
-            ILog logger = LogManager.GetLogger(_loggerName);
-            return logger;
+            return LogManager.GetLogger(_loggerName);
         }
     }
 }

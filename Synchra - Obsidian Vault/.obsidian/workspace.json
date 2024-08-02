@@ -20,19 +20,26 @@
             }
           },
           {
-            "id": "174ee81c8638a5da",
+            "id": "2e2192ed3d294a0e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Resources/Tasks/Prevent File break tasks.md",
-                "mode": "source",
-                "source": false
+                "file": "Resources/Files/PEPs/Main PEP.drawio.svg"
+              }
+            }
+          },
+          {
+            "id": "9ef55c7aaf9214cb",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Resources/Files/PEPs/Main PEP.drawio.svg"
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Tasks/Prevent File break tasks.md",
+                "file": "Project/Checklist - Work Progress.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Resources/Tasks/Prevent File break tasks.md",
+                "file": "Project/Checklist - Work Progress.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Resources/Tasks/Prevent File break tasks.md"
+                "file": "Project/Checklist - Work Progress.md"
               }
             }
           }
@@ -159,45 +166,54 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "174ee81c8638a5da",
+  "active": "27aaaa6aabfa6290",
   "lastOpenFiles": [
-    "Resources/Tasks/Sync Tasks.md",
-    "Resources/Tasks/Testing Tasks.md",
     "Resources/Tasks/Log Tasks.md",
-    "Resources/Knowledge base/Logging.md",
-    "Implementation/Classes Brainstorm.canvas",
-    "Implementation/Program Execution Plan.md",
-    "Implementation/PAP.canvas",
-    "Implementation/PAP.md",
-    "Project/Customer Emails/Mail - Init Questions regarding Synchra.md",
+    "Resources/Tasks/_Core Task Overview.md",
+    "Resources/Error Handling/Error Handling - Brainstorm.md",
+    "Project/Overview.md",
     "Project/Checklist - Work Progress.md",
+    "Resources/Knowledge base/_Core Knowledge Base.md",
+    "Project/Customer Emails/Mail - Init Questions regarding Synchra.md",
     "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Project/Customers Tasks/Customers Task Definition.md",
+    "Resources/Files/Veeam_tesk_task_С_.pdf",
+    "Resources/Files/Bildschirmfoto 2024-08-01 um 09.55.00.png",
+    "Resources/Files/Findout Checksum.png",
+    "Implementation/Program Execution Plan.md",
+    "Implementation/Classes Brainstorm.canvas",
+    "Resources/Tasks/Application Handling Tasks.md",
+    "Resources/Tasks/Sync Tasks.md",
+    "Resources/Tasks/Testing Tasks.md",
+    "Resources/Knowledge base/Sync Related",
+    "Resources/Knowledge base/Application Handling",
+    "Resources/Knowledge base/Logging/Logging Knowledge Core.md",
+    "Resources/Knowledge base/Logging/Configure Appender Layout.md",
+    "Resources/Knowledge base/Logging",
     "Resources/Tasks/CLA Tasks.md",
+    "Resources/Knowledge base/Application Handling/Task Scheduling.md",
+    "Resources/Knowledge base/Sync Related/Get Checksum.md",
+    "Resources/Knowledge base/Application Handling/Application Exit.md",
+    "Resources/Knowledge base/Sync Related/File System Specifics.md",
+    "Resources/Files/PEPs/Main PAP.drawio",
+    "Files/PAPs/Main PAP(2).drawio",
+    "Resources/Files/PEPs/Main PEP.drawio.svg",
+    "Files/PAPs/Main PAP.drawio(2).png",
+    "Files/PAPs/Main PAP.drawio.pdf",
+    "Files/PAPs/Main PAP.drawio(1).png",
+    "Files/PAPs/Main PAP.drawio(5).png",
+    "Files/PAPs/Main PAP.drawio(4).png",
+    "Files/PAPs/Main PAP.drawio(3).png",
+    "Files/PAPs/Main PAP.drawio.png",
+    "Files/PAPs/Main PAP 1.drawio",
+    "Resources/Files/PEPs",
+    "Implementation/PAP.canvas",
+    "Implementation/PAP.md",
     "Project/Customer Emails/Untitled",
-    "Project/Customer Emails",
-    "Resources/Tasks/Prevent File break tasks.md",
     "Resources/Tasks/Knowledge Gaining Tasks.md",
-    "Resources/Knowledge base/Task Scheduling.md",
-    "Resources/Knowledge base/Application Exit.md",
     "Resources/Knowledge base/Diff without Iterating through each file.md",
-    "Resources/Error Handling/Error Handling - Brainstorm.md",
-    "Resources/Knowledge base/File System Specifics.md",
-    "Resources/Knowledge base/Get Checksum.md",
-    "Files/Bildschirmfoto 2024-08-01 um 09.55.00.png",
     "Link.md",
-    "Files/Findout Checksum of Directory.png",
-    "Files/Findout Checksum.png",
-    "Resources/Tasks/General Task Refinement.md",
-    "Resources/Knowledge base",
-    "Resources/Error Handling",
-    "Project/Customers Tasks",
-    "Resources/Tasks/CLA Behaviour.md",
-    "Resources/Tasks",
-    "Resources",
-    "Implementation",
-    "Files",
-    "Files/Veeam_tesk_task_С_.pdf",
-    "Welcome.md"
+    "Resources/Files/Findout Checksum of Directory.png",
+    "Resources/Tasks/General Task Refinement.md"
   ]
 }

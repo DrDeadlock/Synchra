@@ -5,6 +5,17 @@
 	- [ ] In seconds
 - [ ] Log File Path 
 
+# Test Cases
+- [ ] CLA Validator recognizes if src and dest are equal (which should be prevented)
+- [ ] Validator recognizes if there are not enough or to many CLAs
+- [ ] Validator checks first, second and third CLA if they are valid paths
+- [ ] Validator checks if fourth CLA is integer, not negative, not zero
+- [ ] Validator recognizes that 0 arguments were passed AND a config was given to Synchra
+- [ ] Validator is able to validate the config file 
+
+- [ ] CLA Interpreter creates a nice context object 
+	- [ ] Out of CLAs
+	- [ ] Out of config file
 
 # To be agreed with customer
 - [ ] Interval:

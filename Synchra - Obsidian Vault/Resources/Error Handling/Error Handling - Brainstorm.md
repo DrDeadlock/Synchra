@@ -20,6 +20,7 @@ Whether due to confusion or stupidness, doesn't matter, users could manipulate t
 The user inputs an invalid Source, Destination or log file path.
 - Path is blocked or protected
 - Path does not exist
+	- should we offer to the user to create those directories?
 - ...
 
 # Regarding Interval
