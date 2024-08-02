@@ -18,7 +18,6 @@
 - [ ] Manipulation of dest is blocked by OS
 - [ ] After synch src and dest checksums are equal
 - [ ] ???After synch src and dest are equal (test by iterative file check)
-- [ ] Synch process can be dispatched only once at a time
 
 # To be agreed with Customer
 

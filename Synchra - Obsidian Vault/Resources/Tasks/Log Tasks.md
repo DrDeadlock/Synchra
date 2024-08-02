@@ -8,11 +8,10 @@
 - [x] Add log4net package
 - [x] Setup a logger with two appenders (FileAppender and ConsoleAppender)
 - [x] Setup an appender Layout
-	- [ ] Specify an appender Layout for File Creation / Move / Copy / Remove
-	- [ ] Specify an appender Layout for Error Messages
+	- [x] Specify an appender Layout for File Creation / Move / Copy / Remove
+	- [x] Specify an appender Layout for Error Messages
 - [x] Setup a simple factory, taking a simple config and  returning  the logger
 	- [x] factory setup
-	- [ ] config object design
 	- [x] config pass
 - [x] Setup a wrapper solution to encapsulate the logs
 - [x] Setup a Console Only Logger which is responsible for Init Messages during CLA input

@@ -15,16 +15,6 @@ namespace Synchra.Logging
             _loggerName = (typeof(ConsoleCommunicator).ToString());
         }
 
-        //public ConsoleResponseLoggerFactory(string pLoggerName)
-        //{
-        //    _loggerName = pLoggerName;
-        //}
-
-        //public ConsoleResponseLoggerFactory(Type pType)
-        //{
-        //    _loggerName = pType.ToString();
-        //}
-
         public override ILog GetLogger()
         {
             return LogManager.GetLogger(_loggerName);

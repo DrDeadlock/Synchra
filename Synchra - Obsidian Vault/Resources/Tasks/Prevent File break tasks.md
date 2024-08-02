@@ -1,2 +1,0 @@
-- [ ] React smoothly on the [[Application Exit]] Event to avoid file corrupting during a creation / copying / deleting process. 
-- [ ] 

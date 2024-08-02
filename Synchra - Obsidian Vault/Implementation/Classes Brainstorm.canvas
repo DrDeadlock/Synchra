@@ -11,7 +11,7 @@
 		{"id":"ce7f21d8b206e2ed","type":"text","text":"CLA Validator","x":-475,"y":-760,"width":250,"height":60,"color":"3"},
 		{"id":"8636efdba144a8ce","type":"text","text":"Sync Check","x":767,"y":-969,"width":250,"height":60},
 		{"id":"347c5f0eebcdfcb6","type":"text","text":"Sync Execution","x":767,"y":-860,"width":250,"height":60},
-		{"id":"983f2a205a2fd050","type":"file","file":"Resources/Knowledge base/Get Checksum.md","x":1060,"y":-969,"width":400,"height":400},
+		{"id":"983f2a205a2fd050","type":"file","file":"Resources/Knowledge base/Sync Related/Get Checksum.md","x":1060,"y":-969,"width":400,"height":400},
 		{"id":"2758a156e06a7a8e","x":-800,"y":-1440,"width":250,"height":60,"type":"text","text":"Init Messages"},
 		{"id":"379d5ff54b9cd914","x":-800,"y":-1340,"width":250,"height":60,"type":"text","text":"Error Messages"},
 		{"id":"e59d9d31e16eff8a","type":"text","text":"FileLogger","x":-760,"y":-119,"width":250,"height":60},

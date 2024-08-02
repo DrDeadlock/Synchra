@@ -15,8 +15,6 @@ namespace Synchra.Logging.Factory
 
         public override ILog GetLogger()
         {
-            //SetFilePath_v1();
-
             return LogManager.GetLogger(_loggerName);
         }
     }
