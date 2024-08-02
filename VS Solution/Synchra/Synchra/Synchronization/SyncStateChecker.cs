@@ -29,8 +29,7 @@ namespace Synchra.Synchronization
                 return true;
             else
             {
-                return Enumerable.SequenceEqual(srcHash, destHash);
-
+                return !Enumerable.SequenceEqual(srcHash, destHash);
             }
         }
     }

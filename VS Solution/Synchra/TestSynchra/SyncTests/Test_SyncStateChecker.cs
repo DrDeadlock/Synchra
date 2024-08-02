@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Synchra.FileSystemHelpers;
@@ -24,6 +25,8 @@ namespace TestSynchra.SyncTests
         [SetUp]
         public void Setup()
         {
+            Trace.Listeners.Add(new ConsoleTraceListener());
+
             var currentDir = Directory.GetCurrentDirectory();
             _srcDir = currentDir + LOCAL_SRC_DIR;
             _destDir = currentDir + LOCAL_DEST_DIR;
@@ -47,6 +50,12 @@ namespace TestSynchra.SyncTests
             .Where(x => x.Contains(SAME_TXT_01)).First();
 
             Assert.IsFalse(SyncStateChecker.FileOutOfSync(srcSameFile, destSameFile));
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            Trace.Flush();
         }
     }
 }

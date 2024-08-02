@@ -8,8 +8,7 @@ namespace TestSynchra.FileSystemHelpers
     {
         private static void SpawnDirectory(string path)
         {
-            Console.WriteLine("Checking directory...");
-            //if (!Directory.Exists(path))
+            if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
 
