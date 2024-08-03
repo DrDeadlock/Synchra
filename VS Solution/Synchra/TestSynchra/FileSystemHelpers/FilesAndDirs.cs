@@ -1,19 +1,13 @@
 ﻿
 namespace TestSynchra.FileSystemHelpers
 {
+
     public static class FilesAndDirs
     {
         private const string TESTDIRS = @"/TestDirs";
 
         private const string SRC = @"/Src";
         private const string DEST = @"/Dest";
-
-        private const string SAME = "same";
-        private const string DIFF = "diff";
-        private const string TEXT = "Text;";
-        private const string CONTENT = "Content";
-        private const string EQUAL_TEXT_CONTENT = "sameTextContent";
-        private const string DIFF_TEXT_CONTENT = "diffTextContent";
 
         private const string EQUAL = @"/Equal";
         private const string DIFFERING = @"/Differing";
@@ -23,14 +17,17 @@ namespace TestSynchra.FileSystemHelpers
         public const string EQUAL_FILE_PATH = @"/EqualFiles";
         public const string DIFF_FILE_PATH = @"/DifferingFiles";
 
+        private const string EQUAL_TEXT_CONTENT = "sameTextContent";
+        private const string DIFF_TEXT_CONTENT = "diffTextContent";
+
         public static string EqualTxtFileName(int pNo)
         {
-            return EQUAL_TEXT_CONTENT + pNo.ToString() + ".txt";
+            return @"/" + EQUAL_TEXT_CONTENT + pNo.ToString() + ".txt";
         }
 
         public static string DiffTxtFileName(int pNo)
         {
-            return DIFF_TEXT_CONTENT + pNo.ToString() + ".txt";
+            return @"/" + DIFF_TEXT_CONTENT + pNo.ToString() + ".txt";
         }
 
         public static string LocalSrcDir(string pLocalSubDir)

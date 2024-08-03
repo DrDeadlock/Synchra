@@ -35,6 +35,6 @@ namespace Synchra.FileSystemHelpers
         {
             return Directory.EnumerateDirectories(pPath)
                     .OrderBy(p => p).ToArray();
-        }
+        }        
     }
 }

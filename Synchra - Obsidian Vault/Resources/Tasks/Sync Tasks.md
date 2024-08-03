@@ -5,7 +5,7 @@
 
 - [ ] Synchra only makes changes to Dest
 - [ ] Synchra is able to Create Files which are in Src and are not in Dest
-- [ ] Synchra is able to Copy Update Files which are as well in Src and Dest but differ regarding their content (Compare by Updated TimeStamp)
+- [ ] Synchra is able to Copy Update Files which are as well in Src and Dest but differ regarding their content (Compare by Checksum)
 - [ ] Synchra is able to Delete Files which are in Dest and are not in Src
 
 # Test Cases
@@ -26,9 +26,9 @@
 
 ## Perform Sync Actions
 - [ ] User Creates a new File under src
-- [ ] User Creates a new top hierarchy directory and moves everything under it
 - [ ] User Deletes a File
 - [ ] User Changes a File
+- [ ] User Creates a new top hierarchy directory and moves everything under it
 - [ ] After synch src and dest checksums are equal
 - [ ] ???After synch src and dest are equal (test by iterative file check)
 

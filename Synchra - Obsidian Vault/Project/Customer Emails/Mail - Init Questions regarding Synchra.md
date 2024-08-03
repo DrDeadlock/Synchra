@@ -1,3 +1,4 @@
+# Sent
 Reciever: Maria Trubacheva
 Content:
   
@@ -18,3 +19,27 @@ So, if you allow, let me inform you about application behaviours, we have to cla
 --> Do you wish an external log file for errors or should errors get logged into the same file create/copy/remove infos are logged into?  
   
 If you lack of time and this wall of questions is a TLDR for you, we can consider a short meeting so we can talk about those specifications in person.  
+
+# Recieved
+Dear Julius,
+
+Hope you are doing good.
+
+- Do you wish default Command Line Arguments (CLAs) for the time period and the Log File Path?
+
+No, it is ok not to have default values and require them
+
+- Are you aware of the fact, that user changes in the destination folder might get lost during the next synchronization cycle?
+
+-->Is this the behaviour you desire?
+It is a one-way sync, so it is ok to lost some data in the destination
+
+Tt is a good practice to have as many necessary logs as possible. All logs can be stored in one file.
+
+  
+
+Regards,
+
+**Maria Trubacheva**  
+Talent Acquisition Partner  
+[Veeam Software](https://www.veeam.com/)

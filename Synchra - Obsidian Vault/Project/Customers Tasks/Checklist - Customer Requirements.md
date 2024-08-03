@@ -15,8 +15,8 @@
 	- [ ] Each file change
 	- [ ] Each file remove
 and is able to output those logs into
-- [ ] A seperate text file
-- [ ] The console
+- [x] A seperate text file
+- [x] The console
 
 
 - [ ] Synchra is uploaded to a Git Repository

@@ -9,18 +9,18 @@ namespace Synchra.Synchronization
 {
     public static class SyncStateChecker
     {
-        public static bool FileOutOfSync(string srcPath, string  destPath)
+        public static bool FileOutOfSync(string pSrcPath, string  pDestPath)
         {
             byte[] srcHash;
             byte[] destHash;
 
             using var md5 = MD5.Create();
-                using (var srcFs = File.OpenRead(srcPath))
+                using (var srcFs = File.OpenRead(pSrcPath))
                 {
                     srcHash = md5.ComputeHash(srcFs);
                 }
 
-                using (var destFs = File.OpenRead(destPath))
+                using (var destFs = File.OpenRead(pDestPath))
                 {
                     destHash = md5.ComputeHash(destFs);
                 }            
@@ -33,10 +33,10 @@ namespace Synchra.Synchronization
             }
         }
 
-        public static bool DirectoryOutOfSync(string srcPath, string destPath)
+        public static bool DirectoryOutOfSync(string pSrcPath, string pDestPath)
         {
-            byte[] srcHash = GetHashOfFilesIn(srcPath);
-            byte[] destHash = GetHashOfFilesIn(destPath);
+            byte[] srcHash = GetHashOfFilesIn(pSrcPath);
+            byte[] destHash = GetHashOfFilesIn(pDestPath);
 
             if (srcHash.Length != destHash.Length)
                 return true;
@@ -74,6 +74,11 @@ namespace Synchra.Synchronization
             }
 
             return md5.Hash;
+        }
+
+        public static bool BothContain(string pPath1, string pPath2, string pFileName)
+        {
+            return File.Exists(pPath1 + pFileName) && File.Exists(pPath2 + pFileName);
         }
     }
 }

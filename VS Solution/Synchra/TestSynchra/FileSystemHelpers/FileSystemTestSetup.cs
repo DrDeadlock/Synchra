@@ -28,20 +28,32 @@ namespace TestSynchra.FileSystemHelpers
         }
 
         private static void OutOfSync(string pSrcDir, string pDestDir)
-        {
-            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.EQUAL_FILE_PATH + @"/",
+        {            
+            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.EQUAL_FILE_PATH,
                 FilesAndDirs.EqualTxtFileName(1));
-            FileCreator.CreateTxt(pDestDir + FilesAndDirs.EQUAL_FILE_PATH + @"/",
+            FileCreator.CreateTxt(pDestDir + FilesAndDirs.EQUAL_FILE_PATH,
                 FilesAndDirs.EqualTxtFileName(1));
 
-            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.DIFF_FILE_PATH + @"/",
+            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.DIFF_FILE_PATH,
                 FilesAndDirs.DiffTxtFileName(1), "One Content");
-            FileCreator.CreateTxt(pDestDir + FilesAndDirs.DIFF_FILE_PATH + @"/",
+            FileCreator.CreateTxt(pDestDir + FilesAndDirs.DIFF_FILE_PATH,
                 FilesAndDirs.DiffTxtFileName(1), "And another Content");
 
 
             CreateEqual2ndSubDirLevel(pSrcDir, pDestDir);
             CreateDiffering2ndSubDirLevel(pSrcDir, pDestDir);
+
+            //File in Both, Src and Dest
+            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.EQUAL_FILE_PATH,
+                FilesAndDirs.EqualTxtFileName(20));
+            FileCreator.CreateTxt(pDestDir + FilesAndDirs.EQUAL_FILE_PATH,
+                FilesAndDirs.EqualTxtFileName(20));
+            //File missing in Src
+            FileCreator.CreateTxt(pDestDir + FilesAndDirs.DIFF_FILE_PATH,
+                FilesAndDirs.EqualTxtFileName(21));
+            //File missing in Dest
+            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.DIFF_FILE_PATH,
+                FilesAndDirs.EqualTxtFileName(22));
         }
         
 
@@ -51,7 +63,7 @@ namespace TestSynchra.FileSystemHelpers
             {
                 FileCreator.CreateTxt(
                     pSrcDir
-                        + FilesAndDirs.DIFF_FILE_PATH + @"/",
+                        + FilesAndDirs.DIFF_FILE_PATH,
                     FilesAndDirs.DiffTxtFileName(i));
             }
 
@@ -66,14 +78,14 @@ namespace TestSynchra.FileSystemHelpers
                     pSrc
                         + FilesAndDirs.EQUAL_FILE_PATH
                         + FilesAndDirs.SubDir_Equal(0)
-                        + FilesAndDirs.SubDir_Equal(i) + @"/",
+                        + FilesAndDirs.SubDir_Equal(i),
                     FilesAndDirs.EqualTxtFileName(i));
 
                 FileCreator.CreateTxt(
                     pDest
                         + FilesAndDirs.EQUAL_FILE_PATH
                         + FilesAndDirs.SubDir_Equal(0)
-                        + FilesAndDirs.SubDir_Equal(i) + @"/",
+                        + FilesAndDirs.SubDir_Equal(i),
                     FilesAndDirs.EqualTxtFileName(i));
             }
         }
@@ -86,7 +98,7 @@ namespace TestSynchra.FileSystemHelpers
                     pSrc
                         + FilesAndDirs.DIFF_FILE_PATH
                         + FilesAndDirs.SubDir_Differing(0)
-                        + FilesAndDirs.SubDir_Differing(i) + @"/",
+                        + FilesAndDirs.SubDir_Differing(i),
                     FilesAndDirs.DiffTxtFileName(i),
                     "DiffContent No " + i.ToString());
 
@@ -94,7 +106,7 @@ namespace TestSynchra.FileSystemHelpers
                     pDest
                         + FilesAndDirs.DIFF_FILE_PATH
                         + FilesAndDirs.SubDir_Differing(0)
-                        + FilesAndDirs.SubDir_Differing(i) + @"/",
+                        + FilesAndDirs.SubDir_Differing(i),
                     FilesAndDirs.DiffTxtFileName(-(i*i)),
                     "DiffContent No " + (-i).ToString());
             }

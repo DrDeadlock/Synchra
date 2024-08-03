@@ -8,6 +8,12 @@ using TestSynchra.FileSystemHelpers;
 
 namespace TestSynchra.SyncTests
 {
+    enum SubDirPurpose
+    {
+        TestChecksum = 1,
+        TestBothContain = 2
+    }
+
     public class Test_SyncStateChecker
     {        
         private string _srcDir;
@@ -79,6 +85,51 @@ namespace TestSynchra.SyncTests
             _destDir
                 + FilesAndDirs.DIFF_FILE_PATH
                 + FilesAndDirs.SubDir_Differing(0));
+        }
+
+        [Test]
+        public void BothContain_SrcAndDestContainFile_ReturnsTrue()
+        {
+            Assert.IsTrue(File.Exists(_srcDir + FilesAndDirs.EQUAL_FILE_PATH + FilesAndDirs.EqualTxtFileName(20)));
+            Assert.IsTrue(File.Exists(_destDir + FilesAndDirs.EQUAL_FILE_PATH + FilesAndDirs.EqualTxtFileName(20)));
+            Assert.IsTrue(SyncStateChecker.BothContain
+                (
+                    _srcDir
+                    + FilesAndDirs.EQUAL_FILE_PATH,
+                    _destDir
+                    + FilesAndDirs.EQUAL_FILE_PATH,
+                    FilesAndDirs.EqualTxtFileName(20))
+                );
+        }
+
+        [Test]
+        public void BothContain_SrcDoesntContainFile_ReturnsTrue()
+        {
+            Assert.IsFalse(File.Exists(_srcDir + FilesAndDirs.DIFF_FILE_PATH + FilesAndDirs.EqualTxtFileName(21)));
+            Assert.IsTrue(File.Exists(_destDir + FilesAndDirs.DIFF_FILE_PATH + FilesAndDirs.EqualTxtFileName(21)));
+            Assert.IsFalse(SyncStateChecker.BothContain
+                (
+                    _srcDir
+                    + FilesAndDirs.EQUAL_FILE_PATH,
+                    _destDir
+                    + FilesAndDirs.EQUAL_FILE_PATH,
+                    FilesAndDirs.EqualTxtFileName(21))
+                );
+        }
+
+        [Test]
+        public void BothContain_DestDoesntContainFile_ReturnsTrue()
+        {
+            Assert.IsFalse(File.Exists(_destDir + FilesAndDirs.DIFF_FILE_PATH + FilesAndDirs.EqualTxtFileName(22)));
+            Assert.IsTrue(File.Exists(_srcDir + FilesAndDirs.DIFF_FILE_PATH + FilesAndDirs.EqualTxtFileName(22)));
+            Assert.IsFalse(SyncStateChecker.BothContain
+                (
+                    _srcDir
+                    + FilesAndDirs.EQUAL_FILE_PATH,
+                    _destDir
+                    + FilesAndDirs.EQUAL_FILE_PATH,
+                    FilesAndDirs.EqualTxtFileName(22))
+                );
         }
 
         [TearDown]
