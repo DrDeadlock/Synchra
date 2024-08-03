@@ -10,17 +10,10 @@ namespace TestSynchra.SyncTests
 {
     public class Test_SyncStateChecker
     {        
-        private const string LOCAL_SRC_DIR = @"/TestDirs/Src";
-        private const string LOCAL_DEST_DIR = @"/TestDirs/Dest";
-
-        private const string SAME_TXT_01 = "sameText01.txt";
-        private const string DIFF_TXT_01 = "diffText01.txt";
-
-        private const string SAME_FILE_PATH = @"/EqualFiles/";
-        private const string DIFF_FILE_PATH = @"/DifferingFiles/";
-
         private string _srcDir;
         private string _destDir;
+
+        private string _localSubDir = @"/TestOutOfSync";
 
         [SetUp]
         public void Setup()
@@ -28,28 +21,64 @@ namespace TestSynchra.SyncTests
             Trace.Listeners.Add(new ConsoleTraceListener());
 
             var currentDir = Directory.GetCurrentDirectory();
-            _srcDir = currentDir + LOCAL_SRC_DIR;
-            _destDir = currentDir + LOCAL_DEST_DIR;
-
-            FileCreator.CreateTxt(_srcDir + SAME_FILE_PATH, SAME_TXT_01);
-            FileCreator.CreateTxt(_destDir + SAME_FILE_PATH, SAME_TXT_01);
-
-            FileCreator.CreateTxt(_srcDir + DIFF_FILE_PATH, DIFF_TXT_01, "One Content");
-            FileCreator.CreateTxt(_destDir + DIFF_FILE_PATH, DIFF_TXT_01, "And another Content");
+            _srcDir = currentDir + FilesAndDirs.LocalSrcDir(_localSubDir);
+            _destDir = currentDir + FilesAndDirs.LocalDestDir(_localSubDir);
+            FileSystemTestSetup.CreateTestStructure
+                (_srcDir, _destDir, TestStructureType.OutOfSync);
         }
 
         [Test]
-        public void FileAreTheSame_ReturnsFalse()
+        public void OutOfSync_FileAreTheSame_ReturnsFalse()
         {           
             string srcSameFile =
-            FileCollector.GetAllFilesFrom(_srcDir + SAME_FILE_PATH)
-            .Where(x => x.Contains(SAME_TXT_01)).First();
+            FileCollector.GetAllFilesFrom(_srcDir + FilesAndDirs.EQUAL_FILE_PATH)
+            .Where(x => x.Contains(FilesAndDirs.EqualTxtFileName(1))).First();
 
             string destSameFile =
-            FileCollector.GetAllFilesFrom(_destDir + SAME_FILE_PATH)
-            .Where(x => x.Contains(SAME_TXT_01)).First();
+            FileCollector.GetAllFilesFrom(_destDir + FilesAndDirs.EQUAL_FILE_PATH)
+            .Where(x => x.Contains(FilesAndDirs.EqualTxtFileName(1))).First();
 
             Assert.IsFalse(SyncStateChecker.FileOutOfSync(srcSameFile, destSameFile));
+        }
+
+        [Test]
+        public void OutOfSync_FilesAreDifferent_ReturnsTrue()
+        {
+            string srcSameFile =
+            FileCollector.GetAllFilesFrom(
+                _srcDir + FilesAndDirs.DIFF_FILE_PATH)
+                .Where(x => x.Contains(FilesAndDirs.DiffTxtFileName(1))).First();
+
+            string destSameFile =
+            FileCollector.GetAllFilesFrom(
+                _destDir + FilesAndDirs.DIFF_FILE_PATH)
+            .Where(x => x.Contains(FilesAndDirs.DiffTxtFileName(1))).First();
+
+            Assert.IsTrue(SyncStateChecker.FileOutOfSync(srcSameFile, destSameFile));
+        }
+
+        [Test]
+        public void OutOfSync_DirectoriesAreTheSame_ReturnsFalse()
+        {
+            SyncStateChecker.DirectoryOutOfSync(
+            _srcDir
+                + FilesAndDirs.EQUAL_FILE_PATH
+                + FilesAndDirs.SubDir_Equal(0),
+            _destDir
+                + FilesAndDirs.EQUAL_FILE_PATH
+                + FilesAndDirs.SubDir_Equal(0));
+        }
+
+        [Test]
+        public void OutOfSync_DirectoriesAreDifferent_ReturnsTrue()
+        {
+            SyncStateChecker.DirectoryOutOfSync(
+            _srcDir
+                + FilesAndDirs.DIFF_FILE_PATH
+                + FilesAndDirs.SubDir_Differing(0),
+            _destDir
+                + FilesAndDirs.DIFF_FILE_PATH
+                + FilesAndDirs.SubDir_Differing(0));
         }
 
         [TearDown]

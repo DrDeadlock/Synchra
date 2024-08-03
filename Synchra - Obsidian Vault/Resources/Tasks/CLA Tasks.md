@@ -12,6 +12,7 @@
 - [ ] Validator checks if fourth CLA is integer, not negative, not zero
 - [ ] Validator recognizes that 0 arguments were passed AND a config was given to Synchra
 - [ ] Validator is able to validate the config file 
+- [ ] Manipulation of dest is blocked by OS 
 
 - [ ] CLA Interpreter creates a nice context object 
 	- [ ] Out of CLAs
