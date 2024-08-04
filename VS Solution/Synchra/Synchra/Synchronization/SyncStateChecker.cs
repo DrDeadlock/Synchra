@@ -15,6 +15,8 @@ namespace Synchra.Synchronization
             byte[] destHash;
 
             using var md5 = MD5.Create();
+            try
+            {
                 using (var srcFs = File.OpenRead(pSrcPath))
                 {
                     srcHash = md5.ComputeHash(srcFs);
@@ -24,6 +26,11 @@ namespace Synchra.Synchronization
                 {
                     destHash = md5.ComputeHash(destFs);
                 }            
+            }
+            catch(FileNotFoundException)
+            {
+                return true;
+            }
 
             if (srcHash.Length != destHash.Length)
                 return true;
@@ -35,8 +42,18 @@ namespace Synchra.Synchronization
 
         public static bool DirectoryOutOfSync(string pSrcPath, string pDestPath)
         {
-            byte[] srcHash = GetHashOfFilesIn(pSrcPath);
-            byte[] destHash = GetHashOfFilesIn(pDestPath);
+            byte[] srcHash;
+            byte[] destHash;
+            try
+            {
+                srcHash = GetHashOfFilesIn(pSrcPath);
+                destHash = GetHashOfFilesIn(pDestPath);
+
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return true; 
+            }
 
             if (srcHash.Length != destHash.Length)
                 return true;

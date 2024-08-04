@@ -8,6 +8,54 @@
 - [ ] Synchra is able to Copy Update Files which are as well in Src and Dest but differ regarding their content (Compare by Checksum)
 - [ ] Synchra is able to Delete Files which are in Dest and are not in Src
 
+# Exception Discussion
+When can Exceptions be thrown and what does it mean in our context? Also how we wanna handle them?
+
+## File
+
+## Directory
+### Get All Files
+[Find more Information here](https://learn.microsoft.com/de-de/dotnet/api/system.io.directory.getfiles?view=net-8.0)
+#### I/O Exception: 
+Network Error or a Filename was entered.
+--> Raise that exception. It is an error on our side. Our collections passed into methods using GetAllFiles() HAVE to be paths which are not files.
+- [x] Create Testcase
+
+#### UnauthorizedException:
+Permission denied for the File.
+--> Log a Warning to the LogFile and the console, that some files are protected and therefore not be able to read.
+- [ ] Implement
+- [ ] Create Test Case
+
+>[!Note] Carefull!
+>Since we thought about a Continuous file structure creation in setup you have to incorporate the fact, that some files now can be protected when using this test case. 
+
+#### Argument Null Exception
+The given Path is null.
+We avoid that with the help of the CLA Validator
+
+#### Path Too Long Exception
+The path exceeds the maximum length defined by the system 
+We might want to incorporate an initial method in CLA validation. Obtain the deepest hierarchy to initially avoid that.
+BUT the user can create deeper paths afterwards. So we have to make a test for that and Error it to the user.
+- [ ] Create Test Case
+- [ ] Create a Checkup in the respective class method
+- [x] Handle the Exception
+
+#### Directory Not Found Exception
+The given path could not be found.
+Since our software gets the paths by the System.IO Library (besides the src and dest directory) we should assume that there is an implementation error. 
+Source and Destination Paths get checked initially and then they will become recreated during Synchronizing. So we have different cases here, where this Exception could raise
+
+- Exception raises on CLA Validation
+	- [ ] Error a log to the user and abort further executions
+- Exception raises during Sync Process
+	- This means either that Src or Dest Folder were moved after synchra validated the paths initially
+		- [ ] Recreate Source and Dest Folder and Log a Warning to the user, that this happened. If he wants to give new Paths for Src and Dest he should restart Synchra.
+	- Or and error by getting SubDirectories occured. Then its highly likable an implementation error that should never occur
+		- [ ] Raise the exception 
+
+
 # Test Cases
 
 # File Collection

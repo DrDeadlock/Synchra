@@ -68,6 +68,8 @@ namespace TestSynchra.FileSystemHelpers
             }
 
             CreateDiffering2ndSubDirLevel(pSrcDir, pDestDir);
+
+            //TODO: Create Testfile and set permissions to not readable by Synchra.
         }
 
         private static void CreateEqual2ndSubDirLevel(string pSrc, string pDest)

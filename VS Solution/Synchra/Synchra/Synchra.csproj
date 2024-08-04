@@ -12,6 +12,7 @@
     <None Remove="Logging\Wrappers\" />
     <None Remove="Synchronization\" />
     <None Remove="FileSystemHelpers\" />
+    <None Remove="CLA Validation\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.17" />
@@ -22,5 +23,6 @@
     <Folder Include="Logging\Wrappers\" />
     <Folder Include="Synchronization\" />
     <Folder Include="FileSystemHelpers\" />
+    <Folder Include="CLA Validation\" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.IO;
 using NUnit.Framework;
 using Synchra.FileSystemHelpers;
@@ -30,6 +31,30 @@ namespace TestSynchra.SyncTests
             string[] filePaths =
             FileCollector.GetAllFilesFrom(_srcDir + FilesAndDirs.DIFF_FILE_PATH);
             Assert.AreEqual(3, filePaths.Length);            
+        }
+
+        [Test]
+        public void GetAllFiles_FilepathWasPassed_RaisesIOException()
+        {
+            //var methodToTest = () => {
+            //    FileCollector.GetAllFilesFrom(_srcDir
+            //            + FilesAndDirs.DIFF_FILE_PATH
+            //+ FilesAndDirs.DiffTxtFileName(0));
+
+            Func<string, string[]> getAllFiles = FileCollector.GetAllFilesFrom;
+
+            Assert.Throws<IOException>( () =>
+                getAllFiles(
+                    _srcDir
+                    + FilesAndDirs.DIFF_FILE_PATH
+                    + FilesAndDirs.DiffTxtFileName(1)
+                    ));
+        }
+
+        [Test]
+        public void GetAllFiles_FilepPermissionMissing_RaisesIOException()
+        {
+            Assert.Fail();
         }
 
         [Test]

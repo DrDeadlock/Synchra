@@ -1,23 +1,48 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Synchra.CLAValidation;
+using Synchra.Logging.Wrappers;
 
 namespace Synchra.FileSystemHelpers
 {
     public static class FileCollector
     {
+        private static SynchronizationCommunicator comm;
+
         public static string[] GetAllFilesFrom(string pPath)
         {
-            if (Directory.Exists(pPath))
-                try
+            if (comm == null) comm = new SynchronizationCommunicator();
+
+            try
+            {
+                return Directory.GetFiles(pPath).OrderBy(p => p).ToArray();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                SynchronizationCommunicator comm = new SynchronizationCommunicator();
+                comm.ErrorPermissionMissing(pPath);
+                return new string[0];
+            }
+            catch (PathTooLongException)
+            {
+                comm.ErrorPathTooLong(pPath);
+                return new string[0];
+            }
+            catch (DirectoryNotFoundException)
+            {
+                if ((pPath.SequenceEqual(CLAContext.Instance.srcPath))
+                || (pPath.SequenceEqual(CLAContext.Instance.destPath)))
                 {
-                    return Directory.GetFiles(pPath).OrderBy(p => p).ToArray();
+                    Directory.CreateDirectory(pPath);
+                    comm.WarnSrcOrDestNewCreated();
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            else throw new Exception("Path does not exist!" + pPath);
+                return new string[0];
+            }
+            catch (IOException ex)
+            {
+                throw ex;
+            }
         }
 
         public static string[] GetAllFilesRecursivelyFrom(string pPath)

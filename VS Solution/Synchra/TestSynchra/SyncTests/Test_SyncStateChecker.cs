@@ -34,7 +34,7 @@ namespace TestSynchra.SyncTests
         }
 
         [Test]
-        public void OutOfSync_FileAreTheSame_ReturnsFalse()
+        public void FileOutOfSync_FileAreTheSame_ReturnsFalse()
         {           
             string srcSameFile =
             FileCollector.GetAllFilesFrom(_srcDir + FilesAndDirs.EQUAL_FILE_PATH)
@@ -48,23 +48,40 @@ namespace TestSynchra.SyncTests
         }
 
         [Test]
-        public void OutOfSync_FilesAreDifferent_ReturnsTrue()
+        public void FileOutOfSync_FilesAreDifferent_ReturnsTrue()
         {
-            string srcSameFile =
+            string srcDiffFile =
             FileCollector.GetAllFilesFrom(
                 _srcDir + FilesAndDirs.DIFF_FILE_PATH)
                 .Where(x => x.Contains(FilesAndDirs.DiffTxtFileName(1))).First();
 
-            string destSameFile =
+            string destDiffFile =
             FileCollector.GetAllFilesFrom(
                 _destDir + FilesAndDirs.DIFF_FILE_PATH)
             .Where(x => x.Contains(FilesAndDirs.DiffTxtFileName(1))).First();
 
-            Assert.IsTrue(SyncStateChecker.FileOutOfSync(srcSameFile, destSameFile));
+            Assert.IsTrue(SyncStateChecker.FileOutOfSync(srcDiffFile, destDiffFile));
         }
 
         [Test]
-        public void OutOfSync_DirectoriesAreTheSame_ReturnsFalse()
+        public void FileOutOfSync_FileMissingInSrc_ReturnsTrue()
+        {
+            string srcDiffFile =
+            FileCollector.GetAllFilesFrom(
+                _srcDir + FilesAndDirs.DIFF_FILE_PATH)
+                .Where(x => x.Contains(FilesAndDirs.DiffTxtFileName(1))).First();
+
+            string destDiffFile =
+            FileCollector.GetAllFilesFrom(
+                _destDir + FilesAndDirs.DIFF_FILE_PATH)
+            .Where(x => x.Contains(FilesAndDirs.DiffTxtFileName(1))).First();
+            destDiffFile += "NotExistent.txt";
+
+            Assert.IsTrue(SyncStateChecker.FileOutOfSync(srcDiffFile, destDiffFile));
+        }
+
+        [Test]
+        public void DirectoryOutOfSync_DirectoriesAreTheSame_ReturnsFalse()
         {
             SyncStateChecker.DirectoryOutOfSync(
             _srcDir
@@ -76,7 +93,7 @@ namespace TestSynchra.SyncTests
         }
 
         [Test]
-        public void OutOfSync_DirectoriesAreDifferent_ReturnsTrue()
+        public void DirectoryOutOfSync_DirectoriesAreDifferent_ReturnsTrue()
         {
             SyncStateChecker.DirectoryOutOfSync(
             _srcDir
@@ -85,6 +102,19 @@ namespace TestSynchra.SyncTests
             _destDir
                 + FilesAndDirs.DIFF_FILE_PATH
                 + FilesAndDirs.SubDir_Differing(0));
+        }
+
+        [Test]
+        public void DirectoryOutOfSync_DirectoryMissingInSrc_ReturnsTrue()
+        {
+            SyncStateChecker.DirectoryOutOfSync(
+            _srcDir
+                + FilesAndDirs.DIFF_FILE_PATH
+                + FilesAndDirs.SubDir_Differing(0),
+            _destDir
+                + FilesAndDirs.DIFF_FILE_PATH
+                + FilesAndDirs.SubDir_Differing(0)
+                + "/NotExistentDirectory");
         }
 
         [Test]
@@ -130,7 +160,7 @@ namespace TestSynchra.SyncTests
                     + FilesAndDirs.EQUAL_FILE_PATH,
                     FilesAndDirs.EqualTxtFileName(22))
                 );
-        }
+        }        
 
         [TearDown]
         public void TearDown()
