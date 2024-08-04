@@ -1,130 +1,117 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace TestSynchra.FileSystemHelpers
 {
-    public enum TestStructureType
-    {
-        OutOfSync = 0,
-        FileSystemCollection = 1,
-        SyncPerformer = 2
-    }
-
     public static class FileSystemTestSetup
     {
-        public static void CreateTestStructure(string pSrcDir, string pDestDir, TestStructureType pType)
+        public static void CreateTestStructure(string subdir)
         {
-            //ClearDirectories(pSrcDir, pDestDir);
-            switch (pType)
-            {
-                case TestStructureType.OutOfSync:
-                    StructureCreation_SyncStateCheck(pSrcDir, pDestDir);
-                    break;
-                case TestStructureType.FileSystemCollection:
-                    StructureCreation_FileCollector(pSrcDir, pDestDir);
-                    break;
-                case TestStructureType.SyncPerformer:
-                    StructureCreation_SyncPerformer(pSrcDir, pDestDir);
-                    break;
-                default:
-                    break;
-            }
+            FilesAndDirs.SUBDIR = subdir;
+
+            CreateRootTxtSameContentInBoth();
+            CreateRootTxtDifferentContentInBoth();
+            CreateRootMissingTxtsInBoth();
+
+            CreateRootEmptyDirectoryEqualInBoth();
+            CreateRootEmptyDirectoryDifferentInBoth();
+            CreateRootEmptyDirectoryMissingInBoth();
         }
 
-        private static void StructureCreation_SyncStateCheck(string pSrcDir, string pDestDir)
-        {            
-            FileCreator.CreateTxt(
-                pSrcDir + FilesAndDirs.EQUAL_FILE_PATH,
-                FilesAndDirs.EqualTxtFileName(1));
-            FileCreator.CreateTxt(
-                pDestDir + FilesAndDirs.EQUAL_FILE_PATH,
-                FilesAndDirs.EqualTxtFileName(1));
-
-            FileCreator.CreateTxt(
-                pSrcDir + FilesAndDirs.DIFF_FILE_PATH,
-                FilesAndDirs.DiffTxtFileName(1), "One Content");
-            FileCreator.CreateTxt(
-                pDestDir + FilesAndDirs.DIFF_FILE_PATH,
-                FilesAndDirs.DiffTxtFileName(1), "And another Content");
-
-
-            CreateEqual2ndSubDirLevel(pSrcDir, pDestDir);
-            CreateDiffering2ndSubDirLevel(pSrcDir, pDestDir);
-
-            //File in Both, Src and Dest
-            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.EQUAL_FILE_PATH,
-                FilesAndDirs.EqualTxtFileName(20));
-            FileCreator.CreateTxt(pDestDir + FilesAndDirs.EQUAL_FILE_PATH,
-                FilesAndDirs.EqualTxtFileName(20));
-            //File missing in Src
-            FileCreator.CreateTxt(pDestDir + FilesAndDirs.DIFF_FILE_PATH,
-                FilesAndDirs.EqualTxtFileName(21));
-            //File missing in Dest
-            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.DIFF_FILE_PATH,
-                FilesAndDirs.EqualTxtFileName(22));
-        }
-        
-
-        private static void StructureCreation_FileCollector(string pSrcDir, string pDestDir)
+        private static void CreateRootTxtSameContentInBoth()
         {
-            for (int i = 0; i <= 3; i++)
-            {
-                FileCreator.CreateTxt(
-                    pSrcDir
-                        + FilesAndDirs.DIFF_FILE_PATH,
-                    FilesAndDirs.DiffTxtFileName(i));
-            }
-
-            CreateDiffering2ndSubDirLevel(pSrcDir, pDestDir);
-
-            //TODO: Create Testfile and set permissions to not readable by Synchra.
+            CreateSameContentTxt
+                (FilesAndDirs.RootTxtEqualContentInBoth(Direction.Source));
+            CreateSameContentTxt
+                (FilesAndDirs.RootTxtEqualContentInBoth(Direction.Destination));
         }
 
-        private static void CreateEqual2ndSubDirLevel(string pSrc, string pDest)
-        {
-            for (int i = 0; i <= 3; i++)
-            {
-                FileCreator.CreateTxt(
-                    pSrc
-                        + FilesAndDirs.EQUAL_FILE_PATH
-                        + FilesAndDirs.SubDir_Equal(FilesAndDirs.SUBLEVEL)
-                        + FilesAndDirs.SubDir_Equal(i),
-                    FilesAndDirs.EqualTxtFileName(i));
 
-                FileCreator.CreateTxt(
-                    pDest
-                        + FilesAndDirs.EQUAL_FILE_PATH
-                        + FilesAndDirs.SubDir_Equal(FilesAndDirs.SUBLEVEL)
-                        + FilesAndDirs.SubDir_Equal(i),
-                    FilesAndDirs.EqualTxtFileName(i));
-            }
+        public static void CreateSameContentTxt(string path)
+        {
+            SpawnDirectory(path);
+            string fileContent = "This Content is equal in Src and Dest";
+
+            using var fs = File.Create(path);            
+            fs.Write(Encoding.ASCII.GetBytes(fileContent));
         }
 
-        private static void CreateDiffering2ndSubDirLevel(string pSrc, string pDest)
+        public static void CreateDifferentContentTxt(string path, string content)
         {
-            for (int i = 0; i <= 3; i++)
-            {
-                FileCreator.CreateTxt(
-                    pSrc
-                        + FilesAndDirs.DIFF_FILE_PATH
-                        + FilesAndDirs.SubDir_Differing(0)
-                        + FilesAndDirs.SubDir_Differing(i),
-                    FilesAndDirs.DiffTxtFileName(i),
-                    "DiffContent No " + i.ToString());
+            SpawnDirectory(path);
 
-                FileCreator.CreateTxt(
-                    pDest
-                        + FilesAndDirs.DIFF_FILE_PATH
-                        + FilesAndDirs.SubDir_Differing(0)
-                        + FilesAndDirs.SubDir_Differing(i),
-                    FilesAndDirs.DiffTxtFileName(-(i*i)),
-                    "DiffContent No " + (-i).ToString());
-            }
+            using var fs = File.Create(path);
+            fs.Write(Encoding.ASCII.GetBytes(content));
         }
 
-        private static void StructureCreation_SyncPerformer(string pSrcDir, string pDestDir)
+        private static DirectoryInfo SpawnDirectory(string path)
         {
+            string pathToDirectory = FilesAndDirs.GetPathToFile(path);
 
+            if (!Directory.Exists(pathToDirectory))
+                return Directory.CreateDirectory(pathToDirectory);
+
+            return null;
+        }
+
+        private static void SpawnDirectory(string path, DateTime pLastWriteTime)
+        {
+            DirectoryInfo info = SpawnDirectory(path);            
+
+            if (info != null)
+                info.LastWriteTime = pLastWriteTime;
+        }
+
+        private static void CreateRootTxtDifferentContentInBoth()
+        {
+            CreateDifferentContentTxt
+                (FilesAndDirs.RootTxtDifferentContentInBoth(Direction.Source),
+                "Source Directory Content");
+
+            CreateDifferentContentTxt
+                (FilesAndDirs.RootTxtDifferentContentInBoth(Direction.Destination),
+                "Destination Directory Content");
+        }
+
+        private static void CreateRootMissingTxtsInBoth()
+        {
+            CreateDifferentContentTxt
+                (FilesAndDirs.RootTxtMissingInSrc(Direction.Destination),
+                "This file is not contained in Root Src.");
+
+            CreateDifferentContentTxt
+                (FilesAndDirs.RootTxtMissingInDest(Direction.Source),
+                "This file is not contained in Root Dest.");
+        }
+
+        private static void CreateRootEmptyDirectoryEqualInBoth()
+        {
+            SpawnDirectory
+                (FilesAndDirs.RootEmptyDirectoryEqualInBoth(Direction.Source));
+
+            SpawnDirectory
+                (FilesAndDirs.RootEmptyDirectoryEqualInBoth(Direction.Destination));
+        }
+
+        private static void CreateRootEmptyDirectoryDifferentInBoth()
+        {
+            SpawnDirectory
+                (FilesAndDirs.RootEmptyDirectoryDifferentInBoth(Direction.Source),
+                DateTime.Now);
+
+            SpawnDirectory
+                (FilesAndDirs.RootEmptyDirectoryDifferentInBoth(Direction.Destination),
+                DateTime.MinValue);
+        }
+
+        private static void CreateRootEmptyDirectoryMissingInBoth()
+        {
+            SpawnDirectory
+                (FilesAndDirs.RootEmptyDirectoryMissingInSrc());
+
+            SpawnDirectory
+                (FilesAndDirs.RootEmptyDirectoryMissingInDest());
         }
 
         private static void ClearDirectories(string pSrcDir, string pDestDir)
