@@ -6,7 +6,8 @@ namespace TestSynchra.FileSystemHelpers
     public enum TestStructureType
     {
         OutOfSync = 0,
-        FileSystemCollection = 1
+        FileSystemCollection = 1,
+        SyncPerformer = 2
     }
 
     public static class FileSystemTestSetup
@@ -17,26 +18,33 @@ namespace TestSynchra.FileSystemHelpers
             switch (pType)
             {
                 case TestStructureType.OutOfSync:
-                    OutOfSync(pSrcDir, pDestDir);
+                    StructureCreation_SyncStateCheck(pSrcDir, pDestDir);
                     break;
                 case TestStructureType.FileSystemCollection:
-                    FileSystemCollector(pSrcDir, pDestDir);
+                    StructureCreation_FileCollector(pSrcDir, pDestDir);
+                    break;
+                case TestStructureType.SyncPerformer:
+                    StructureCreation_SyncPerformer(pSrcDir, pDestDir);
                     break;
                 default:
                     break;
             }
         }
 
-        private static void OutOfSync(string pSrcDir, string pDestDir)
+        private static void StructureCreation_SyncStateCheck(string pSrcDir, string pDestDir)
         {            
-            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.EQUAL_FILE_PATH,
+            FileCreator.CreateTxt(
+                pSrcDir + FilesAndDirs.EQUAL_FILE_PATH,
                 FilesAndDirs.EqualTxtFileName(1));
-            FileCreator.CreateTxt(pDestDir + FilesAndDirs.EQUAL_FILE_PATH,
+            FileCreator.CreateTxt(
+                pDestDir + FilesAndDirs.EQUAL_FILE_PATH,
                 FilesAndDirs.EqualTxtFileName(1));
 
-            FileCreator.CreateTxt(pSrcDir + FilesAndDirs.DIFF_FILE_PATH,
+            FileCreator.CreateTxt(
+                pSrcDir + FilesAndDirs.DIFF_FILE_PATH,
                 FilesAndDirs.DiffTxtFileName(1), "One Content");
-            FileCreator.CreateTxt(pDestDir + FilesAndDirs.DIFF_FILE_PATH,
+            FileCreator.CreateTxt(
+                pDestDir + FilesAndDirs.DIFF_FILE_PATH,
                 FilesAndDirs.DiffTxtFileName(1), "And another Content");
 
 
@@ -57,9 +65,9 @@ namespace TestSynchra.FileSystemHelpers
         }
         
 
-        private static void FileSystemCollector(string pSrcDir, string pDestDir)
+        private static void StructureCreation_FileCollector(string pSrcDir, string pDestDir)
         {
-            for (int i = 1; i <= 3; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 FileCreator.CreateTxt(
                     pSrcDir
@@ -74,19 +82,19 @@ namespace TestSynchra.FileSystemHelpers
 
         private static void CreateEqual2ndSubDirLevel(string pSrc, string pDest)
         {
-            for (int i = 1; i <= 3; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 FileCreator.CreateTxt(
                     pSrc
                         + FilesAndDirs.EQUAL_FILE_PATH
-                        + FilesAndDirs.SubDir_Equal(0)
+                        + FilesAndDirs.SubDir_Equal(FilesAndDirs.SUBLEVEL)
                         + FilesAndDirs.SubDir_Equal(i),
                     FilesAndDirs.EqualTxtFileName(i));
 
                 FileCreator.CreateTxt(
                     pDest
                         + FilesAndDirs.EQUAL_FILE_PATH
-                        + FilesAndDirs.SubDir_Equal(0)
+                        + FilesAndDirs.SubDir_Equal(FilesAndDirs.SUBLEVEL)
                         + FilesAndDirs.SubDir_Equal(i),
                     FilesAndDirs.EqualTxtFileName(i));
             }
@@ -94,7 +102,7 @@ namespace TestSynchra.FileSystemHelpers
 
         private static void CreateDiffering2ndSubDirLevel(string pSrc, string pDest)
         {
-            for (int i = 1; i <= 3; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 FileCreator.CreateTxt(
                     pSrc
@@ -112,6 +120,11 @@ namespace TestSynchra.FileSystemHelpers
                     FilesAndDirs.DiffTxtFileName(-(i*i)),
                     "DiffContent No " + (-i).ToString());
             }
+        }
+
+        private static void StructureCreation_SyncPerformer(string pSrcDir, string pDestDir)
+        {
+
         }
 
         private static void ClearDirectories(string pSrcDir, string pDestDir)

@@ -20,5 +20,10 @@ namespace Synchra.Synchronization
         {
             File.Delete(at);
         }
+
+        public static void DeleteDirectory(string at)
+        {
+            Directory.Delete(at);
+        }
     }
 }

@@ -14,11 +14,13 @@ namespace TestSynchra.FileSystemHelpers
         private const string SUB = "Sub";
         private const string FILES = "Files";
 
+        private const string EQUAL_TEXT_CONTENT = "sameTextContent";
+        private const string DIFF_TEXT_CONTENT = "diffTextContent";        
+
         public const string EQUAL_FILE_PATH = @"/EqualFiles";
         public const string DIFF_FILE_PATH = @"/DifferingFiles";
 
-        private const string EQUAL_TEXT_CONTENT = "sameTextContent";
-        private const string DIFF_TEXT_CONTENT = "diffTextContent";
+        public const string SUBLEVEL = "SubLevel";
 
         public static string EqualTxtFileName(int pNo)
         {
@@ -38,6 +40,11 @@ namespace TestSynchra.FileSystemHelpers
         public static string LocalDestDir(string pLocalSubDir)
         {
             return TESTDIRS + pLocalSubDir + DEST;
+        }
+
+        public static string SubDir_Equal(string pEnding)
+        {
+            return EQUAL + SUB + FILES + pEnding;
         }
 
         public static string SubDir_Equal(int pNo)

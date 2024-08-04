@@ -8,18 +8,12 @@ using TestSynchra.FileSystemHelpers;
 
 namespace TestSynchra.SyncTests
 {
-    enum SubDirPurpose
-    {
-        TestChecksum = 1,
-        TestBothContain = 2
-    }
-
-    public class Test_SyncStateChecker
+    public class TestSyncStateChecker
     {        
         private string _srcDir;
         private string _destDir;
 
-        private string _localSubDir = @"/TestOutOfSync";
+        private string _localSubDir = @"/TestSyncStateChecker";
 
         [SetUp]
         public void Setup()
@@ -81,7 +75,7 @@ namespace TestSynchra.SyncTests
         }
 
         [Test]
-        public void DirectoryOutOfSync_DirectoriesAreTheSame_ReturnsFalse()
+        public void DirectoryOutOfSync_DirectoriesEmptyAreTheSame_ReturnsFalse()
         {
             SyncStateChecker.DirectoryOutOfSync(
             _srcDir
@@ -93,7 +87,19 @@ namespace TestSynchra.SyncTests
         }
 
         [Test]
-        public void DirectoryOutOfSync_DirectoriesAreDifferent_ReturnsTrue()
+        public void DirectoryOutOfSync_DirectoriesWithFilesAreTheSame_ReturnsFalse()
+        {
+            SyncStateChecker.DirectoryOutOfSync(
+            _srcDir
+                + FilesAndDirs.EQUAL_FILE_PATH
+                + FilesAndDirs.SubDir_Equal(0),
+            _destDir
+                + FilesAndDirs.EQUAL_FILE_PATH
+                + FilesAndDirs.SubDir_Equal(0));
+        }
+
+        [Test]
+        public void DirectoryOutOfSync_DirectoriesWithFilesAreDifferent_ReturnsTrue()
         {
             SyncStateChecker.DirectoryOutOfSync(
             _srcDir
@@ -114,7 +120,20 @@ namespace TestSynchra.SyncTests
             _destDir
                 + FilesAndDirs.DIFF_FILE_PATH
                 + FilesAndDirs.SubDir_Differing(0)
-                + "/NotExistentDirectory");
+                + "/MissingDirectory");
+        }
+
+        [Test]
+        public void DirectoryOutOfSync_DirectoryMissingInDest_ReturnsTrue()
+        {
+            SyncStateChecker.DirectoryOutOfSync(
+            _srcDir
+                + FilesAndDirs.DIFF_FILE_PATH
+                + FilesAndDirs.SubDir_Differing(0)
+                + "/MissingDirectory",
+            _destDir
+                + FilesAndDirs.DIFF_FILE_PATH
+                + FilesAndDirs.SubDir_Differing(0));
         }
 
         [Test]

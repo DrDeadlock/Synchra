@@ -51,15 +51,10 @@ namespace Synchra.FileSystemHelpers
                          .OrderBy(p => p).ToArray();
         }
 
-        public static bool HasSubDirectories(string path)
-        {
-            return Directory.EnumerateDirectories(path).Count() > 0;
-        }
-
         public static string[] GetSubDirectories(string pPath)
         {
             return Directory.EnumerateDirectories(pPath)
                     .OrderBy(p => p).ToArray();
-        }        
+        }                
     }
 }
