@@ -19,7 +19,7 @@ namespace TestSynchra.SyncTests
             FileSystemTestSetup.CreateTestStructure
                 (LOCAL_SUB_DIR);
 
-            FilesAndDirs.SUBDIR = LOCAL_SUB_DIR;            
+            FilesAndDirs.SUBDIR_OF_TESTCLASS = LOCAL_SUB_DIR;            
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace TestSynchra.SyncTests
         }
 
         [Test]
-        public void DirectoryOutOfSync_DirectoriesEmptyAreTheSame_ReturnsFalse()
+        public void FileOutOfSync_FileMissingInDest_ReturnsTrue()
         {
             string srcFilePath = FilesAndDirs.RootTxtMissingInDest(Direction.Source);
             string destFilePath = FilesAndDirs.RootTxtMissingInDest(Direction.Destination);
@@ -58,100 +58,88 @@ namespace TestSynchra.SyncTests
             Assert.IsTrue(SyncStateChecker.FileOutOfSync(srcFilePath, destFilePath));
         }
 
+        [Test]
+        public void DirectoryOutOfSync_DirectoriesEmptyAreTheSame_ReturnsFalse()
+        {
+            string srcFilePath = FilesAndDirs
+                .RootEmptyDirectoryEqualInBoth(Direction.Source);
+            string destFilePath = FilesAndDirs
+                .RootEmptyDirectoryEqualInBoth(Direction.Destination);
+
+            Assert.IsFalse(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
+        }
+
+        /// <summary>
+        /// Can be neglected for the moment... 
+        /// </summary>
         //[Test]
-        //public void DirectoryOutOfSync_DirectoriesWithFilesAreTheSame_ReturnsFalse()
+        //public void DirectoryOutOfSync_DirectoriesEmptyHaveDifferentTimeStamps_ReturnsTrue()
         //{
-        //    SyncStateChecker.DirectoryOutOfSync(
-        //    _srcDir
-        //        + FilesAndDirs.EQUAL_FILE_PATH
-        //        + FilesAndDirs.SubDir_Equal(0),
-        //    _destDir
-        //        + FilesAndDirs.EQUAL_FILE_PATH
-        //        + FilesAndDirs.SubDir_Equal(0));
+        //    string srcFilePath = FilesAndDirs
+        //        .RootEmptyDirectoryDifferentInBoth(Direction.Source);
+        //    string destFilePath = FilesAndDirs
+        //        .RootEmptyDirectoryDifferentInBoth(Direction.Destination);
+
+        //    Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
+        //}
+
+        [Test]
+        public void DirectoryOutOfSync_DirectoryEmptyMissingInSrc_ReturnsTrue()
+        {
+            string srcFilePath = FilesAndDirs
+                .RootEmptyDirectoryMissingInSrc(Direction.Source);
+            string destFilePath = FilesAndDirs
+                .RootEmptyDirectoryMissingInSrc(Direction.Destination);
+
+            Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
+        }
+
+        [Test]
+        public void DirectoryOutOfSync_DirectoriesEmptyMissingInDest_ReturnsTrue()
+        {
+            string srcFilePath = FilesAndDirs
+                .RootEmptyDirectoryMissingInDest(Direction.Source);
+            string destFilePath = FilesAndDirs
+                .RootEmptyDirectoryMissingInDest(Direction.Destination);
+
+            Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
+        }
+
+        //[Test]
+        //public void DirectoryOutOfSync_SubDirHierarchyEqual_ReturnsFalse()
+        //{
+        //    string srcFilePath = FilesAndDirs
+        //        .SubToEmptyDirEqualInBoth(Direction.Source);
+
+        //    string destFilePath = FilesAndDirs
+        //        .SubToEmptyDirEqualInBoth(Direction.Source);
+
+        //    Assert.IsFalse(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
         //}
 
         //[Test]
-        //public void DirectoryOutOfSync_DirectoriesWithFilesAreDifferent_ReturnsTrue()
+        //public void DirectoryOutOfSync_SubDirHierarchyPartMissingInSrc_ReturnsTrue()
         //{
-        //    SyncStateChecker.DirectoryOutOfSync(
-        //    _srcDir
-        //        + FilesAndDirs.DIFF_FILE_PATH
-        //        + FilesAndDirs.SubDir_Differing(0),
-        //    _destDir
-        //        + FilesAndDirs.DIFF_FILE_PATH
-        //        + FilesAndDirs.SubDir_Differing(0));
+        //    string srcFilePath = FilesAndDirs
+        //        .SubToEmptyDirMissingInSrc(Direction.Source);
+
+        //    string destFilePath = FilesAndDirs
+        //        .SubToEmptyDirMissingInSrc(Direction.Source);
+
+        //    Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
         //}
 
         //[Test]
-        //public void DirectoryOutOfSync_DirectoryMissingInSrc_ReturnsTrue()
+        //public void DirectoryOutOfSync_SubDirHierarchyPartMissingInDest_ReturnsTrue()
         //{
-        //    SyncStateChecker.DirectoryOutOfSync(
-        //    _srcDir
-        //        + FilesAndDirs.DIFF_FILE_PATH
-        //        + FilesAndDirs.SubDir_Differing(0),
-        //    _destDir
-        //        + FilesAndDirs.DIFF_FILE_PATH
-        //        + FilesAndDirs.SubDir_Differing(0)
-        //        + "/MissingDirectory");
-        //}
+        //    string srcFilePath = FilesAndDirs
+        //        .SubToEmptyDirMissingInDest(Direction.Source);
 
-        //[Test]
-        //public void DirectoryOutOfSync_DirectoryMissingInDest_ReturnsTrue()
-        //{
-        //    SyncStateChecker.DirectoryOutOfSync(
-        //    _srcDir
-        //        + FilesAndDirs.DIFF_FILE_PATH
-        //        + FilesAndDirs.SubDir_Differing(0)
-        //        + "/MissingDirectory",
-        //    _destDir
-        //        + FilesAndDirs.DIFF_FILE_PATH
-        //        + FilesAndDirs.SubDir_Differing(0));
-        //}
+        //    string destFilePath = FilesAndDirs
+        //        .SubToEmptyDirMissingInDest(Direction.Source);
 
-        //[Test]
-        //public void BothContain_SrcAndDestContainFile_ReturnsTrue()
-        //{
-        //    Assert.IsTrue(File.Exists(_srcDir + FilesAndDirs.EQUAL_FILE_PATH + FilesAndDirs.EqualTxtFileName(20)));
-        //    Assert.IsTrue(File.Exists(_destDir + FilesAndDirs.EQUAL_FILE_PATH + FilesAndDirs.EqualTxtFileName(20)));
-        //    Assert.IsTrue(SyncStateChecker.BothContain
-        //        (
-        //            _srcDir
-        //            + FilesAndDirs.EQUAL_FILE_PATH,
-        //            _destDir
-        //            + FilesAndDirs.EQUAL_FILE_PATH,
-        //            FilesAndDirs.EqualTxtFileName(20))
-        //        );
-        //}
-
-        //[Test]
-        //public void BothContain_SrcDoesntContainFile_ReturnsTrue()
-        //{
-        //    Assert.IsFalse(File.Exists(_srcDir + FilesAndDirs.DIFF_FILE_PATH + FilesAndDirs.EqualTxtFileName(21)));
-        //    Assert.IsTrue(File.Exists(_destDir + FilesAndDirs.DIFF_FILE_PATH + FilesAndDirs.EqualTxtFileName(21)));
-        //    Assert.IsFalse(SyncStateChecker.BothContain
-        //        (
-        //            _srcDir
-        //            + FilesAndDirs.EQUAL_FILE_PATH,
-        //            _destDir
-        //            + FilesAndDirs.EQUAL_FILE_PATH,
-        //            FilesAndDirs.EqualTxtFileName(21))
-        //        );
-        //}
-
-        //[Test]
-        //public void BothContain_DestDoesntContainFile_ReturnsTrue()
-        //{
-        //    Assert.IsFalse(File.Exists(_destDir + FilesAndDirs.DIFF_FILE_PATH + FilesAndDirs.EqualTxtFileName(22)));
-        //    Assert.IsTrue(File.Exists(_srcDir + FilesAndDirs.DIFF_FILE_PATH + FilesAndDirs.EqualTxtFileName(22)));
-        //    Assert.IsFalse(SyncStateChecker.BothContain
-        //        (
-        //            _srcDir
-        //            + FilesAndDirs.EQUAL_FILE_PATH,
-        //            _destDir
-        //            + FilesAndDirs.EQUAL_FILE_PATH,
-        //            FilesAndDirs.EqualTxtFileName(22))
-        //        );
-        //}        
+        //    Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
+        //}            
 
         [TearDown]
         public void TearDown()

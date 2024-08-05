@@ -73,6 +73,12 @@ Source and Destination Paths get checked initially and then they will become rec
 - [ ] Folder is opened in Finder / Explorer
 
 ## Perform Sync Actions
+- [ ] The system clears excess files in Dest
+- [ ] The System clear excess Directories in Dest
+- [ ] The System copies excess Files in Src
+- [ ] The System copies excess Directories in Src
+
+
 - [ ] User Creates a new File under src
 - [ ] User Deletes a File
 - [ ] User Changes a File

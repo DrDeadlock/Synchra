@@ -20,7 +20,6 @@ namespace Synchra.FileSystemHelpers
             }
             catch (UnauthorizedAccessException)
             {
-                SynchronizationCommunicator comm = new SynchronizationCommunicator();
                 comm.ErrorPermissionMissing(pPath);
                 return new string[0];
             }
@@ -31,8 +30,8 @@ namespace Synchra.FileSystemHelpers
             }
             catch (DirectoryNotFoundException)
             {
-                if ((pPath.SequenceEqual(CLAContext.Instance.srcPath))
-                || (pPath.SequenceEqual(CLAContext.Instance.destPath)))
+                if ((pPath.SequenceEqual(CLAContext.Instance.SrcPath))
+                || (pPath.SequenceEqual(CLAContext.Instance.DestPath)))
                 {
                     Directory.CreateDirectory(pPath);
                     comm.WarnSrcOrDestNewCreated();

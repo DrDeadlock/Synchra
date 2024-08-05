@@ -1,7 +1,9 @@
 ﻿
+using System.Runtime.CompilerServices;
 using System.Threading;
 using Synchra.FileSystemHelpers;
 
+[assembly: InternalsVisibleTo("TestSynchra")]
 namespace Synchra.Synchronization
 {
     public static class SyncPerformer
@@ -39,12 +41,12 @@ namespace Synchra.Synchronization
             Execute(pSrc, pDest, timeIntervalSeconds);
         }
 
-        private static void WaitFor(int seconds)
+        internal static void WaitFor(int seconds)
         {
             Thread.Sleep(seconds * 1000);
         }
 
-        private static void ClearExcessFilesInDest(string pSrc, string pDest, int seconds)
+        internal static void ClearExcessFilesInDest(string pSrc, string pDest, int seconds)
         {
             string[] filesInDest = FileCollector.GetAllFilesFrom(pDest);
             foreach (var file in filesInDest)
@@ -55,15 +57,21 @@ namespace Synchra.Synchronization
                 string fileLocalPath = PathConversion.MakePathLocal
                     (file, pDest);
 
+                System.Console.WriteLine("Checking if both contain file...");
+                System.Console.WriteLine("pSrc " + pSrc);
+                System.Console.WriteLine("pDest " + pDest);
+                System.Console.WriteLine("local file path " + fileLocalPath);
                 if (!SyncStateChecker.BothContain(
                         pSrc, pDest, fileLocalPath))
                 {
+                    System.Console.WriteLine("Deleting " + file + "...");
                     SyncStateModifier.DeleteFile(file);
+                    System.Console.WriteLine(file + " deleted.");
                 }
             }
         }
 
-        private static void ClearExcessDirsInDest(string pSrc, string pDest, int seconds)
+        internal static void ClearExcessDirsInDest(string pSrc, string pDest, int seconds)
         {
             string[] dirsInDest = FileCollector.GetSubDirectories(pDest);
             foreach (var dir in dirsInDest)
@@ -81,7 +89,7 @@ namespace Synchra.Synchronization
             }
         }
 
-        private static void CreateAndUpdateFiles(string pSrc, string pDest, int seconds)
+        internal static void CreateAndUpdateFiles(string pSrc, string pDest, int seconds)
         {
             string[] filesInSrc = FileCollector.GetAllFilesFrom(pSrc);
             foreach (var file in filesInSrc)

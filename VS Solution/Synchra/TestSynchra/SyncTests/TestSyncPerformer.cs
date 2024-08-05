@@ -2,28 +2,24 @@
 using System.Diagnostics;
 using System.IO;
 using NUnit.Framework;
+using Synchra.Synchronization;
 using TestSynchra.FileSystemHelpers;
 
 namespace TestSynchra.SyncTests
 {
     public class TestSyncPerformer
     {
-        private string _srcDir;
-        private string _destDir;
+        private const string LOCAL_SUB_DIR = @"/TestSyncPerformer";
 
-        private string _localSubDir = @"/TestSyncPerformer";
+        [SetUp]
+        public void Setup()
+        {
+            Trace.Listeners.Add(new ConsoleTraceListener());
+            FileSystemTestSetup.CreateTestStructure
+                (LOCAL_SUB_DIR);
 
-        //[SetUp]
-        //public void Setup()
-        //{
-        //    Trace.Listeners.Add(new ConsoleTraceListener());
-
-        //    var currentDir = Directory.GetCurrentDirectory();
-        //    _srcDir = currentDir + FilesAndDirs.LocalSrcDir(_localSubDir);
-        //    _destDir = currentDir + FilesAndDirs.LocalDestDir(_localSubDir);
-        //    FileSystemTestSetup.CreateTestStructure
-        //        (_srcDir, _destDir, TestStructureType.OutOfSync);
-        //}
+            FilesAndDirs.SUBDIR_OF_TESTCLASS = LOCAL_SUB_DIR;
+        }
 
         //[Test]
         //public void Execute_DirectoriesAreEqual_ChecksumStaysEqual()
@@ -31,11 +27,45 @@ namespace TestSynchra.SyncTests
         //    Assert.Fail();
         //}
 
-        //[Test]
-        //public void Execute_ExcessFileInTopLevelDir_DestFilesDeleted()
-        //{
-        //    Assert.Fail();
-        //}
+        [Test]
+        public void Execute_ExcessFileInTopLevelDirDest_DestFilesDeleted()
+        {
+            string srcFile = FilesAndDirs
+                .RootTxtMissingInSrc(Direction.Source);
+            string destFile = FilesAndDirs
+                .RootTxtMissingInSrc(Direction.Destination);
+
+            string srcDirContainingfile =
+                srcFile.Substring(0, srcFile.LastIndexOf("/"));
+            string destDirContainingfile =
+                destFile.Substring(0, destFile.LastIndexOf("/"));
+
+            Assert.IsTrue(SyncStateChecker.FileOutOfSync(
+                srcFile, destFile));
+            SyncPerformer.ClearExcessFilesInDest(
+                srcDirContainingfile, destDirContainingfile, 0);
+            Assert.IsTrue(SyncStateChecker.BothMissFile(srcFile, destFile));
+        }
+
+        [Test]
+        public void Execute_ExcessFileInTopLevelDirSrc_SrcFileCopied()
+        {
+            string srcFile = FilesAndDirs
+                .RootTxtMissingInDest(Direction.Source);
+            string destFile = FilesAndDirs
+                .RootTxtMissingInDest(Direction.Destination);
+
+            string srcDirContainingfile =
+                srcFile.Substring(0, srcFile.LastIndexOf("/"));
+            string destDirContainingfile =
+                destFile.Substring(0, destFile.LastIndexOf("/"));
+
+            Assert.IsTrue(SyncStateChecker.FileOutOfSync(
+                srcFile, destFile));
+            SyncPerformer.CreateAndUpdateFiles(
+                srcDirContainingfile, destDirContainingfile, 0);
+            Assert.IsTrue(SyncStateChecker.BothContain(srcFile, destFile));
+        }
 
         //[Test]
         //public void Execute_MissingFileInTopLevelDir_FileCreationInDest()

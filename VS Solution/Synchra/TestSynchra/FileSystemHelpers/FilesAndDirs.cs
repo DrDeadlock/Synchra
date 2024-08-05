@@ -15,15 +15,17 @@ namespace TestSynchra.FileSystemHelpers
         /// <summary>
         /// Local SubDirectory, one for each Test Class.
         /// </summary>
-        public static string SUBDIR = "";
+        public static string SUBDIR_OF_TESTCLASS = "";
 
         private static string COREPATH
         {
-            get => Directory.GetCurrentDirectory() + TESTDIRS + SUBDIR;
+            get => Directory.GetCurrentDirectory() + TESTDIRS + SUBDIR_OF_TESTCLASS;
         }
 
         private const string SRC = @"/Src";
         private const string DEST = @"/Dest";
+
+        private const string CONTENT_DIRECTORY = @"/ContentDirectory";
 
         private const string FILE_EQUALCONTENT_IN_BOTH = @"/TxtEqualContentForBoth.txt";
         private const string FILE_DIFFERENTCONTENT_IN_BOTH = @"/TxtDifferentContentForBoth.txt";
@@ -34,6 +36,11 @@ namespace TestSynchra.FileSystemHelpers
         private const string DIRECTORY_EMPTY_DIFFERENT_IN_BOTH = @"/EmptyDir_DifferentForBoth";
         private const string DIRECTORY_EMPTY_MISSING_IN_SRC = @"/EmptyDir_MissingInSrc";
         private const string DIRECTORY_EMPTY_MISSING_IN_DEST = @"/EmptyDir_MissingInDest";
+
+        private const string SUB_DIR_CONTAINING_EMPTY_DIRS = @"/ContainingEmptyDirs";
+        public const string SUB_DIR_EQUAL_IN_BOTH = @"/EqualInBoth";
+        public const string SUB_DIR_MISSING_IN_SRC = @"/MissingInSrc";
+        public const string SUB_DIR_MISSING_IN_DEST = @"/MissingInDest";
 
         public static string GetPathToFile(string pPath)
         {
@@ -81,14 +88,44 @@ namespace TestSynchra.FileSystemHelpers
             return COREPATH + SrcOrDest(direction) + DIRECTORY_EMPTY_DIFFERENT_IN_BOTH;
         }
 
-        public static string RootEmptyDirectoryMissingInSrc()
+        public static string RootEmptyDirectoryMissingInSrc(Direction direction)
         {
-            return COREPATH + SrcOrDest(Direction.Destination) + DIRECTORY_EMPTY_MISSING_IN_SRC;
+            return COREPATH + SrcOrDest(direction) + DIRECTORY_EMPTY_MISSING_IN_SRC;
         }
 
-        public static string RootEmptyDirectoryMissingInDest()
+        public static string RootEmptyDirectoryMissingInDest(Direction direction)
         {
-            return COREPATH + SrcOrDest(Direction.Source) + DIRECTORY_EMPTY_MISSING_IN_DEST;
+            return COREPATH + SrcOrDest(direction) + DIRECTORY_EMPTY_MISSING_IN_DEST;
+        }
+
+        public static string PathToSubDirectoryContainingDirsAndFiles(Direction direction)
+        {
+            return COREPATH + SrcOrDest(direction)
+                + CONTENT_DIRECTORY;
+        }
+
+        public static string SubToEmptyDirEqualInBoth(Direction direction)
+        {
+            return COREPATH + SrcOrDest(direction)
+                + CONTENT_DIRECTORY
+                + SUB_DIR_CONTAINING_EMPTY_DIRS
+                + SUB_DIR_EQUAL_IN_BOTH;
+        }
+
+        public static string SubToEmptyDirMissingInSrc(Direction direction)
+        {
+            return COREPATH + SrcOrDest(direction)
+                + CONTENT_DIRECTORY
+                + SUB_DIR_CONTAINING_EMPTY_DIRS
+                + SUB_DIR_MISSING_IN_SRC;
+        }
+
+        public static string SubToEmptyDirMissingInDest(Direction direction)
+        {
+            return COREPATH + SrcOrDest(direction)
+                + CONTENT_DIRECTORY
+                + SUB_DIR_CONTAINING_EMPTY_DIRS
+                + SUB_DIR_MISSING_IN_DEST;
         }
     }
 }

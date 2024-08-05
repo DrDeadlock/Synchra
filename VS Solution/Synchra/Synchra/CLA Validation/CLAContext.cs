@@ -21,8 +21,8 @@ namespace Synchra.CLAValidation
             }
         }
 
-        public string srcPath;
-        public string destPath;
+        public string SrcPath;
+        public string DestPath;
         public string logPath;
         public int interval; 
     }
