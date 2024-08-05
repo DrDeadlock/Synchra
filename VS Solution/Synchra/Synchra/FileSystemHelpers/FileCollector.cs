@@ -46,14 +46,20 @@ namespace Synchra.FileSystemHelpers
 
         public static string[] GetAllFilesRecursivelyFrom(string pPath)
         {
-            return Directory.GetFiles(pPath, "*", SearchOption.AllDirectories)
+            if (Directory.Exists(pPath))
+                return Directory.GetFiles(pPath, "*", SearchOption.AllDirectories)
                          .OrderBy(p => p).ToArray();
+
+            return new string[0];
         }
 
         public static string[] GetSubDirectories(string pPath)
         {
-            return Directory.EnumerateDirectories(pPath)
+            if (Directory.Exists(pPath))
+                return Directory.EnumerateDirectories(pPath)
                     .OrderBy(p => p).ToArray();
+
+            return new string[0];
         }                
     }
 }

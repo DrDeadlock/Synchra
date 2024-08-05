@@ -42,6 +42,11 @@ namespace TestSynchra.FileSystemHelpers
         public const string SUB_DIR_MISSING_IN_SRC = @"/MissingInSrc";
         public const string SUB_DIR_MISSING_IN_DEST = @"/MissingInDest";
 
+        private const string SUB_DIR_CONTAINING_COMPLEX_TEST = @"/ContainingComplexTest";
+        private const string SUB_DIR_EXCESS_IN_DEST = @"/ExcessInDest";
+        private const string SUB_DIR_EXCESS_IN_SRC = @"/ExcessInSrc";
+        private const string SUB_DIR_MUST_BE_MERGED = @"/MustBeMerged";
+
         public static string GetPathToFile(string pPath)
         {
             string pathToDirectory = pPath.Substring(0, pPath.LastIndexOf("/"));
@@ -127,5 +132,38 @@ namespace TestSynchra.FileSystemHelpers
                 + SUB_DIR_CONTAINING_EMPTY_DIRS
                 + SUB_DIR_MISSING_IN_DEST;
         }
+
+        public static string SubToComplexTest(Direction direction)
+        {
+            return COREPATH + SrcOrDest(direction)
+                + CONTENT_DIRECTORY
+                + SUB_DIR_CONTAINING_COMPLEX_TEST;
+        }
+
+        public static string SubToComplexTest_ExcessInDest(Direction direction)
+        {
+            return COREPATH + SrcOrDest(direction)
+                + CONTENT_DIRECTORY
+                + SUB_DIR_CONTAINING_COMPLEX_TEST
+                + SUB_DIR_EXCESS_IN_DEST;
+        }
+
+        public static string SubToComplexTest_ExcessInSrc(Direction direction)
+        {
+            return COREPATH + SrcOrDest(direction)
+                + CONTENT_DIRECTORY
+                + SUB_DIR_CONTAINING_COMPLEX_TEST
+                + SUB_DIR_EXCESS_IN_SRC;
+        }
+
+        public static string SubToComplexTest_MustBeMerged(Direction direction)
+        {
+            return COREPATH + SrcOrDest(direction)
+                + CONTENT_DIRECTORY
+                + SUB_DIR_CONTAINING_COMPLEX_TEST
+                + SUB_DIR_MUST_BE_MERGED;
+        }
+
+
     }
 }

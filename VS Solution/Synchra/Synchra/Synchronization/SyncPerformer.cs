@@ -12,8 +12,8 @@ namespace Synchra.Synchronization
         {
             if (SyncStateChecker.DirectoryOutOfSync(pSrc, pDest))
             {
-                ClearExcessFilesInDest(pSrc, pDest, waitForSeconds);
-                ClearExcessDirsInDest(pSrc, pDest, waitForSeconds);
+                ClearExcessFilesInDestRecursively(pSrc, pDest, waitForSeconds);
+                ClearExcessDirsInDestRecursively(pSrc, pDest, waitForSeconds);
                 CreateAndUpdateFiles(pSrc, pDest, waitForSeconds);
                 CreateDirectories(pSrc, pDest, waitForSeconds);
                 IterateSubDirectories(pSrc, pDest, waitForSeconds);                
@@ -58,18 +58,29 @@ namespace Synchra.Synchronization
                 string fileLocalPath = PathConversion.MakePathLocal
                     (file, pDest);
 
-                System.Console.WriteLine("Checking if both contain file...");
-                System.Console.WriteLine("pSrc " + pSrc);
-                System.Console.WriteLine("pDest " + pDest);
-                System.Console.WriteLine("local file path " + fileLocalPath);
                 if (!SyncStateChecker.BothContainFile(
                         pSrc, pDest, fileLocalPath))
                 {
-                    System.Console.WriteLine("Deleting " + file + "...");
                     SyncStateModifier.DeleteFile(file);
-                    System.Console.WriteLine(file + " deleted.");
                 }
             }
+        }
+
+        internal static void ClearExcessFilesInDestRecursively
+            (string pSrc, string pDest, int seconds)
+        {
+            string[] directories = FileCollector.GetSubDirectories(pDest);
+            foreach (var dir in directories)
+            {
+                string dirLocalPath = PathConversion.MakePathLocal
+                    (dir, pDest);
+
+                ClearExcessFilesInDestRecursively(
+                    pSrc + dirLocalPath, pDest + dirLocalPath, seconds);
+            }
+
+            //Reaching this point means, no SubDir was found 
+            ClearExcessFilesInDest(pSrc, pDest, 0);
         }
 
         internal static void ClearExcessDirsInDest(string pSrc, string pDest, int seconds)
@@ -82,9 +93,6 @@ namespace Synchra.Synchronization
 
                 string dirLocalPath = PathConversion.MakePathLocal
                     (dir, pDest);
-                System.Console.WriteLine("Check for Directory contain.");
-                System.Console.WriteLine("Src + DirLocal: " + pSrc + dirLocalPath);
-                System.Console.WriteLine("Dest + DirLocal: " + pDest + dirLocalPath);
 
                 if (!SyncStateChecker.BothContainDirectory(
                     pSrc, pDest, dirLocalPath))
@@ -94,6 +102,23 @@ namespace Synchra.Synchronization
                     SyncStateModifier.DeleteDirectory(dir);
                 }
             }
+        }
+
+        internal static void ClearExcessDirsInDestRecursively
+            (string pSrc, string pDest, int seconds)
+        {
+            string[] directories = FileCollector.GetSubDirectories(pDest);
+            foreach (var dir in directories)
+            {
+                string dirLocalPath = PathConversion.MakePathLocal
+                    (dir, pDest);
+
+                ClearExcessDirsInDestRecursively(
+                    pSrc + dirLocalPath, pDest + dirLocalPath, seconds);
+            }
+
+            //Reaching this point means, no SubDir was found 
+            ClearExcessDirsInDest(pSrc, pDest, 0);
         }
 
         internal static void CreateAndUpdateFiles(string pSrc, string pDest, int seconds)

@@ -3,8 +3,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using Synchra.CLAValidation;
 using Synchra.FileSystemHelpers;
 using Synchra.Logging.Wrappers;
 
@@ -65,6 +63,10 @@ namespace Synchra.Synchronization
             byte[] destHash = new byte[0];
             try
             {
+                //This behaviour is necessary for testing!
+                if (BothMissDirectory(pSrcPath, pDestPath))
+                    return false;
+
                 if (!(Directory.Exists(pSrcPath) && Directory.Exists(pDestPath)))
                 {
                     return true; 
@@ -84,6 +86,41 @@ namespace Synchra.Synchronization
             {
                 return !Enumerable.SequenceEqual(srcHash, destHash);
             }
+        }
+
+        public static bool DirectoryOutOfSyncRecursively(string pSrcPath, string pDestPath)
+        {
+            bool outOfSync = DirectoryOutOfSync(pSrcPath, pDestPath);
+            if (outOfSync)
+                return true;
+
+            string[] directories
+                = FileCollector.GetSubDirectories(pSrcPath);
+
+            foreach (var subDir in directories)
+            {
+                string localDirPath =
+                    PathConversion.MakePathLocal(subDir, pSrcPath);
+
+                if (DirectoryOutOfSyncRecursively
+                    (pSrcPath + localDirPath, pDestPath + localDirPath))
+                    return true;
+            }
+
+            directories
+                = FileCollector.GetSubDirectories(pDestPath);
+
+            foreach (var subDir in directories)
+            {
+                string localDirPath =
+                    PathConversion.MakePathLocal(subDir, pDestPath);
+
+                if (DirectoryOutOfSyncRecursively
+                    (pSrcPath + localDirPath, pDestPath + localDirPath))
+                    return true;
+            }
+
+            return false; 
         }
 
         private static byte[] GetHashOfFilesIn(string pPath)

@@ -1,8 +1,5 @@
 ﻿using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using NUnit.Framework;
-using Synchra.FileSystemHelpers;
 using Synchra.Synchronization;
 using TestSynchra.FileSystemHelpers;
 

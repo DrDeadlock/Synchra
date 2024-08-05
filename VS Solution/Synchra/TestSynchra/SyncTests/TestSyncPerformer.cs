@@ -115,6 +115,36 @@ namespace TestSynchra.SyncTests
             Assert.IsTrue(SyncStateChecker.BothContainDirectory(srcLocalSubDir, destLocalSubDir));
         }
 
+        [Test]
+        public void Execute_ExcessDirWithContentInDest_DestDirDeleted()
+        {
+            string srcSubDirPath =
+                FilesAndDirs.SubToComplexTest_ExcessInDest(Direction.Source);
+            string destSubDirPath =
+                FilesAndDirs.SubToComplexTest_ExcessInDest(Direction.Destination);
+
+            Assert.IsTrue(SyncStateChecker.DirectoryOutOfSyncRecursively
+                (srcSubDirPath, destSubDirPath));
+
+            string srcSubDirToSync =
+                FilesAndDirs.SubToComplexTest(Direction.Source);
+            string destSubDirToSync =
+                FilesAndDirs.SubToComplexTest(Direction.Destination);
+            SyncPerformer.ClearExcessFilesInDestRecursively
+                (srcSubDirToSync, destSubDirToSync, 1);
+            SyncPerformer.ClearExcessDirsInDestRecursively
+                (srcSubDirToSync, destSubDirToSync, 1);
+
+            Assert.IsFalse(SyncStateChecker.DirectoryOutOfSyncRecursively
+                (srcSubDirPath, destSubDirPath));
+        }
+
+        [Test]
+        public void Execute_ExcessDirWithContentInSrc_SrcDirCopied()
+        {
+            Assert.Fail();
+        }
+
         //[Test]
         //public void Execute_MissingFileInTopLevelDir_FileCreationInDest()
         //{

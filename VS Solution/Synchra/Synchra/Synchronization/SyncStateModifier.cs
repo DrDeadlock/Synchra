@@ -28,7 +28,6 @@ namespace Synchra.Synchronization
 
         public static void DeleteDirectory(string at)
         {
-            Console.WriteLine("Try to delete directory: " + at);
             Directory.Delete(at);
         }
     }

@@ -19,7 +19,11 @@ namespace TestSynchra.FileSystemHelpers
             CreateRootEmptyDirectoryMissingInBoth();
 
             CreateSubEmptyDirectoryEqualInBoth();
-            CreateSubEmptyDirectoryMissingInBoth();
+            CreateSubEmptyDirectoryMissingInEachOther();
+
+            CreateSubDirectory_ComplexExcessIn(Direction.Destination);
+            CreateSubDirectory_ComplexExcessIn(Direction.Source);
+            CreateSubDirectory_ComplexMerge();
         }
 
         private static void CreateRootTxtSameContentInBoth()
@@ -149,7 +153,7 @@ namespace TestSynchra.FileSystemHelpers
             }
         }
 
-        private static void CreateSubEmptyDirectoryMissingInBoth()
+        private static void CreateSubEmptyDirectoryMissingInEachOther()
         {
             SpawnNewDirectory
                 (FilesAndDirs.SubToEmptyDirMissingInSrc(Direction.Destination)
@@ -158,6 +162,86 @@ namespace TestSynchra.FileSystemHelpers
             SpawnNewDirectory
                 (FilesAndDirs.SubToEmptyDirMissingInDest(Direction.Source)
                 + FilesAndDirs.SUB_DIR_MISSING_IN_DEST);
+        }
+
+        private static void CreateSubDirectory_ComplexExcessIn(Direction direction)
+        {
+            string subDirPath = "";
+            string subDirLv2 = "";
+
+            switch (direction)
+            {
+                case Direction.Source:
+                    subDirPath = FilesAndDirs.SubToComplexTest_ExcessInSrc(Direction.Source);
+                    subDirLv2 = FilesAndDirs.SUB_DIR_MISSING_IN_DEST;
+                    break;
+                case Direction.Destination:
+                    subDirPath = FilesAndDirs.SubToComplexTest_ExcessInDest(Direction.Destination);
+                    subDirLv2 = FilesAndDirs.SUB_DIR_MISSING_IN_SRC;
+                    break;
+                default:
+                    break;
+            }
+            
+            SpawnNewDirectory(subDirPath);
+
+            for (int i = 0; i < 6; i++)
+            {
+                SpawnNewDirectory(subDirPath
+                    + subDirLv2
+                    + i.ToString());
+
+                if (i > 0)
+                    SpawnNewDirectory(subDirPath
+                        + subDirLv2
+                        + i.ToString()
+                        + "/Excess Dir");
+
+                if (i > 1)
+                {
+                    using FileStream fs = File.Create(subDirPath
+                        + subDirLv2
+                        + i.ToString()
+                        + "/FileNo" + i.ToString() + ".txt"
+                        );
+                }
+
+                if (i > 2)
+                {
+                    using FileStream fs = File.Create(subDirPath
+                        + subDirLv2
+                        + i.ToString()
+                        + "/FileNo" + (i-1).ToString() + ".txt"
+                        );
+                    using FileStream fs2 = File.Create(subDirPath
+                        + subDirLv2
+                        + i.ToString()
+                        + "/Excess Dir"
+                        + "/FileNo" + i.ToString() + ".txt"
+                        );
+                }
+
+                if (i > 3)
+                {
+                    using FileStream fs = File.Create(subDirPath
+                        + subDirLv2
+                        + i.ToString()
+                        + "/Excess Dir"
+                        + "/FileNo" + (i-1).ToString() + ".txt"
+                        );
+                    SpawnNewDirectory(subDirPath
+                        + subDirLv2
+                        + i.ToString()
+                        + "/Excess Dir"
+                        + "/EmptyContainer" + i.ToString()
+                        ) ;
+                }
+            }
+        }
+
+        private static void CreateSubDirectory_ComplexMerge()
+        {
+
         }
 
         private static void ClearDirectories(string pSrcDir, string pDestDir)
