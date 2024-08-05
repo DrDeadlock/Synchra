@@ -15,6 +15,7 @@ namespace Synchra.Synchronization
                 ClearExcessFilesInDest(pSrc, pDest, waitForSeconds);
                 ClearExcessDirsInDest(pSrc, pDest, waitForSeconds);
                 CreateAndUpdateFiles(pSrc, pDest, waitForSeconds);
+                CreateDirectories(pSrc, pDest, waitForSeconds);
                 IterateSubDirectories(pSrc, pDest, waitForSeconds);                
             }
         }
@@ -61,7 +62,7 @@ namespace Synchra.Synchronization
                 System.Console.WriteLine("pSrc " + pSrc);
                 System.Console.WriteLine("pDest " + pDest);
                 System.Console.WriteLine("local file path " + fileLocalPath);
-                if (!SyncStateChecker.BothContain(
+                if (!SyncStateChecker.BothContainFile(
                         pSrc, pDest, fileLocalPath))
                 {
                     System.Console.WriteLine("Deleting " + file + "...");
@@ -81,9 +82,15 @@ namespace Synchra.Synchronization
 
                 string dirLocalPath = PathConversion.MakePathLocal
                     (dir, pDest);
-                if (!SyncStateChecker.BothContain(
+                System.Console.WriteLine("Check for Directory contain.");
+                System.Console.WriteLine("Src + DirLocal: " + pSrc + dirLocalPath);
+                System.Console.WriteLine("Dest + DirLocal: " + pDest + dirLocalPath);
+
+                if (!SyncStateChecker.BothContainDirectory(
                     pSrc, pDest, dirLocalPath))
                 {
+                    //TODO: We have to iterate through this directory
+                    //And clear sub dirs and files as well...
                     SyncStateModifier.DeleteDirectory(dir);
                 }
             }
@@ -102,7 +109,7 @@ namespace Synchra.Synchronization
                 string fileInSrc = pSrc + fileLocalPath;
                 string fileInDest = pDest + fileLocalPath;
 
-                if (!SyncStateChecker.BothContain
+                if (!SyncStateChecker.BothContainFile
                     (pSrc, pDest, fileLocalPath))
                 {
                     SyncStateModifier.CreateFile(
@@ -116,6 +123,26 @@ namespace Synchra.Synchronization
                         SyncStateModifier.UpdateFile
                             (fileInSrc, fileInDest);
                     }
+                }
+            }
+        }
+
+        internal static void CreateDirectories(string pSrc, string pDest, int seconds)
+        {
+            string[] subDirsInSrc = FileCollector.GetSubDirectories(pSrc);
+            foreach (var subDir in subDirsInSrc)
+            {
+                if (seconds > 0)
+                    WaitFor(seconds);
+
+                string subDirLocalPath = PathConversion.MakePathLocal
+                    (subDir, pSrc);
+                string subDirInSrc = pSrc + subDirLocalPath;
+                string subDirInDest = pDest + subDirLocalPath;
+
+                if (!SyncStateChecker.BothContainDirectory(subDirInSrc, subDirInDest))
+                {
+                    SyncStateModifier.CreateDirectory(subDirInDest);
                 }
             }
         }

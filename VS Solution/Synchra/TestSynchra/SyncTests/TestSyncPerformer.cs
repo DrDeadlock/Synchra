@@ -28,7 +28,7 @@ namespace TestSynchra.SyncTests
         //}
 
         [Test]
-        public void Execute_ExcessFileInTopLevelDirDest_DestFilesDeleted()
+        public void Execute_ExcessFileInDirDest_DestFilesDeleted()
         {
             string srcFile = FilesAndDirs
                 .RootTxtMissingInSrc(Direction.Source);
@@ -48,7 +48,7 @@ namespace TestSynchra.SyncTests
         }
 
         [Test]
-        public void Execute_ExcessFileInTopLevelDirSrc_SrcFileCopied()
+        public void Execute_ExcessFileInDirSrc_SrcFileCopied()
         {
             string srcFile = FilesAndDirs
                 .RootTxtMissingInDest(Direction.Source);
@@ -64,7 +64,55 @@ namespace TestSynchra.SyncTests
                 srcFile, destFile));
             SyncPerformer.CreateAndUpdateFiles(
                 srcDirContainingfile, destDirContainingfile, 0);
-            Assert.IsTrue(SyncStateChecker.BothContain(srcFile, destFile));
+            Assert.IsTrue(SyncStateChecker.BothContainFile(srcFile, destFile));
+        }
+
+        [Test]
+        public void Execute_EmptyExcessDirInDest_DestDirDeleted()
+        {
+            string srcLocalRootDir = FilesAndDirs
+                .SubToEmptyDirMissingInSrc(Direction.Source);
+            string destLocalRootDir = FilesAndDirs
+                .SubToEmptyDirMissingInSrc(Direction.Destination);
+
+            string srcLocalSubDir = FilesAndDirs
+                .SubToEmptyDirMissingInSrc(Direction.Source)
+                + FilesAndDirs.SUB_DIR_MISSING_IN_SRC;
+
+            string destLocalSubDir = FilesAndDirs
+                .SubToEmptyDirMissingInSrc(Direction.Destination)
+                + FilesAndDirs.SUB_DIR_MISSING_IN_SRC;
+
+            Assert.IsFalse(SyncStateChecker.BothMissDirectory(srcLocalSubDir, destLocalSubDir));
+            Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(
+                srcLocalRootDir, destLocalRootDir));
+            SyncPerformer.ClearExcessDirsInDest(
+                srcLocalRootDir, destLocalRootDir, 0);
+            Assert.IsTrue(SyncStateChecker.BothMissDirectory(srcLocalSubDir, destLocalSubDir));
+        }
+
+        [Test]
+        public void Execute_EmptyExcessDirInSrc_SrcDirCopied()
+        {
+            string srcLocalRootDir = FilesAndDirs
+                .SubToEmptyDirMissingInDest(Direction.Source);
+            string destLocalRootDir = FilesAndDirs
+                .SubToEmptyDirMissingInDest(Direction.Destination);
+
+            string srcLocalSubDir = FilesAndDirs
+                .SubToEmptyDirMissingInDest(Direction.Source)
+                + FilesAndDirs.SUB_DIR_MISSING_IN_DEST;
+
+            string destLocalSubDir = FilesAndDirs
+                .SubToEmptyDirMissingInDest(Direction.Destination)
+                + FilesAndDirs.SUB_DIR_MISSING_IN_DEST;
+
+            Assert.IsFalse(SyncStateChecker.BothContainDirectory(srcLocalSubDir, destLocalSubDir));
+            Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(
+                srcLocalRootDir, destLocalRootDir));
+            SyncPerformer.CreateDirectories(
+                srcLocalRootDir, destLocalRootDir, 0);
+            Assert.IsTrue(SyncStateChecker.BothContainDirectory(srcLocalSubDir, destLocalSubDir));
         }
 
         //[Test]

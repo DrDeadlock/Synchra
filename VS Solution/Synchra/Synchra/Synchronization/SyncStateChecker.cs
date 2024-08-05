@@ -160,7 +160,7 @@ namespace Synchra.Synchronization
         /// <param name="pPath2"></param>
         /// <param name="pFileName"></param>
         /// <returns></returns>
-        public static bool BothContain(string pPath1, string pPath2, string pFileName)
+        public static bool BothContainFile(string pPath1, string pPath2, string pFileName)
         {
             return File.Exists(pPath1 + pFileName) && File.Exists(pPath2 + pFileName);
         }
@@ -172,7 +172,7 @@ namespace Synchra.Synchronization
         /// <param name="pPathToFile2"></param>
         /// <param name="pFileName"></param>
         /// <returns></returns>
-        public static bool BothContain(string pPathToFile1, string pPathToFile2)
+        public static bool BothContainFile(string pPathToFile1, string pPathToFile2)
         {
             return File.Exists(pPathToFile1) && File.Exists(pPathToFile2);
         }
@@ -187,6 +187,42 @@ namespace Synchra.Synchronization
         public static bool BothMissFile(string pPath1, string pPath2)
         {
             return !File.Exists(pPath1) && !File.Exists(pPath2);
+        }
+
+        /// <summary>
+        /// Check if the directory of both paths exist.
+        /// </summary>
+        /// <param name="pPath1"></param>
+        /// <param name="pPath2"></param>
+        /// <param name="pFileName"></param>
+        /// <returns></returns>
+        public static bool BothContainDirectory(string pPath1, string pPath2, string localDir)
+        {
+            return Directory.Exists(pPath1 + localDir) && Directory.Exists(pPath2 + localDir);
+        }
+
+        /// <summary>
+        /// Check if the directory of both paths exist.
+        /// </summary>
+        /// <param name="pPath1"></param>
+        /// <param name="pPathToDir2"></param>
+        /// <param name="pFileName"></param>
+        /// <returns></returns>
+        public static bool BothContainDirectory(string pPathToDir1, string pPathToDir2)
+        {
+            return Directory.Exists(pPathToDir1) && Directory.Exists(pPathToDir2);
+        }
+
+        /// <summary>
+        /// Check if the directory of both paths is missing.
+        /// </summary>
+        /// <param name="pPath1"></param>
+        /// <param name="pPathToDir2"></param>
+        /// <param name="pFileName"></param>
+        /// <returns></returns>
+        public static bool BothMissDirectory(string pPathToDir1, string pPathToDir2)
+        {
+            return !Directory.Exists(pPathToDir1) && !Directory.Exists(pPathToDir2);
         }
     }
 }

@@ -152,19 +152,9 @@ namespace TestSynchra.FileSystemHelpers
         private static void CreateSubEmptyDirectoryMissingInBoth()
         {
             SpawnNewDirectory
-                (FilesAndDirs.SubToEmptyDirMissingInSrc(Direction.Destination));
-            CreateFiveSubDirsInBothAt(
-                FilesAndDirs.SubToEmptyDirMissingInSrc(Direction.Source),
-                FilesAndDirs.SubToEmptyDirMissingInSrc(Direction.Destination));
-            SpawnNewDirectory
                 (FilesAndDirs.SubToEmptyDirMissingInSrc(Direction.Destination)
                 + FilesAndDirs.SUB_DIR_MISSING_IN_SRC);
 
-            SpawnNewDirectory
-                (FilesAndDirs.SubToEmptyDirMissingInDest(Direction.Source));
-            CreateFiveSubDirsInBothAt(
-                FilesAndDirs.SubToEmptyDirMissingInDest(Direction.Source),
-                FilesAndDirs.SubToEmptyDirMissingInDest(Direction.Destination));
             SpawnNewDirectory
                 (FilesAndDirs.SubToEmptyDirMissingInDest(Direction.Source)
                 + FilesAndDirs.SUB_DIR_MISSING_IN_DEST);

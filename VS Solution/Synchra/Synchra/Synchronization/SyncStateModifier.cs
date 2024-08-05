@@ -21,8 +21,14 @@ namespace Synchra.Synchronization
             File.Delete(at);
         }
 
+        public static void CreateDirectory(string at)
+        {
+            Directory.CreateDirectory(at);
+        }
+
         public static void DeleteDirectory(string at)
         {
+            Console.WriteLine("Try to delete directory: " + at);
             Directory.Delete(at);
         }
     }
