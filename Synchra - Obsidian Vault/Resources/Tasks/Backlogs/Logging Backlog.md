@@ -5,6 +5,23 @@
 - The Loggers must be triggerable regarding their state of activeness
 	- This would be part of further developent, since you incorporate another logging mechanism. And then you can create further loggers according to a configuration (might use a factory then...)
 
+# Listed
+## Low Priority
+- [ ] Rework Logging Layouts
+
+# Currently Doing
+- [ ] Log each Sync Perform for
+	- [ ] File Creation
+	- [ ] File Modification 
+		- [ ] Delete 
+		- [ ] Copy
+	- [ ] File Deletion
+- [ ] Log each Sync Perform Error 
+	- [ ] Path Too Long
+	- [ ] Access Denied
+	- [ ] Path not found
+	- [ ] ...
+# Done
 - [x] Add log4net package
 - [x] Setup a logger with two appenders (FileAppender and ConsoleAppender)
 - [x] Setup an appender Layout

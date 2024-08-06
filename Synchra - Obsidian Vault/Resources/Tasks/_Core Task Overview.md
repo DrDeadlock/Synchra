@@ -1,14 +1,11 @@
 # CLA Tasks
-[[CLA Tasks]]
+[[CLA Validation Backlog]]
 
 # Log Tasks
-[[Log Tasks]]
+[[Logging Backlog]]
 
 # Knowledge Gaining Tasks
-[[Knowledge Gaining Tasks]]
-
-# Application Handling Tasks
-[[Application Exit]]
+[[Knowledge Gaining Backlog]]
 
 # Sync Tasks
-[[Sync Tasks]]
+[[Synchronizing Backlog]]

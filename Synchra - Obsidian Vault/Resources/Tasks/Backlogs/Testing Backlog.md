@@ -1,6 +1,6 @@
 - [ ] Define a test strategy
-	- [ ] for Synch --> [[Sync Tasks]]
-	- [ ] for CLA Validation --> [[CLA Tasks]]
+	- [ ] for Synch --> [[Synchronizing Backlog]]
+	- [ ] for CLA Validation --> [[CLA Validation Backlog]]
 - [x] Create a unit test project
 - [x] Setup Unit Test project to make Synchra testible
 	- [x] Add NUnit3 Test Adapter to the test project

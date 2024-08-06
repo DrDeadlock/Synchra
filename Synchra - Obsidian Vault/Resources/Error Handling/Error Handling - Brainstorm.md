@@ -2,13 +2,15 @@
 
 ## The user is quick
 During the process of checking for changes or applying changes the user changes, moves or deletes a file.
-- [ ] Should Synchra recognize that?
-	- [ ] How can we realize that?
-- [ ] How to deal with those changes during the process of synching?
+- [x] Should Synchra recognize that?
+	- [x] How can we realize that?
+	- Nope, thats what the time interval given in the CLA is for.
+- [x] How to deal with those changes during the process of synching?
+	- At this state of the project: Not at all.
 
 # The user manipulates the destination folder
 Whether due to confusion or stupidness, doesn't matter, users could manipulate the destination folder by accident. 
-- [ ] What happens to those changes made in the destination folder?
+- [x] What happens to those changes made in the destination folder?
 	- *Those changes will be overridden in the next synch period.*
 
 > [!NOTE] Nice to have

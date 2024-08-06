@@ -1,0 +1,2 @@
+- [ ] Log each Sync Perform Action.
+	- Details in [[Logging Backlog]] / Currently Doing

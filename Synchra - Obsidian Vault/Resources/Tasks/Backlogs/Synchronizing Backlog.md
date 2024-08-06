@@ -77,9 +77,10 @@ Source and Destination Paths get checked initially and then they will become rec
 - [x] The System clear excess Directories in Dest
 - [x] The System copies excess Files in Src
 - [x] The System copies excess Directories in Src
-- [ ] The System can delete a Directory with SubDirectories and Files in Dest
-- [ ] The System can copy a Directory with SubDirectories and Files in Src
+- [x] The System can delete a Directory with SubDirectories and Files in Dest
+- [x] The System can copy a Directory with SubDirectories and Files in Src
 
+## To be tested on running application
 
 - [ ] User Creates a new File under src
 - [ ] User Deletes a File
@@ -101,5 +102,4 @@ Source and Destination Paths get checked initially and then they will become rec
 	  Better do than think, we're running out of time... 
 - [ ] what happens if the user just moves all file into a folder to make the whole hierarchy deeper by one?
 - [ ] What if the permission to read a file gets lost during runtime (or is even not available from the start?)
-
-- [ ] Read the documentation for possible thrown exceptions to get further inspiration for edge cases
+- [x] Read the documentation for possible thrown exceptions to get further inspiration for edge cases
