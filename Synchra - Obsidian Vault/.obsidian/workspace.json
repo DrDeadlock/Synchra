@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Project/Customers Tasks/Checklist - Customer Requirements.md",
+                "file": "Resources/Tasks/Currently Doing.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Project/Customers Tasks/Checklist - Customer Requirements.md",
+                "file": "Resources/Tasks/Currently Doing.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Project/Customers Tasks/Checklist - Customer Requirements.md",
+                "file": "Resources/Tasks/Currently Doing.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Project/Customers Tasks/Checklist - Customer Requirements.md"
+                "file": "Resources/Tasks/Currently Doing.md"
               }
             }
           }
@@ -148,13 +148,16 @@
   },
   "active": "27aaaa6aabfa6290",
   "lastOpenFiles": [
+    "Resources/Tasks/Backlogs/Application Handling Backlog.md",
+    "Resources/Tasks/Currently Doing.md",
+    "Resources/Tasks/Backlogs/Synchronizing Backlog.md",
+    "Resources/Tasks/_Core Task Overview.md",
+    "Resources/Tasks/Backlogs/Logging Backlog.md",
+    "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Project/Customers Tasks/Customers Task Definition.md",
     "Project/Checklist - Work Progress.md",
-    "Resources/Tasks/_Core Task Overview.md",
-    "Resources/Tasks/Backlogs/Synchronizing Backlog.md",
     "Resources/Knowledge base/Application Handling/Application Exit.md",
     "Resources/Tasks/Backlogs/Knowledge Gaining Backlog.md",
-    "Resources/Tasks/Backlogs/Logging Backlog.md",
     "Project/Overview.md",
     "Resources/Error Handling/Error Handling - Brainstorm.md",
     "Resources/Knowledge base/Logging/Logging Knowledge Core.md",
@@ -162,8 +165,6 @@
     "Resources/Knowledge base/Sync Related/Get Checksum.md",
     "Resources/Knowledge base/Sync Related/File System Specifics.md",
     "Resources/Knowledge base/_Core Knowledge Base.md",
-    "Resources/Tasks/Currently Doing.md",
-    "Resources/Tasks/Backlogs/Application Handling Backlog.md",
     "Resources/Tasks/Backlogs/CLA Validation Backlog.md",
     "Resources/Tasks/Backlogs/Testing Backlog.md",
     "Resources/Tasks/Backlogs",
@@ -171,7 +172,6 @@
     "Implementation/Program Execution Plans.md",
     "Resources/Knowledge base/Application Handling/Task Scheduling.md",
     "Project/Customer Emails/Mail - Init Questions regarding Synchra.md",
-    "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Implementation/Classes Brainstorm.canvas",
     "Resources/Files/PEPs/Sync Process.drawio.svg",
     "Resources/Files/PEPs/Sync Process.drawio",

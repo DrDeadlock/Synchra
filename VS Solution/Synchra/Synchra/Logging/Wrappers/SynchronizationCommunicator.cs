@@ -5,57 +5,60 @@ namespace Synchra.Logging.Wrappers
 {
     public class SynchronizationCommunicator
     {
-        private readonly ILog _logger;
+        #region Singleton
+        private static SynchronizationCommunicator _instance;
 
-        public SynchronizationCommunicator()
+        public static SynchronizationCommunicator Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new SynchronizationCommunicator();
+                return _instance;
+            }
+        }
+
+        private SynchronizationCommunicator()
         {
             _logger =
                 new SynchronizationLoggerFactory()                    
                 .GetLogger();
         }
+        
+        #endregion
 
-        public void InfoFileCreate(string filename)
+        private readonly ILog _logger;
+
+
+        public void InfoFileCreated(string filename)
         {
             _logger.Info("The file: " + filename + " has been created.");
         }
 
-        public void InfoFileModified(string filename)
+        public void InfoFileUpdated(string filename)
         {
             _logger.Info("The file: " + filename + " has been modified.");
         }
 
-        public void InfoFileRemoved(string filename)
+        public void InfoFileDeleted(string filename)
         {
             _logger.Info("The file: " + filename + " has been removed.");
         }
 
-        public void ErrorDuringCreation(string filename)
+        public void InfoDirectoryCreated(string directoryName)
         {
-            _logger.Error("The file" + filename + " could not be created!");
+            _logger.Info("The Directory: " + directoryName + " has been created.");
         }
 
-        public void ErrorDuringModification(string filename)
+        public void InfoDirectoryDeleted(string directoryName)
         {
-            _logger.Error("The file" + filename + " could not be modified!");
+            _logger.Info("The Directory: " + directoryName + " has been removed.");
         }
 
-        public void ErrorDuringRemove(string filename)
+        public void Error(string message)
         {
-            _logger.Error("The file" + filename + " could not be removed!");
-        }
-
-        public void ErrorPermissionMissing(string filename)
-        {
-            _logger.Error("The File: " + filename + " could not be read or modified " +
-                "due to its protection level!");
-        }
-
-        public void ErrorPathTooLong(string path)
-        {
-            _logger.Error("The Path: " + path + " is too long to be handable by Synchra. " +
-                "Please consider putting your source folder and/or destination folder " +
-                "not so deeply nested in other folders.");
-        }
+            _logger.Error(message);
+        }                
 
         public void WarnSrcOrDestNewCreated()
         {

@@ -3,10 +3,10 @@
 - [x] Synchra is able to detect if Src File and Dest File are different
 - [x] Synchra is able to detect the difference between two files without having to iterate through each line of the file
 
-- [ ] Synchra only makes changes to Dest
-- [ ] Synchra is able to Create Files which are in Src and are not in Dest
-- [ ] Synchra is able to Copy Update Files which are as well in Src and Dest but differ regarding their content (Compare by Checksum)
-- [ ] Synchra is able to Delete Files which are in Dest and are not in Src
+- [x] Synchra only makes changes to Dest
+- [x] Synchra is able to Create Files which are in Src and are not in Dest
+- [x] Synchra is able to Copy Update Files which are as well in Src and Dest but differ regarding their content (Compare by Checksum)
+- [x] Synchra is able to Delete Files which are in Dest and are not in Src
 
 # Exception Discussion
 When can Exceptions be thrown and what does it mean in our context? Also how we wanna handle them?

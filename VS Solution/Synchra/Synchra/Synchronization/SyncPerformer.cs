@@ -129,7 +129,7 @@ namespace Synchra.Synchronization
                 if (!SyncStateChecker.BothContainFile
                     (srcPath, destPath, fileLocalPath))
                 {
-                    SyncStateModifier.CreateFile(
+                    SyncStateModifier.CopyFile(
                         fileInSrc, fileInDest);
                 }
                 else
