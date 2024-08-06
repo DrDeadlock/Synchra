@@ -142,7 +142,25 @@ namespace TestSynchra.SyncTests
         [Test]
         public void Execute_ExcessDirWithContentInSrc_SrcDirCopied()
         {
-            Assert.Fail();
+            string srcSubDirPath =
+                FilesAndDirs.SubToComplexTest_ExcessInSrc(Direction.Source);
+            string destSubDirPath =
+                FilesAndDirs.SubToComplexTest_ExcessInSrc(Direction.Destination);
+
+            Assert.IsTrue(SyncStateChecker.DirectoryOutOfSyncRecursively
+                (srcSubDirPath, destSubDirPath));
+
+            string srcSubDirToSync =
+                FilesAndDirs.SubToComplexTest(Direction.Source);
+            string destSubDirToSync =
+                FilesAndDirs.SubToComplexTest(Direction.Destination);
+            SyncPerformer.CreateDirectoriesRecursively
+                (srcSubDirToSync, destSubDirToSync, 1);
+            SyncPerformer.CreateAndUpdateFilesRecursively
+                (srcSubDirToSync, destSubDirToSync, 1);
+
+            Assert.IsFalse(SyncStateChecker.DirectoryOutOfSyncRecursively
+                (srcSubDirPath, destSubDirPath));
         }
 
         //[Test]

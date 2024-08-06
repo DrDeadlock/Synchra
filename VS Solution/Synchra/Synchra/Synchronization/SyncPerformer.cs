@@ -14,9 +14,8 @@ namespace Synchra.Synchronization
             {
                 ClearExcessFilesInDestRecursively(pSrc, pDest, waitForSeconds);
                 ClearExcessDirsInDestRecursively(pSrc, pDest, waitForSeconds);
-                CreateAndUpdateFiles(pSrc, pDest, waitForSeconds);
-                CreateDirectories(pSrc, pDest, waitForSeconds);
-                IterateSubDirectories(pSrc, pDest, waitForSeconds);                
+                CreateAndUpdateFilesRecursively(pSrc, pDest, waitForSeconds);
+                CreateDirectoriesRecursively(pSrc, pDest, waitForSeconds);            
             }
         }
 
@@ -152,6 +151,22 @@ namespace Synchra.Synchronization
             }
         }
 
+        internal static void CreateAndUpdateFilesRecursively(string pSrc, string pDest, int seconds)
+        {
+            string[] directories = FileCollector.GetSubDirectories(pSrc);
+            foreach (var dir in directories)
+            {
+                string dirLocalPath = PathConversion.MakePathLocal
+                    (dir, pSrc);
+
+                CreateAndUpdateFilesRecursively(
+                    pSrc + dirLocalPath, pDest + dirLocalPath, seconds);
+            }
+
+            //Reaching this point means, no SubDir was found 
+            CreateAndUpdateFiles(pSrc, pDest, 0);
+        }
+
         internal static void CreateDirectories(string pSrc, string pDest, int seconds)
         {
             string[] subDirsInSrc = FileCollector.GetSubDirectories(pSrc);
@@ -172,24 +187,20 @@ namespace Synchra.Synchronization
             }
         }
 
-        private static void IterateSubDirectories(string pSrc, string pDest, int seconds)
+        internal static void CreateDirectoriesRecursively(string pSrc, string pDest, int seconds)
         {
-            string[] subDirsInSrc = FileCollector.GetSubDirectories(pSrc);
-            foreach (var subDir in subDirsInSrc)
+            string[] directories = FileCollector.GetSubDirectories(pSrc);
+            foreach (var dir in directories)
             {
-                if (seconds > 0)
-                    WaitFor(seconds);
+                string dirLocalPath = PathConversion.MakePathLocal
+                    (dir, pSrc);
 
-                string subDirLocalPath = PathConversion.MakePathLocal
-                    (subDir, pSrc);
-                string subDirInSrc = pSrc + subDirLocalPath;
-                string subDirInDest = pDest + subDirLocalPath;
-
-                if (SyncStateChecker.DirectoryOutOfSync(subDirInSrc, subDirInDest))
-                {
-                    Execute(subDirInSrc, subDirInDest, seconds);
-                }
+                CreateDirectoriesRecursively(
+                    pSrc + dirLocalPath, pDest + dirLocalPath, seconds);
             }
+
+            //Reaching this point means, no SubDir was found 
+            CreateDirectories(pSrc, pDest, 0);
         }
     }
 }
