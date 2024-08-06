@@ -65,21 +65,7 @@ namespace TestSynchra.SyncTests
 
             Assert.IsFalse(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
         }
-
-        /// <summary>
-        /// Can be neglected for the moment... 
-        /// </summary>
-        //[Test]
-        //public void DirectoryOutOfSync_DirectoriesEmptyHaveDifferentTimeStamps_ReturnsTrue()
-        //{
-        //    string srcFilePath = FilesAndDirs
-        //        .RootEmptyDirectoryDifferentInBoth(Direction.Source);
-        //    string destFilePath = FilesAndDirs
-        //        .RootEmptyDirectoryDifferentInBoth(Direction.Destination);
-
-        //    Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
-        //}
-
+        
         [Test]
         public void DirectoryOutOfSync_DirectoryEmptyMissingInSrc_ReturnsTrue()
         {
@@ -100,43 +86,7 @@ namespace TestSynchra.SyncTests
                 .RootEmptyDirectoryMissingInDest(Direction.Destination);
 
             Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
-        }
-
-        //[Test]
-        //public void DirectoryOutOfSync_SubDirHierarchyEqual_ReturnsFalse()
-        //{
-        //    string srcFilePath = FilesAndDirs
-        //        .SubToEmptyDirEqualInBoth(Direction.Source);
-
-        //    string destFilePath = FilesAndDirs
-        //        .SubToEmptyDirEqualInBoth(Direction.Source);
-
-        //    Assert.IsFalse(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
-        //}
-
-        //[Test]
-        //public void DirectoryOutOfSync_SubDirHierarchyPartMissingInSrc_ReturnsTrue()
-        //{
-        //    string srcFilePath = FilesAndDirs
-        //        .SubToEmptyDirMissingInSrc(Direction.Source);
-
-        //    string destFilePath = FilesAndDirs
-        //        .SubToEmptyDirMissingInSrc(Direction.Source);
-
-        //    Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
-        //}
-
-        //[Test]
-        //public void DirectoryOutOfSync_SubDirHierarchyPartMissingInDest_ReturnsTrue()
-        //{
-        //    string srcFilePath = FilesAndDirs
-        //        .SubToEmptyDirMissingInDest(Direction.Source);
-
-        //    string destFilePath = FilesAndDirs
-        //        .SubToEmptyDirMissingInDest(Direction.Source);
-
-        //    Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(srcFilePath, destFilePath));
-        //}            
+        }      
 
         [TearDown]
         public void TearDown()

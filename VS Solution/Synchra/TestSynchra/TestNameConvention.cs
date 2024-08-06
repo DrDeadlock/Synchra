@@ -9,9 +9,9 @@ namespace TestSynchra
         {
         }
 
-        //Test Name Convention
+        
         [Test]
-        public void Condition_ExpectedResult()
+        public void PerformingAction_Condition_ExpectedResult()
         {
             Assert.Pass();
         }

@@ -16,10 +16,10 @@ namespace Synchra.Synchronization
         /// Check if two files represented by their full qualified path
         /// match per Checksum. 
         /// </summary>
-        /// <param name="pSrcPath"></param>
-        /// <param name="pDestPath"></param>
+        /// <param name="srcPath"></param>
+        /// <param name="destPath"></param>
         /// <returns></returns>
-        public static bool FileOutOfSync(string pSrcPath, string  pDestPath)
+        public static bool FileOutOfSync(string srcPath, string  destPath)
         {
             byte[] srcHash;
             byte[] destHash;
@@ -27,12 +27,12 @@ namespace Synchra.Synchronization
             using var md5 = MD5.Create();
             try
             {
-                using (var srcFs = File.OpenRead(pSrcPath))
+                using (var srcFs = File.OpenRead(srcPath))
                 {
                     srcHash = md5.ComputeHash(srcFs);
                 }
 
-                using (var destFs = File.OpenRead(pDestPath))
+                using (var destFs = File.OpenRead(destPath))
                 {
                     destHash = md5.ComputeHash(destFs);
                 }            
@@ -54,20 +54,20 @@ namespace Synchra.Synchronization
         /// Check if the directories by themselves and files contained in directories
         /// match per Checksum. 
         /// </summary>
-        /// <param name="pSrcPath"></param>
-        /// <param name="pDestPath"></param>
+        /// <param name="srcPath"></param>
+        /// <param name="destPath"></param>
         /// <returns></returns>
-        public static bool DirectoryOutOfSync(string pSrcPath, string pDestPath)
+        public static bool DirectoryOutOfSync(string srcPath, string destPath)
         {
             byte[] srcHash = new byte[0];
             byte[] destHash = new byte[0];
             try
             {
                 //This behaviour is necessary for testing!
-                if (BothMissDirectory(pSrcPath, pDestPath))
+                if (BothMissDirectory(srcPath, destPath))
                     return false;
 
-                if (!(Directory.Exists(pSrcPath) && Directory.Exists(pDestPath)))
+                if (!(Directory.Exists(srcPath) && Directory.Exists(destPath)))
                 {
                     return true; 
                 }
@@ -77,8 +77,8 @@ namespace Synchra.Synchronization
                 return true;
             }
 
-            srcHash = GetHashOfFilesIn(pSrcPath);
-            destHash = GetHashOfFilesIn(pDestPath);
+            srcHash = GetHashOfFilesIn(srcPath);
+            destHash = GetHashOfFilesIn(destPath);
             
             if (srcHash.Length != destHash.Length)
                 return true;
@@ -88,42 +88,42 @@ namespace Synchra.Synchronization
             }
         }
 
-        public static bool DirectoryOutOfSyncRecursively(string pSrcPath, string pDestPath)
+        public static bool DirectoryOutOfSyncRecursively(string srcPath, string destPath)
         {
-            bool outOfSync = DirectoryOutOfSync(pSrcPath, pDestPath);
+            bool outOfSync = DirectoryOutOfSync(srcPath, destPath);
             if (outOfSync)
                 return true;
 
             string[] directories
-                = FileCollector.GetSubDirectories(pSrcPath);
+                = FileCollector.GetSubDirectories(srcPath);
 
             foreach (var subDir in directories)
             {
                 string localDirPath =
-                    PathConversion.MakePathLocal(subDir, pSrcPath);
+                    PathConversion.MakePathLocal(subDir, srcPath);
 
                 if (DirectoryOutOfSyncRecursively
-                    (pSrcPath + localDirPath, pDestPath + localDirPath))
+                    (srcPath + localDirPath, destPath + localDirPath))
                     return true;
             }
 
             directories
-                = FileCollector.GetSubDirectories(pDestPath);
+                = FileCollector.GetSubDirectories(destPath);
 
             foreach (var subDir in directories)
             {
                 string localDirPath =
-                    PathConversion.MakePathLocal(subDir, pDestPath);
+                    PathConversion.MakePathLocal(subDir, destPath);
 
                 if (DirectoryOutOfSyncRecursively
-                    (pSrcPath + localDirPath, pDestPath + localDirPath))
+                    (srcPath + localDirPath, destPath + localDirPath))
                     return true;
             }
 
             return false; 
         }
 
-        private static byte[] GetHashOfFilesIn(string pPath)
+        private static byte[] GetHashOfFilesIn(string path)
         {
             if (comm == null) comm = new SynchronizationCommunicator();
 
@@ -132,7 +132,7 @@ namespace Synchra.Synchronization
             string[] files =
                 FileCollector.GetAllFilesRecursivelyFrom
                 (
-                    pPath
+                    path
                 );
 
             for (int i = 0; i < files.Length; i++)
@@ -149,12 +149,12 @@ namespace Synchra.Synchronization
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    comm.ErrorPermissionMissing(pPath);
+                    comm.ErrorPermissionMissing(path);
                     return new byte[0];
                 }
                 catch (PathTooLongException)
                 {
-                    comm.ErrorPathTooLong(pPath);
+                    comm.ErrorPathTooLong(path);
                     return new byte[0];
                 }
                 catch (DirectoryNotFoundException)
@@ -174,92 +174,92 @@ namespace Synchra.Synchronization
                 return new byte[0];
         }
 
-        private static string GetLocalPath(string pPath, string pReferencePath)
+        /// <summary>
+        /// Returns the part of the path which is not contained in reference path.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="referencePath"></param>
+        /// <returns></returns>
+        private static string GetLocalPath(string path, string referencePath)
         {
-            int index = pPath.IndexOf(pReferencePath);
+            int index = path.IndexOf(referencePath);
             string relativePath = (index < 0)
-                ? pPath
-                : pPath.Remove(index, pReferencePath.Length);
+                ? path
+                : path.Remove(index, referencePath.Length);
 
             return relativePath;
-
-            //byte[] pathBytes = Encoding.UTF8.GetBytes(relativePath.ToLower());
-            //using var md5 = MD5.Create();
-            //md5.TransformBlock(pathBytes, 0, pathBytes.Length, pathBytes, 0);
-            //Console.WriteLine("The PathBytes are: " + Encoding.Default.GetString(pathBytes));
-            //return pathBytes;
         }
 
         /// <summary>
-        /// Check if a File is contained in both directories.
+        /// Check if a File with a given filename is contained in both directories.
         /// </summary>
-        /// <param name="pPath1"></param>
-        /// <param name="pPath2"></param>
-        /// <param name="pFileName"></param>
+        /// <param name="path1"></param>
+        /// <param name="path2"></param>
+        /// <param name="fileName"></param>
         /// <returns></returns>
-        public static bool BothContainFile(string pPath1, string pPath2, string pFileName)
+        public static bool BothContainFile(string path1, string path2, string fileName)
         {
-            return File.Exists(pPath1 + pFileName) && File.Exists(pPath2 + pFileName);
+            return File.Exists(path1 + fileName) && File.Exists(path2 + fileName);
         }
 
         /// <summary>
-        /// Check if a File is contained in both directories.
+        /// Check if a full qualified Filepath is contained in both directories.
         /// </summary>
         /// <param name="pPath1"></param>
-        /// <param name="pPathToFile2"></param>
+        /// <param name="pathToFile2"></param>
         /// <param name="pFileName"></param>
         /// <returns></returns>
-        public static bool BothContainFile(string pPathToFile1, string pPathToFile2)
+        public static bool BothContainFile(string pathToFile1, string pathToFile2)
         {
-            return File.Exists(pPathToFile1) && File.Exists(pPathToFile2);
+            return File.Exists(pathToFile1) && File.Exists(pathToFile2);
         }
 
         /// <summary>
-        /// Check if a File is missing in both directories.
+        /// Check if a full qualified Filepath is missing in both directories.
         /// </summary>
-        /// <param name="pPath1"></param>
-        /// <param name="pPath2"></param>
+        /// <param name="path1"></param>
+        /// <param name="path2"></param>
         /// <param name="pFileName"></param>
         /// <returns></returns>
-        public static bool BothMissFile(string pPath1, string pPath2)
+        public static bool BothMissFile(string path1, string path2)
         {
-            return !File.Exists(pPath1) && !File.Exists(pPath2);
+            return !File.Exists(path1) && !File.Exists(path2);
         }
 
         /// <summary>
-        /// Check if the directory of both paths exist.
+        /// Check if a directory with a given directory name is contained in both paths.
         /// </summary>
-        /// <param name="pPath1"></param>
-        /// <param name="pPath2"></param>
+        /// <param name="path1"></param>
+        /// <param name="path2"></param>
         /// <param name="pFileName"></param>
         /// <returns></returns>
-        public static bool BothContainDirectory(string pPath1, string pPath2, string localDir)
+        public static bool BothContainDirectory(string path1, string path2, string localDir)
         {
-            return Directory.Exists(pPath1 + localDir) && Directory.Exists(pPath2 + localDir);
+            return Directory.Exists(path1 + localDir) && Directory.Exists(path2 + localDir);
         }
 
         /// <summary>
-        /// Check if the directory of both paths exist.
+        /// Check if both given directories exist.
         /// </summary>
         /// <param name="pPath1"></param>
-        /// <param name="pPathToDir2"></param>
+        /// <param name="pathToDir2"></param>
         /// <param name="pFileName"></param>
         /// <returns></returns>
-        public static bool BothContainDirectory(string pPathToDir1, string pPathToDir2)
+        public static bool BothDirectoriesExist(string pathToDir1, string pathToDir2)
         {
-            return Directory.Exists(pPathToDir1) && Directory.Exists(pPathToDir2);
+            return Directory.Exists(pathToDir1) && Directory.Exists(pathToDir2);
         }
 
         /// <summary>
-        /// Check if the directory of both paths is missing.
+        /// Check if both given directories are missing.
         /// </summary>
         /// <param name="pPath1"></param>
-        /// <param name="pPathToDir2"></param>
+        /// <param name="pathToDir2"></param>
         /// <param name="pFileName"></param>
         /// <returns></returns>
-        public static bool BothMissDirectory(string pPathToDir1, string pPathToDir2)
+        public static bool BothMissDirectory(string pathToDir1, string pathToDir2)
         {
-            return !Directory.Exists(pPathToDir1) && !Directory.Exists(pPathToDir2);
+            return !Directory.Exists(pathToDir1) && !Directory.Exists(pathToDir2);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Diagnostics;
 using NUnit.Framework;
 using Synchra.Synchronization;
 using TestSynchra.FileSystemHelpers;
@@ -20,12 +18,6 @@ namespace TestSynchra.SyncTests
 
             FilesAndDirs.SUBDIR_OF_TESTCLASS = LOCAL_SUB_DIR;
         }
-
-        //[Test]
-        //public void Execute_DirectoriesAreEqual_ChecksumStaysEqual()
-        //{
-        //    Assert.Fail();
-        //}
 
         [Test]
         public void Execute_ExcessFileInDirDest_DestFilesDeleted()
@@ -107,12 +99,12 @@ namespace TestSynchra.SyncTests
                 .SubToEmptyDirMissingInDest(Direction.Destination)
                 + FilesAndDirs.SUB_DIR_MISSING_IN_DEST;
 
-            Assert.IsFalse(SyncStateChecker.BothContainDirectory(srcLocalSubDir, destLocalSubDir));
+            Assert.IsFalse(SyncStateChecker.BothDirectoriesExist(srcLocalSubDir, destLocalSubDir));
             Assert.IsTrue(SyncStateChecker.DirectoryOutOfSync(
                 srcLocalRootDir, destLocalRootDir));
             SyncPerformer.CreateDirectories(
                 srcLocalRootDir, destLocalRootDir, 0);
-            Assert.IsTrue(SyncStateChecker.BothContainDirectory(srcLocalSubDir, destLocalSubDir));
+            Assert.IsTrue(SyncStateChecker.BothDirectoriesExist(srcLocalSubDir, destLocalSubDir));
         }
 
         [Test]
@@ -161,48 +153,6 @@ namespace TestSynchra.SyncTests
 
             Assert.IsFalse(SyncStateChecker.DirectoryOutOfSyncRecursively
                 (srcSubDirPath, destSubDirPath));
-        }
-
-        //[Test]
-        //public void Execute_MissingFileInTopLevelDir_FileCreationInDest()
-        //{
-        //    Assert.Fail();
-        //}
-
-        //[Test]
-        //public void Execute_DifferentFileContentInTopLevelDirectory_FileCopyInDest()
-        //{
-        //    Assert.Fail();
-        //}
-
-        //[Test]
-        //public void Execute_ExcessFileInSubDirectory_FileDeleteInDest()
-        //{
-        //    Assert.Fail();
-        //}
-
-        //[Test]
-        //public void Execute_MissingFileInSubDirectory_FileCreateInDest()
-        //{
-        //    Assert.Fail();
-        //}
-
-        //[Test]
-        //public void Execute_DifferentFileContentInSubDirectory_FileCopyInDest()
-        //{
-        //    Assert.Fail();
-        //}
-
-        //[Test]
-        //public void Execute_ExcessEmptySubDirectories_DirectoryDeleteInDest()
-        //{
-        //    Assert.Fail();
-        //}
-
-        //[Test]
-        //public void Execute_MissingEmptySubDirectory_DirectoryCreateInDest()
-        //{
-        //    Assert.Fail();
-        //}
+        }        
     }
 }
