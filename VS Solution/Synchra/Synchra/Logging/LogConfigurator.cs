@@ -11,8 +11,6 @@ namespace Synchra.Logging
                 System.IO.Directory.GetCurrentDirectory()
                 + _relPathToXMLConfig;
 
-            log4net.GlobalContext.Properties["LogFileName"] = MockGetLogPath();
-
             XmlConfigurator.Configure(new System.IO.FileInfo(path));
         }
 
@@ -25,11 +23,6 @@ namespace Synchra.Logging
             log4net.GlobalContext.Properties["LogFileName"] = pathToLogs;
 
             XmlConfigurator.Configure(new System.IO.FileInfo(path));
-        }
-
-        private static string MockGetLogPath()
-        {
-            return @"";
         }
     }
 }

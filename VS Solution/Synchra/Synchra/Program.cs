@@ -4,40 +4,57 @@ using System.Threading.Tasks;
 using System;
 using Synchra.Synchronization;
 using System.Threading;
+using Synchra.CLAValidation;
 
 namespace Synchra
 {
     class Program
     {
-        private static ConsoleCommunicator communicator;
+        private static ConsoleCommunicator consoleComm;
+        private static SynchronizationCommunicator syncComm;
 
         static void Main(string[] args)
         {
-            string mockSrc = @"/Users/juliusnickel/Documents/TestDirForSynchra/Src";
-            string mockDest = @"/Users/juliusnickel/Documents/TestDirForSynchra/Dest";
-            string mockLogpath = @"/Users/juliusnickel/Documents/TestDirForSynchra/Logs";
-            int mockInterval = 5000;
+            consoleComm = new ConsoleCommunicator();
 
-            LogConfigurator.Configure(mockLogpath);
+            LogConfigurator.Configure();
+            syncComm = SynchronizationCommunicator.Instance;
 
-            communicator = new ConsoleCommunicator();
-            communicator.Greet();
+            if (!CLAValidator.Build(args))
+            {
+                Shutdown("The given Command Line arguments were not valid.\n" +
+                    "Notice that exactly for arguments have to be passed in" +
+                    "the exact following order: \n" +
+                    "Path of the Source Folder \n" +
+                    "Path of the Destination Folder \n" +
+                    "Path of the Log Folder \n" +
+                    "Synchronization Period in seconds \n");
+                return;
+            }
 
-            var syncComm = SynchronizationCommunicator.Instance;
+            string srcPath = CLAContext.Instance.SrcPath;
+            string destPath = CLAContext.Instance.DestPath;
+            string logPath = CLAContext.Instance.LogPath;
+            int interval = CLAContext.Instance.Interval;
+
+            LogConfigurator.Configure(logPath);
+
+            consoleComm.Greet();
+
 
             //Validate CLAs
 
             Action<string, string> executeSync = SyncPerformer.Execute;
-            Task syncTask = new Task(() => executeSync(mockSrc, mockDest));
+            Task syncTask = new Task(() => executeSync(srcPath, destPath));
             try
             {                
                 syncTask.Start();
                 while (true)
                 {
-                    Thread.Sleep(mockInterval);
+                    Thread.Sleep(interval * 1000);
                     if (syncTask.IsCompleted)
                     {
-                        syncTask = new Task(() => executeSync(mockSrc, mockDest));
+                        syncTask = new Task(() => executeSync(srcPath, destPath));
                         syncTask.Start();
 
                     }
@@ -51,7 +68,15 @@ namespace Synchra
                 syncComm.ErrorShutdown();                
             }
 
-            communicator.Farewell();
+            Shutdown();
+        }
+
+        private static void Shutdown(string errorMessage = "")
+        {
+            if (errorMessage != "")
+                syncComm.Error(errorMessage);
+
+            consoleComm.Farewell();
         }
 
 
