@@ -1,6 +1,0 @@
-- [ ] Find out how to [[Get Checksum]]
-	- [ ] A File
-	- [ ] A whole Folder structure
-	- [ ] Is the order of iteration important for building the checksum?
-- [ ] Find out if the file system can have any impact on out program
-- [ ] Which Event fires on [[Application Exit]]?

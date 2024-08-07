@@ -24,14 +24,14 @@ namespace Synchra.Logging.Wrappers
 
         public void InformAboutCLAProblem()
         {
-            System.Console.WriteLine();
+            _logger.Info("");
             _logger.Info("It seems that there is a problem with your command line arguments.");
             _logger.Info("Please beware of the following arguments you have to pass:");
             _logger.Info("The path to your source directory you want to synchronize.");
             _logger.Info("The path to your destination directory which will become an exact copy of source directory.");
             _logger.Info("The path to your log directory, where necessary logs will be put into.");
             _logger.Info("A time interval for the period of synchronization in seconds.");
-            System.Console.WriteLine();
+            _logger.Info("");
             _logger.Info("Please start the program again with the correct order and format of command line arguments.");
             _logger.Info("If you need help consider starting the program with the command line argument -h to get further information.");
 
@@ -39,7 +39,7 @@ namespace Synchra.Logging.Wrappers
 
         public void Farewell()
         {
-            System.Console.WriteLine();
+            _logger.Info("");
             _logger.Info("Thank you for using Synchra, a Veeam Solution to synchronize you local folders!");
             _logger.Info("The Application exits now.");
         }

@@ -1,0 +1,23 @@
+- [ ] Define a test strategy
+	- [ ] for Synch --> [[Synchronizing Backlog]]
+	- [ ] for CLA Validation --> [[CLA Validation Backlog]]
+- [x] Create a unit test project
+- [x] Setup Unit Test project to make Synchra testible
+	- [x] Add NUnit3 Test Adapter to the test project
+	- [x] Run the sample test
+- [ ] Create Test Folder Structure
+![[Test Directory Structure.jpg]]
+
+- [x] Root File equal in Both
+- [x] Root File differing In Both
+- [x] Root File Missing in Src
+- [x] Root File Missing in Dest
+- [x] Sub Dir with Empty Dirs
+	- [x] Equal in Both
+	- [x] Missing in Src
+	- [x] Missing in Dest
+- [ ] Sub Dir with Files
+	- [ ] File equal in Both
+	- [ ] File differing in Both
+	- [ ] File missing in src
+	- [ ] File missing in dest

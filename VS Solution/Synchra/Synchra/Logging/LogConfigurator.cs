@@ -5,20 +5,25 @@ namespace Synchra.Logging
     {
         private static readonly string _relPathToXMLConfig
             = "/Configs/loggerConfig.xml";
+
         public static void Configure()
         {
             string path =
                 System.IO.Directory.GetCurrentDirectory()
                 + _relPathToXMLConfig;
 
-            log4net.GlobalContext.Properties["LogFileName"] = MockGetLogPath();
-
             XmlConfigurator.Configure(new System.IO.FileInfo(path));
         }
 
-        private static string MockGetLogPath()
+        public static void Configure(string pathToLogs)
         {
-            return @"";
+            string path =
+                System.IO.Directory.GetCurrentDirectory()
+                + _relPathToXMLConfig;
+
+            log4net.GlobalContext.Properties["LogFileName"] = pathToLogs;
+
+            XmlConfigurator.Configure(new System.IO.FileInfo(path));
         }
     }
 }

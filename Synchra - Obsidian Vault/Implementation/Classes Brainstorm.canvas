@@ -1,22 +1,22 @@
 {
 	"nodes":[
-		{"id":"c14c8dced01e6d6c","type":"group","x":720,"y":-1020,"width":760,"height":500,"color":"#61519a","label":"Synchronization"},
-		{"id":"82371dbd0cc3ed7b","x":-845,"y":-1480,"width":690,"height":400,"type":"group","label":"Response Messages"},
+		{"id":"c14c8dced01e6d6c","type":"group","x":720,"y":-1020,"width":960,"height":500,"color":"#61519a","label":"Synchronization"},
+		{"id":"82371dbd0cc3ed7b","type":"group","x":-845,"y":-1480,"width":690,"height":400,"label":"Response Messages"},
 		{"id":"8b5f789074d2e57b","type":"group","x":-1184,"y":-160,"width":684,"height":240,"label":"Logging"},
 		{"id":"1be8d0df35f6fb96","type":"group","x":-845,"y":-820,"width":690,"height":160,"label":"CLAs"},
-		{"id":"2341528ed2b79c7e","type":"text","text":"Synchra Configuratiion","x":-750,"y":-390,"width":250,"height":60},
 		{"id":"13cf764e54b9a06b","type":"text","text":"Main","x":-325,"y":-980,"width":250,"height":60,"color":"4"},
 		{"id":"6f210e197e3f07bf","type":"text","text":"Sync Dispatcher","x":347,"y":-860,"width":250,"height":60},
 		{"id":"a32ec443a085bfd0","type":"text","text":"CLA Helper","x":-775,"y":-760,"width":250,"height":60,"color":"3"},
 		{"id":"ce7f21d8b206e2ed","type":"text","text":"CLA Validator","x":-475,"y":-760,"width":250,"height":60,"color":"3"},
-		{"id":"8636efdba144a8ce","type":"text","text":"Sync Check","x":767,"y":-969,"width":250,"height":60},
-		{"id":"347c5f0eebcdfcb6","type":"text","text":"Sync Execution","x":767,"y":-860,"width":250,"height":60},
-		{"id":"983f2a205a2fd050","type":"file","file":"Resources/Knowledge base/Sync Related/Get Checksum.md","x":1060,"y":-969,"width":400,"height":400},
-		{"id":"2758a156e06a7a8e","x":-800,"y":-1440,"width":250,"height":60,"type":"text","text":"Init Messages"},
-		{"id":"379d5ff54b9cd914","x":-800,"y":-1340,"width":250,"height":60,"type":"text","text":"Error Messages"},
+		{"id":"2758a156e06a7a8e","type":"text","text":"Init Messages","x":-800,"y":-1440,"width":250,"height":60},
+		{"id":"379d5ff54b9cd914","type":"text","text":"Error Messages","x":-800,"y":-1340,"width":250,"height":60},
+		{"id":"2341528ed2b79c7e","type":"text","text":"Synchra Configuratiion","x":-750,"y":-390,"width":250,"height":60},
 		{"id":"e59d9d31e16eff8a","type":"text","text":"FileLogger","x":-760,"y":-119,"width":250,"height":60},
 		{"id":"4c9cac18f7cf1a1a","type":"text","text":"Logger","x":-1140,"y":-59,"width":250,"height":60,"color":"2"},
-		{"id":"9e27755d833c004f","type":"text","text":"Console Logger","x":-760,"y":-19,"width":250,"height":60}
+		{"id":"9e27755d833c004f","type":"text","text":"Console Logger","x":-760,"y":-19,"width":250,"height":60},
+		{"id":"983f2a205a2fd050","type":"file","file":"Resources/Knowledge base/Sync Related/Get Checksum.md","x":1200,"y":-969,"width":400,"height":400},
+		{"id":"8636efdba144a8ce","type":"text","text":"Sync State Check","x":767,"y":-860,"width":250,"height":60},
+		{"id":"347c5f0eebcdfcb6","type":"text","text":"Sync State Modification","x":767,"y":-740,"width":250,"height":60}
 	],
 	"edges":[
 		{"id":"0a09d3ba1765b19d","fromNode":"9e27755d833c004f","fromSide":"left","toNode":"4c9cac18f7cf1a1a","toSide":"right"},
@@ -28,6 +28,7 @@
 		{"id":"4ad29274bcafd1d3","fromNode":"13cf764e54b9a06b","fromSide":"right","toNode":"6f210e197e3f07bf","toSide":"top"},
 		{"id":"3539158a44451ffb","fromNode":"6f210e197e3f07bf","fromSide":"right","toNode":"c14c8dced01e6d6c","toSide":"left"},
 		{"id":"7226cf75167f8970","fromNode":"c14c8dced01e6d6c","fromSide":"bottom","toNode":"8b5f789074d2e57b","toSide":"right"},
-		{"id":"8be0a4611f4220fb","fromNode":"82371dbd0cc3ed7b","fromSide":"left","toNode":"8b5f789074d2e57b","toSide":"top"}
+		{"id":"8be0a4611f4220fb","fromNode":"82371dbd0cc3ed7b","fromSide":"left","toNode":"8b5f789074d2e57b","toSide":"top"},
+		{"id":"a0ab56f5c621a9b7","fromNode":"8636efdba144a8ce","fromSide":"right","toNode":"983f2a205a2fd050","toSide":"left"}
 	]
 }

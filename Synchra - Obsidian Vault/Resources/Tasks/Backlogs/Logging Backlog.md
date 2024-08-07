@@ -5,6 +5,14 @@
 - The Loggers must be triggerable regarding their state of activeness
 	- This would be part of further developent, since you incorporate another logging mechanism. And then you can create further loggers according to a configuration (might use a factory then...)
 
+# Listed
+## Low Priority
+- [ ] Rework Logging Layouts
+
+# Currently Doing
+
+# Done
+## Logger Setup
 - [x] Add log4net package
 - [x] Setup a logger with two appenders (FileAppender and ConsoleAppender)
 - [x] Setup an appender Layout
@@ -15,6 +23,19 @@
 	- [x] config pass
 - [x] Setup a wrapper solution to encapsulate the logs
 - [x] Setup a Console Only Logger which is responsible for Init Messages during CLA input
+
+## Log File and Directory Results
+- [x] Log each Sync Perform for
+	- [x] File Creation
+	- [x] File Modification 
+		- [x] Delete 
+		- [x] Copy
+	- [x] File Deletion
+- [x] Log each Sync Perform Error 
+	- [x] Path Too Long
+	- [x] Access Denied
+	- [x] Path not found
+	- [x] ...
 
 # Is Factory a good pattern for getting loggers?
 Think about the Logger Factory.

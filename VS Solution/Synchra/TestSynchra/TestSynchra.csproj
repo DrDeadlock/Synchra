@@ -12,4 +12,15 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="SyncTests\" />
+    <None Remove="FileSystemHelpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SyncTests\" />
+    <Folder Include="FileSystemHelpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Synchra\Synchra.csproj" />
+  </ItemGroup>
 </Project>
