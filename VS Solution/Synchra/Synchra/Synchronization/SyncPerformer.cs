@@ -16,17 +16,17 @@ namespace Synchra.Synchronization
             SynchronizationCommunicator comm
                 = SynchronizationCommunicator.Instance;
 
-            comm.InfoText("Execute started!");
+            comm.InfoSyncStarted();
+            DateTime started = DateTime.Now;
             if (SyncStateChecker.DirectoryOutOfSyncRecursively(srcPath, destPath))
             {
-                comm.InfoText("Directories out of sync.");
                 ClearExcessFilesInDestRecursively(srcPath, destPath, waitForSeconds);
                 ClearExcessDirsInDestRecursively(srcPath, destPath, waitForSeconds);
                 CreateDirectoriesRecursively(srcPath, destPath, waitForSeconds);
-                CreateAndUpdateFilesRecursively(srcPath, destPath, waitForSeconds);
-                return;
+                CreateAndUpdateFilesRecursively(srcPath, destPath, waitForSeconds);                
             }
-            comm.InfoText("Execute completed!");
+            TimeSpan completionTime = DateTime.Now - started;
+            comm.InfoSyncCompleted(completionTime);
         }
 
         /// <summary>

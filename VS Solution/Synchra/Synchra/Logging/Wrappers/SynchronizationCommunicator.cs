@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using System;
+using log4net;
 using Synchra.Logging.Factory;
 
 namespace Synchra.Logging.Wrappers
@@ -39,9 +40,15 @@ namespace Synchra.Logging.Wrappers
             _logger.Info("Synchronization Process started.");
         }
 
-        public void InfoSyncCompleted()
+        public void InfoSyncCompleted(TimeSpan timeSpan)
         {
-            _logger.Info("Synchronization Process completed.");
+            _logger.Info("Synchronization Process completed after."
+                + timeSpan.Minutes
+                + ":"
+                + timeSpan.Seconds
+                + ":"
+                + timeSpan.Milliseconds
+                + " minutes!");
         }
 
         public void InfoFileCreated(string filename)

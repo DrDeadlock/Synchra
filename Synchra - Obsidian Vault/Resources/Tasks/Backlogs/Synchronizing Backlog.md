@@ -85,8 +85,8 @@ Source and Destination Paths get checked initially and then they will become rec
 - [x] User Creates a new File under src
 - [x] User Deletes a File
 - [x] User Changes a File
-- [ ] User Creates a new top hierarchy directory and moves everything under it
-- [ ] After synch src and dest checksums are equal
+- [x] User Creates a new top hierarchy directory and moves everything under it
+- [x] After synch src and dest checksums are equal
 
 # To be agreed with Customer
 

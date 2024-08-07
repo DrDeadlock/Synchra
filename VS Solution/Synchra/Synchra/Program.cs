@@ -30,17 +30,14 @@ namespace Synchra
             Action<string, string> executeSync = SyncPerformer.Execute;
             Task syncTask = new Task(() => executeSync(mockSrc, mockDest));
             try
-            {
-                syncComm.InfoSyncStarted();
+            {                
                 syncTask.Start();
                 while (true)
                 {
                     Thread.Sleep(mockInterval);
                     if (syncTask.IsCompleted)
                     {
-                        syncComm.InfoSyncCompleted();
                         syncTask = new Task(() => executeSync(mockSrc, mockDest));
-                        syncComm.InfoSyncStarted();
                         syncTask.Start();
 
                     }
