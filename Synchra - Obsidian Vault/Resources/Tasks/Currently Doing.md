@@ -6,5 +6,5 @@
 
 - [x] Implement Command Line Validation
 
-- [ ] Fix Rolling File not correctly named problem in LogConfig
+- [x] Fix Rolling File not correctly named problem in LogConfig
 

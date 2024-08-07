@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Tasks/Currently Doing.md",
+                "file": "Resources/Tasks/Backlogs/Further Improvements Backlog.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Tasks/Currently Doing.md",
+                "file": "Resources/Tasks/Backlogs/Further Improvements Backlog.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Resources/Tasks/Currently Doing.md",
+                "file": "Resources/Tasks/Backlogs/Further Improvements Backlog.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Resources/Tasks/Currently Doing.md"
+                "file": "Resources/Tasks/Backlogs/Further Improvements Backlog.md"
               }
             }
           }
@@ -148,13 +148,14 @@
   },
   "active": "27aaaa6aabfa6290",
   "lastOpenFiles": [
+    "Resources/Tasks/_Backlog Overview.md",
+    "Resources/Tasks/Backlogs/Further Improvements Backlog.md",
+    "Resources/Tasks/Currently Doing.md",
     "Project/Customers Tasks/Customers Task Definition.md",
     "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Resources/Tasks/Backlogs/CLA Validation Backlog.md",
-    "Resources/Tasks/_Core Task Overview.md",
     "Resources/Tasks/Backlogs/Logging Backlog.md",
     "Resources/Tasks/Backlogs/Synchronizing Backlog.md",
-    "Resources/Tasks/Currently Doing.md",
     "Resources/Tasks/Backlogs/Application Handling Backlog.md",
     "Project/Checklist - Work Progress.md",
     "Resources/Knowledge base/Application Handling/Application Exit.md",
@@ -194,7 +195,6 @@
     "Implementation/PAP.canvas",
     "Implementation/PAP.md",
     "Resources/Knowledge base/Diff without Iterating through each file.md",
-    "Link.md",
-    "Resources/Tasks/General Task Refinement.md"
+    "Link.md"
   ]
 }
