@@ -41,9 +41,6 @@ namespace Synchra
 
             consoleComm.Greet();
 
-
-            //Validate CLAs
-
             Action<string, string> executeSync = SyncPerformer.Execute;
             Task syncTask = new Task(() => executeSync(srcPath, destPath));
             try

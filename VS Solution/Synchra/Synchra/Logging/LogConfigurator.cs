@@ -5,6 +5,7 @@ namespace Synchra.Logging
     {
         private static readonly string _relPathToXMLConfig
             = "/Configs/loggerConfig.xml";
+
         public static void Configure()
         {
             string path =
