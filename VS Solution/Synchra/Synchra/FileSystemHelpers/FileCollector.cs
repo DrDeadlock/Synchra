@@ -12,20 +12,20 @@ namespace Synchra.FileSystemHelpers
 
         public static string[] GetAllFilesFrom(string pPath)
         {
-            if (comm == null) comm = new SynchronizationCommunicator();
+            comm = SynchronizationCommunicator.Instance;
 
             try
             {
                 return Directory.GetFiles(pPath).OrderBy(p => p).ToArray();
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                comm.ErrorPermissionMissing(pPath);
+                comm.Error(ex.Message);
                 return new string[0];
             }
-            catch (PathTooLongException)
+            catch (PathTooLongException ex)
             {
-                comm.ErrorPathTooLong(pPath);
+                comm.Error(ex.Message);
                 return new string[0];
             }
             catch (DirectoryNotFoundException)

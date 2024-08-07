@@ -1,8 +1,10 @@
 ﻿
 using System;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using Synchra.FileSystemHelpers;
+using Synchra.Logging.Wrappers;
 
 [assembly: InternalsVisibleTo("TestSynchra")]
 namespace Synchra.Synchronization
@@ -11,14 +13,20 @@ namespace Synchra.Synchronization
     {
         private static void Execute(string srcPath, string destPath, int waitForSeconds)
         {
-            if (SyncStateChecker.DirectoryOutOfSync(srcPath, destPath))
+            SynchronizationCommunicator comm
+                = SynchronizationCommunicator.Instance;
+
+            comm.InfoText("Execute started!");
+            if (SyncStateChecker.DirectoryOutOfSyncRecursively(srcPath, destPath))
             {
+                comm.InfoText("Directories out of sync.");
                 ClearExcessFilesInDestRecursively(srcPath, destPath, waitForSeconds);
                 ClearExcessDirsInDestRecursively(srcPath, destPath, waitForSeconds);
                 CreateAndUpdateFilesRecursively(srcPath, destPath, waitForSeconds);
                 CreateDirectoriesRecursively(srcPath, destPath, waitForSeconds);
                 return;
             }
+            comm.InfoText("Execute completed!");
         }
 
         /// <summary>

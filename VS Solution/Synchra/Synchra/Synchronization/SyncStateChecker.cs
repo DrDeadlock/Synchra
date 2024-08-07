@@ -125,7 +125,7 @@ namespace Synchra.Synchronization
 
         private static byte[] GetHashOfFilesIn(string path)
         {
-            if (comm == null) comm = new SynchronizationCommunicator();
+            comm = SynchronizationCommunicator.Instance;
 
             using var md5 = MD5.Create();
             byte[] srcHash = md5.Hash;
@@ -147,18 +147,19 @@ namespace Synchra.Synchronization
                     else
                         md5.TransformBlock(contentBytes, 0, contentBytes.Length, contentBytes, 0);
                 }
-                catch (UnauthorizedAccessException)
+                catch (UnauthorizedAccessException ex)
                 {
-                    comm.ErrorPermissionMissing(path);
+                    comm.Error(ex.Message);
                     return new byte[0];
                 }
-                catch (PathTooLongException)
+                catch (PathTooLongException ex)
                 {
-                    comm.ErrorPathTooLong(path);
+                    comm.Error(ex.Message);
                     return new byte[0];
                 }
-                catch (DirectoryNotFoundException)
+                catch (DirectoryNotFoundException ex)
                 {
+                    comm.Error(ex.Message);
                     return new byte[0];
                 }
                 catch (IOException ex)

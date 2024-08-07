@@ -16,6 +16,17 @@ namespace Synchra.Logging
             XmlConfigurator.Configure(new System.IO.FileInfo(path));
         }
 
+        public static void Configure(string pathToLogs)
+        {
+            string path =
+                System.IO.Directory.GetCurrentDirectory()
+                + _relPathToXMLConfig;
+
+            log4net.GlobalContext.Properties["LogFileName"] = pathToLogs;
+
+            XmlConfigurator.Configure(new System.IO.FileInfo(path));
+        }
+
         private static string MockGetLogPath()
         {
             return @"";

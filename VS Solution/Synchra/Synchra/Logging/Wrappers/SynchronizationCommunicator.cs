@@ -29,6 +29,20 @@ namespace Synchra.Logging.Wrappers
 
         private readonly ILog _logger;
 
+        public void InfoText(string text)
+        {
+            _logger.Info(text);
+        }
+
+        public void InfoSyncStarted()
+        {
+            _logger.Info("Synchronization Process started.");
+        }
+
+        public void InfoSyncCompleted()
+        {
+            _logger.Info("Synchronization Process completed.");
+        }
 
         public void InfoFileCreated(string filename)
         {
@@ -67,6 +81,13 @@ namespace Synchra.Logging.Wrappers
                 "because you moved or deleted one of these folders. " +
                 "If you want to change the folders for sychronization please " +
                 "restart Synchra and enter the new Paths for Source and Destination.");
+        }
+
+        public void ErrorShutdown()
+        {
+            _logger.Error("Due to an error, the synchronization process has been stopped. " +
+                "Please inspect the previous log entries for further information " +
+                "and restart Synchra after the problem sources have been removed.");
         }
     }
 }

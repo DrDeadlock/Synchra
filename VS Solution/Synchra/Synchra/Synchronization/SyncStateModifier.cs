@@ -9,6 +9,8 @@ namespace Synchra.Synchronization
     {
         public static void CopyFile(string from, string to)
         {
+            var comm = SynchronizationCommunicator.Instance;
+
             try
             {
                 File.Copy(from, to);
@@ -17,8 +19,7 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (ArgumentNullException ex)
             {
@@ -34,23 +35,22 @@ namespace Synchra.Synchronization
             }
             catch (DirectoryNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (IOException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
         }
 
         public static void UpdateFile(string from, string to)
         {
+            var comm = SynchronizationCommunicator.Instance;
+
             try
             {
                 File.Delete(to);
@@ -61,8 +61,7 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (ArgumentNullException ex)
             {
@@ -78,23 +77,22 @@ namespace Synchra.Synchronization
             }
             catch (DirectoryNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (IOException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
         }
 
         public static void DeleteFile(string at)
         {
+            var comm = SynchronizationCommunicator.Instance;
+
             try
             {
                 File.Delete(at);
@@ -103,8 +101,7 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (ArgumentNullException ex)
             {
@@ -120,23 +117,22 @@ namespace Synchra.Synchronization
             }
             catch (DirectoryNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (IOException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
         }
 
         public static void CreateDirectory(string at)
         {
+            var comm = SynchronizationCommunicator.Instance;
+
             try
             {
                 Directory.CreateDirectory(at);
@@ -145,8 +141,7 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (ArgumentNullException ex)
             {
@@ -162,23 +157,22 @@ namespace Synchra.Synchronization
             }
             catch (DirectoryNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (IOException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
         }
 
         public static void DeleteDirectory(string at)
         {
+            var comm = SynchronizationCommunicator.Instance;
+
             try
             {
                 Directory.Delete(at);
@@ -187,8 +181,7 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (ArgumentNullException ex)
             {
@@ -204,18 +197,15 @@ namespace Synchra.Synchronization
             }
             catch (DirectoryNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
             catch (IOException ex)
             {
-                SynchronizationCommunicator.Instance
-                    .Error(ex.Message);
+                comm.Error(ex.Message);
             }
         }
     }
