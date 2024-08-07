@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Synchra.Logging;
 using Synchra.Logging.Wrappers;
 
 namespace Synchra.Synchronization
@@ -19,19 +18,23 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
+                /* The user changes permissions for the file or destination directory
+                 */
                 comm.Error(ex.Message);
             }
             catch (ArgumentNullException ex)
             {
-                throw ex;
+                //User Deletes file to copy while Synchra contains the file in a
+                //foreach collection
+                comm.Error(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch(PathTooLongException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
@@ -65,15 +68,15 @@ namespace Synchra.Synchronization
             }
             catch (ArgumentNullException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (PathTooLongException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
@@ -105,15 +108,15 @@ namespace Synchra.Synchronization
             }
             catch (ArgumentNullException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (PathTooLongException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
@@ -145,15 +148,15 @@ namespace Synchra.Synchronization
             }
             catch (ArgumentNullException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (PathTooLongException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
@@ -185,15 +188,15 @@ namespace Synchra.Synchronization
             }
             catch (ArgumentNullException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (PathTooLongException ex)
             {
-                throw ex;
+                comm.Error(ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
