@@ -20,33 +20,33 @@ namespace Synchra.Synchronization
             {
                 /* The user changes permissions for the file or destination directory
                  */
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Copy File", ex.Message);
             }
             catch (ArgumentNullException ex)
             {
                 //User Deletes file to copy while Synchra contains the file in a
                 //foreach collection
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Copy File", ex.Message);
             }
             catch (ArgumentException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Copy File", ex.Message);
             }
             catch(PathTooLongException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Copy File", ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Copy File", ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Copy File", ex.Message);
             }
             catch (IOException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Copy File", ex.Message);
             }
         }
 
@@ -64,31 +64,31 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Update of File", ex.Message);
             }
             catch (ArgumentNullException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Update of File", ex.Message);
             }
             catch (ArgumentException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Update of File", ex.Message);
             }
             catch (PathTooLongException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Update of File", ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Update of File", ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Update of File", ex.Message);
             }
             catch (IOException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Update of File", ex.Message);
             }
         }
 
@@ -104,31 +104,31 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Delete of File", ex.Message);
             }
             catch (ArgumentNullException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Delete of File", ex.Message);
             }
             catch (ArgumentException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Delete of File", ex.Message);
             }
             catch (PathTooLongException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Delete of File", ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Delete of File", ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Delete of File", ex.Message);
             }
             catch (IOException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Delete of File", ex.Message);
             }
         }
 
@@ -144,31 +144,31 @@ namespace Synchra.Synchronization
             }
             catch (UnauthorizedAccessException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Creation of Directory", ex.Message);
             }
             catch (ArgumentNullException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Creation of Directory", ex.Message);
             }
             catch (ArgumentException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Creation of Directory", ex.Message);
             }
             catch (PathTooLongException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Creation of Directory", ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Creation of Directory", ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Creation of Directory", ex.Message);
             }
             catch (IOException ex)
             {
-                comm.Error(ex.Message);
+                comm.ErrorDuring("Creation of Directory", ex.Message);
             }
         }
 

@@ -100,6 +100,6 @@ Source and Destination Paths get checked initially and then they will become rec
 	- Please don't fall into analysis paralysis. Maybe the best way to check performance is to create a folder with 70.000 and even 700.000 Files (we can delete them after the test, but then we should not perform those tests on SSDs) and see how long the test with the checksum will take. 
 	  Then we can make a realistic assumption how well or bad the solution really is. 
 	  Better do than think, we're running out of time... 
-- [ ] what happens if the user just moves all file into a folder to make the whole hierarchy deeper by one?
+- [x] what happens if the user just moves all file into a folder to make the whole hierarchy deeper by one?
 - [ ] What if the permission to read a file gets lost during runtime (or is even not available from the start?)
 - [x] Read the documentation for possible thrown exceptions to get further inspiration for edge cases

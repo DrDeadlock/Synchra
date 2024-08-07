@@ -79,7 +79,17 @@ namespace Synchra.Logging.Wrappers
         public void Error(string message)
         {
             _logger.Error(message);
-        }                
+        }
+
+        public void ErrorDuring(string failedProcess, string message)
+        {
+            _logger.Error("Error During "
+                + failedProcess
+                + "! "
+                + "Message from system: "
+                + message);
+                
+        }
 
         public void WarnSrcOrDestNewCreated()
         {
