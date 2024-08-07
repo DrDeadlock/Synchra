@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 namespace Synchra.CLAValidation
 {
     public class CLAContext
@@ -21,9 +21,18 @@ namespace Synchra.CLAValidation
             }
         }
 
+        public void SetUp
+            (string src, string dest, string log, int interval)
+        {
+            SrcPath = src;
+            DestPath = dest;
+            LogPath = log;
+            Interval = interval;
+        }
+
         public string SrcPath;
         public string DestPath;
-        public string logPath;
-        public int interval; 
+        public string LogPath;
+        public int Interval; 
     }
 }

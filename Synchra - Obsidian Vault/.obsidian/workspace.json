@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Tasks/Backlogs/Synchronizing Backlog.md",
+                "file": "Project/Customers Tasks/Customers Task Definition.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Tasks/Backlogs/Synchronizing Backlog.md",
+                "file": "Project/Customers Tasks/Customers Task Definition.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Resources/Tasks/Backlogs/Synchronizing Backlog.md",
+                "file": "Project/Customers Tasks/Customers Task Definition.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Resources/Tasks/Backlogs/Synchronizing Backlog.md"
+                "file": "Project/Customers Tasks/Customers Task Definition.md"
               }
             }
           }
@@ -148,13 +148,13 @@
   },
   "active": "27aaaa6aabfa6290",
   "lastOpenFiles": [
-    "Resources/Tasks/_Core Task Overview.md",
+    "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Resources/Tasks/Backlogs/CLA Validation Backlog.md",
+    "Resources/Tasks/_Core Task Overview.md",
+    "Resources/Tasks/Backlogs/Logging Backlog.md",
+    "Resources/Tasks/Backlogs/Synchronizing Backlog.md",
     "Resources/Tasks/Currently Doing.md",
     "Resources/Tasks/Backlogs/Application Handling Backlog.md",
-    "Resources/Tasks/Backlogs/Synchronizing Backlog.md",
-    "Resources/Tasks/Backlogs/Logging Backlog.md",
-    "Project/Customers Tasks/Checklist - Customer Requirements.md",
     "Project/Customers Tasks/Customers Task Definition.md",
     "Project/Checklist - Work Progress.md",
     "Resources/Knowledge base/Application Handling/Application Exit.md",
