@@ -22,8 +22,8 @@ namespace Synchra.Synchronization
                 comm.InfoText("Directories out of sync.");
                 ClearExcessFilesInDestRecursively(srcPath, destPath, waitForSeconds);
                 ClearExcessDirsInDestRecursively(srcPath, destPath, waitForSeconds);
-                CreateAndUpdateFilesRecursively(srcPath, destPath, waitForSeconds);
                 CreateDirectoriesRecursively(srcPath, destPath, waitForSeconds);
+                CreateAndUpdateFilesRecursively(srcPath, destPath, waitForSeconds);
                 return;
             }
             comm.InfoText("Execute completed!");

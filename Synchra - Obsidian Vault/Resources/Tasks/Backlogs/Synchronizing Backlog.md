@@ -82,9 +82,9 @@ Source and Destination Paths get checked initially and then they will become rec
 
 ## To be tested on running application
 
-- [ ] User Creates a new File under src
-- [ ] User Deletes a File
-- [ ] User Changes a File
+- [x] User Creates a new File under src
+- [x] User Deletes a File
+- [x] User Changes a File
 - [ ] User Creates a new top hierarchy directory and moves everything under it
 - [ ] After synch src and dest checksums are equal
 
