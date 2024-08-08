@@ -23,6 +23,7 @@
 		- If a given src, dest or log path as CLA doesn't exist, ASK THE USER if the system should create it or wants to re-enter the respective path
 		- Provide a -h argument to give help to the user
 		- Instead of Thread.Sleep in Main, wait for an input to interrupt the Task Scheduling and adjust parameters like the synchronization period or further options
+	- Discuss (and incorporate) a Dependency Injection Framework
 - Far picture ideas
 	- Allow the user to sync to multiple targets (is that really necessary? But a customer might want to have that)
 	- Allow the user to sync from multiple sources (e.g. as a consolidation process)
