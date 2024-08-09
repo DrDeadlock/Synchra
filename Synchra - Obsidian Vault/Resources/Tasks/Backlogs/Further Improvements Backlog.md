@@ -10,10 +10,10 @@
 	- Define a logger strategy which is more clear
 		- How or even if to use the logger wrapper classes
 		- How or even if to use the logger factories
-	- Unify the Methods in State Modifier
-		- Create a delegate, call the specific method, and try catch only once over the invoke
+	- [x] Unify the Methods in State Modifier
+		- [x] Create a delegate, call the specific method, and try catch only once over the invoke
 		- [x] To keep the logs clear, define string variables for the current action (which might fail) 
-		- Don't log only the exception messages but state more clearer to the user what happened and if the user was the problem or not
+		- [x] Don't log only the exception messages but state more clearer to the user what happened and if the user was the problem or not
 	- Define Test cases which are necessary for the future but momentarily missing
 		- Exception throws of State Modifier
 		- Out of Sync Recursively
