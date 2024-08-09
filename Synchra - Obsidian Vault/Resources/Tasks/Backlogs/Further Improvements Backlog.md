@@ -26,7 +26,9 @@
 	- Discuss (and incorporate) a Dependency Injection Framework
 - Far picture ideas
 	- Allow the user to sync to multiple targets (is that really necessary? But a customer might want to have that)
-	- Allow the user to sync from multiple sources (e.g. as a consolidation process)
+	- Allow the user to sync from multiple sources 
+		- e.g. as a consolidation process
+		- or to collect specific file types from each source into one folder (.wav exports for example)
 	- Make sync over the internet possible (keep a local file system in sync with a cloud system / a ftp server / ...)
 	- Incorporate different file systems
 		- Is that even possible
