@@ -1,9 +1,15 @@
 ﻿using System;
 using System.IO;
+using Synchra.FileSystemHelpers;
 using Synchra.Logging.Wrappers;
 
 namespace Synchra.Synchronization
 {
+    public enum ModificationType
+    {
+        CopyFile, UpdateFile, DeleteFile, CreateDirectory, RemoveDirectory
+    }
+
     public static class SyncStateModifier
     {
         private const string COPY_FILE = "Copy File";
@@ -12,210 +18,110 @@ namespace Synchra.Synchronization
         private const string CREATE_DIRECTORY = "Creation of Directory";
         private const string REMOVE_DIRECTORY = "Remove Directory";
 
-        public static void CopyFile(string from, string to)
+        public static void Modify
+            (ModificationType modType, string fromOrAt, string to = "")
         {
-            var comm = SynchronizationCommunicator.Instance;
+            Action<string, string> referenceModification = null;
+            Action<string> singleModification = null;
+            string currentAction = "";
+            switch (modType)
+            {
+                case ModificationType.CopyFile:
+                    referenceModification = CopyFile;
+                    currentAction = COPY_FILE;
+                    break;
+                case ModificationType.UpdateFile:
+                    referenceModification = UpdateFile;
+                    currentAction = UPDATE_FILE;
+                    break;
+                case ModificationType.DeleteFile:
+                    singleModification = DeleteFile;
+                    currentAction = DELETE_FILE;
+                    break;
+                case ModificationType.CreateDirectory:
+                    singleModification = CreateDirectory;
+                    currentAction = CREATE_DIRECTORY;
+                    break;
+                case ModificationType.RemoveDirectory:
+                    singleModification = DeleteDirectory;
+                    currentAction = REMOVE_DIRECTORY;
+                    break;
+            }
 
+            var comm = SynchronizationCommunicator.Instance;
+            string fileName = PathConversion.GetFileName(fromOrAt);
             try
             {
-                File.Copy(from, to);
-                SynchronizationCommunicator.Instance
-                    .InfoFileCreated(to);
+                if (singleModification != null)
+                {
+                    singleModification(fromOrAt);
+                    comm.InfoModification(currentAction, fileName);
+                }
+
+                if (referenceModification != null)
+                {
+                    referenceModification(fromOrAt, to);
+                    comm.InfoModification(currentAction, fileName);
+                }
             }
             catch (UnauthorizedAccessException ex)
             {
                 /* The user changes permissions for the file or destination directory
                  */
-                comm.ErrorDuring(COPY_FILE, ex.Message);
+                comm.Error(currentAction, ex.Message);
             }
             catch (ArgumentNullException ex)
             {
                 //User Deletes file to copy while Synchra contains the file in a
                 //foreach collection
-                comm.ErrorDuring(COPY_FILE, ex.Message);
+                comm.Error(currentAction, ex.Message);
             }
             catch (ArgumentException ex)
             {
-                comm.ErrorDuring(COPY_FILE, ex.Message);
-            }
-            catch(PathTooLongException ex)
-            {
-                comm.ErrorDuring(COPY_FILE, ex.Message);
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                comm.ErrorDuring(COPY_FILE, ex.Message);
-            }
-            catch (FileNotFoundException ex)
-            {
-                comm.ErrorDuring(COPY_FILE, ex.Message);
-            }
-            catch (IOException ex)
-            {
-                comm.ErrorDuring(COPY_FILE, ex.Message);
-            }
-        }
-
-        public static void UpdateFile(string from, string to)
-        {
-            var comm = SynchronizationCommunicator.Instance;
-
-            try
-            {
-                File.Delete(to);
-                File.Copy(from, to);
-                SynchronizationCommunicator.Instance
-                    .InfoFileUpdated(to);
-
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                comm.ErrorDuring(UPDATE_FILE, ex.Message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                comm.ErrorDuring(UPDATE_FILE, ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                comm.ErrorDuring(UPDATE_FILE, ex.Message);
+                comm.Error(currentAction, ex.Message);
             }
             catch (PathTooLongException ex)
             {
-                comm.ErrorDuring(UPDATE_FILE, ex.Message);
+                comm.Error(currentAction, ex.Message);
             }
             catch (DirectoryNotFoundException ex)
             {
-                comm.ErrorDuring(UPDATE_FILE, ex.Message);
+                comm.Error(currentAction, ex.Message);
             }
             catch (FileNotFoundException ex)
             {
-                comm.ErrorDuring(UPDATE_FILE, ex.Message);
+                comm.Error(currentAction, ex.Message);
             }
             catch (IOException ex)
             {
-                comm.ErrorDuring(UPDATE_FILE, ex.Message);
+                comm.Error(currentAction, ex.Message);
             }
         }
 
-        public static void DeleteFile(string at)
-        {
-            var comm = SynchronizationCommunicator.Instance;
-
-            try
-            {
-                File.Delete(at);
-                SynchronizationCommunicator.Instance
-                    .InfoFileDeleted(at);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                comm.ErrorDuring(DELETE_FILE, ex.Message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                comm.ErrorDuring(DELETE_FILE, ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                comm.ErrorDuring(DELETE_FILE, ex.Message);
-            }
-            catch (PathTooLongException ex)
-            {
-                comm.ErrorDuring(DELETE_FILE, ex.Message);
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                comm.ErrorDuring(DELETE_FILE, ex.Message);
-            }
-            catch (FileNotFoundException ex)
-            {
-                comm.ErrorDuring(DELETE_FILE, ex.Message);
-            }
-            catch (IOException ex)
-            {
-                comm.ErrorDuring(DELETE_FILE, ex.Message);
-            }
+        private static void CopyFile(string from, string to)
+        {            
+            File.Copy(from, to);
         }
 
-        public static void CreateDirectory(string at)
-        {
-            var comm = SynchronizationCommunicator.Instance;
-
-            try
-            {
-                Directory.CreateDirectory(at);
-                SynchronizationCommunicator.Instance
-                    .InfoDirectoryCreated(at);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                comm.ErrorDuring(CREATE_DIRECTORY, ex.Message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                comm.ErrorDuring(CREATE_DIRECTORY, ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                comm.ErrorDuring(CREATE_DIRECTORY, ex.Message);
-            }
-            catch (PathTooLongException ex)
-            {
-                comm.ErrorDuring(CREATE_DIRECTORY, ex.Message);
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                comm.ErrorDuring(CREATE_DIRECTORY, ex.Message);
-            }
-            catch (FileNotFoundException ex)
-            {
-                comm.ErrorDuring(CREATE_DIRECTORY, ex.Message);
-            }
-            catch (IOException ex)
-            {
-                comm.ErrorDuring(CREATE_DIRECTORY, ex.Message);
-            }
+        private static void UpdateFile(string from, string to)
+        {            
+            File.Delete(to);
+            File.Copy(from, to);        
         }
 
-        public static void DeleteDirectory(string at)
-        {
-            var comm = SynchronizationCommunicator.Instance;
+        private static void DeleteFile(string at)
+        {            
+            File.Delete(at);
+        }
 
-            try
-            {
-                Directory.Delete(at);
-                SynchronizationCommunicator.Instance
-                    .InfoDirectoryDeleted(at);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                comm.ErrorDuring(REMOVE_DIRECTORY, ex.Message);
-            }
-            catch (ArgumentNullException ex)
-            {
-                comm.ErrorDuring(REMOVE_DIRECTORY, ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                comm.ErrorDuring(REMOVE_DIRECTORY, ex.Message);
-            }
-            catch (PathTooLongException ex)
-            {
-                comm.ErrorDuring(REMOVE_DIRECTORY, ex.Message);
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                comm.ErrorDuring(REMOVE_DIRECTORY, ex.Message);
-            }
-            catch (FileNotFoundException ex)
-            {
-                comm.ErrorDuring(REMOVE_DIRECTORY, ex.Message);
-            }
-            catch (IOException ex)
-            {
-                comm.ErrorDuring(REMOVE_DIRECTORY, ex.Message);
-            }
+        private static void CreateDirectory(string at)
+        {            
+            Directory.CreateDirectory(at);
+        }
+
+        private static void DeleteDirectory(string at)
+        {            
+            Directory.Delete(at);          
         }
     }
 }

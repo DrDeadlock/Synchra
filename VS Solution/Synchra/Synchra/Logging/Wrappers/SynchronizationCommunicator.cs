@@ -76,19 +76,34 @@ namespace Synchra.Logging.Wrappers
             _logger.Info("The Directory: " + directoryName + " has been removed.");
         }
 
+        public void InfoModification(string process, string concerningFile)
+        {
+            _logger.Info(process + " of " + concerningFile + " successful");
+        }
+
         public void Error(string message)
         {
             _logger.Error(message);
         }
 
-        public void ErrorDuring(string failedProcess, string message)
+        public void Error(string failedProcess, string message)
         {
             _logger.Error("Error During "
                 + failedProcess
                 + "! "
                 + "Message from system: "
+                + message);                 
+        }
+
+        public void Error(string failedProcess, string concerningFile, string message)
+        {
+            _logger.Error("Error During "
+                + failedProcess
+                + " of"
+                + concerningFile
+                + "! \n"
+                + "Message from system: "
                 + message);
-                
         }
 
         public void WarnSrcOrDestNewCreated()

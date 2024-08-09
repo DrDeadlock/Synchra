@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using Synchra.FileSystemHelpers;
@@ -59,7 +58,7 @@ namespace Synchra.Synchronization
                 if (!SyncStateChecker.BothContainFile(
                         srcPath, destPath, fileLocalPath))
                 {
-                    SyncStateModifier.DeleteFile(file);
+                    SyncStateModifier.Modify(ModificationType.DeleteFile, file);
                 }
             }
         }
@@ -96,9 +95,7 @@ namespace Synchra.Synchronization
                 if (!SyncStateChecker.BothContainDirectory(
                     srcPath, destPath, dirLocalPath))
                 {
-                    //TODO: We have to iterate through this directory
-                    //And clear sub dirs and files as well...
-                    SyncStateModifier.DeleteDirectory(dir);
+                    SyncStateModifier.Modify(ModificationType.RemoveDirectory, dir);
                 }
             }
         }
@@ -137,16 +134,16 @@ namespace Synchra.Synchronization
                 if (!SyncStateChecker.BothContainFile
                     (srcPath, destPath, fileLocalPath))
                 {
-                    SyncStateModifier.CopyFile(
-                        fileInSrc, fileInDest);
+                    SyncStateModifier.Modify(
+                        ModificationType.CopyFile, fileInSrc, fileInDest);
                 }
                 else
                 {
                     if (SyncStateChecker.FileOutOfSync
                         (fileInSrc, fileInDest))
                     {
-                        SyncStateModifier.UpdateFile
-                            (fileInSrc, fileInDest);
+                        SyncStateModifier.Modify
+                            (ModificationType.UpdateFile, fileInSrc, fileInDest);
                     }
                 }
             }
@@ -185,7 +182,7 @@ namespace Synchra.Synchronization
 
                 if (!SyncStateChecker.BothDirectoriesExist(subDirInSrc, subDirInDest))
                 {
-                    SyncStateModifier.CreateDirectory(subDirInDest);
+                    SyncStateModifier.Modify(ModificationType.CreateDirectory, subDirInDest);
                 }
             }
         }

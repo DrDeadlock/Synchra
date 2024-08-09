@@ -2,7 +2,7 @@
 	- Use Colored Console Logger instead of Console Logger
 	- Show only relative Paths or even only file names and directory names
 - Improve business logic
-	- If Files are and A and also in B but in another location, then actually MOVE the File and Dir
+	- If Files are in A and also in B but in another location, then actually MOVE the File and Dir
 	- File Moving would improve the logs, 
 		- as they are confusing atm cause of the "Delete x, y, z" and "Create x, y, z" in the same log cycle
 		- as they are waaaay to big cause of the issue above
@@ -12,7 +12,7 @@
 		- How or even if to use the logger factories
 	- Unify the Methods in State Modifier
 		- Create a delegate, call the specific method, and try catch only once over the invoke
-		- To keep the logs clear, define string variables for the current action (which might fail) 
+		- [x] To keep the logs clear, define string variables for the current action (which might fail) 
 		- Don't log only the exception messages but state more clearer to the user what happened and if the user was the problem or not
 	- Define Test cases which are necessary for the future but momentarily missing
 		- Exception throws of State Modifier
